@@ -1,0 +1,196 @@
+version: 5.1.0
+variant: default
+logo:
+    text: Mubosola
+head:
+    favicon: /img/favicon.svg
+    manifest:
+        name: Mubosola Blog
+        short_name: 
+        start_url: https://www.mubosola.com
+        theme_color: 
+        background_color: 
+        display: standalone
+        icons:
+            -
+                src: ''
+                sizes: ''
+                type: 
+    open_graph:
+        title: 
+        type: blog
+        url: 
+        image: 
+        site_name: 
+        author: 
+        description: 
+        twitter_card: 
+        twitter_id: 
+        twitter_site: 
+        google_plus: 
+        fb_admins: 
+        fb_app_id: 
+    structured_data:
+        title: 
+        description: 
+        url: 
+        author: 
+        publisher: 
+        publisher_logo: 
+        image: 
+    meta:
+        - name=theme-color;content=#123456
+    rss: 
+navbar:
+    menu:
+        Home: /
+        Archives: /archives
+        Categories: /categories
+        Tags: /tags
+        About: /about/index
+    links:
+        Download on GitHub:
+            icon: fab fa-github
+            url: https://github.com/
+footer:
+    links:
+        Download on GitHub:
+            icon: fab fa-github
+            url: https://github.com/
+article:
+    highlight:
+        theme: atom-one-light
+        clipboard: true
+        fold: unfolded
+    readtime: true
+    update_time: true
+    licenses:
+        Creative Commons:
+            icon: fab fa-creative-commons
+            url: https://creativecommons.org/
+        Attribution:
+            icon: fab fa-creative-commons-by
+            url: https://creativecommons.org/licenses/by/4.0/
+        Noncommercial:
+            icon: fab fa-creative-commons-nc
+            url: https://creativecommons.org/licenses/by-nc/4.0/
+search:
+    type: insight
+comment:
+    type: facebook
+donates:
+    -
+        type: buymeacoffee
+        url: https://www.buymeacoffee.com/egabriel?new=1
+    -
+        type: patreon
+        url: https://www.patreon.com/eghosagabriel
+    -
+        type: paypal
+        business: CCTHWK4T3HABS
+        currency_code: USD
+share:
+    type: sharethis
+    install_url: https://platform-api.sharethis.com/js/sharethis.js#property=62a47a7905284b00197c549b&product=inline-share-buttons
+sidebar:
+    left:
+        sticky: false
+    right:
+        sticky: true
+widgets:
+    -
+        position: left
+        type: profile
+    -
+        type: recent_posts
+        position: right
+        author: Mercy Mubosola Adelana
+        author_title: Cyber Security Enthusiast
+        location: Lagos, Nigeria
+        avatar: https://res.cloudinary.com/virifortissimi/image/upload/v1654950021/1606371102673.jpg
+        avatar_rounded: false
+        gravatar: 
+        follow_link: https://github.com/
+        social_links:
+            Github:
+                icon: fab fa-github
+                url: https://github.com/
+            Twitter:
+                icon: fab fa-twitter
+                url: https://twitter.com/Del_lahna
+            RSS:
+                icon: fas fa-rss
+                url: /
+    -
+        position: right
+        type: toc
+        index: true
+        collapsed: true
+        depth: 3
+    -
+        position: right
+        type: links
+        links:
+            Github: https://www.github.com/Virifortissimi
+            Twitter: https://twitter.com/Del_lahna
+            Youtube: https://www.youtube.com/channel/UC1Bm_utLdSD45EkDa6AuU4w
+            Resume: https://docs.google.com/document/d/1YgGoAv2hEL1RYHYHKTllrfAjz-GzDzQr_GVDnaHNMGE/edit?usp=sharing
+            Email: mailto:connect@egabriel.dev
+    -
+        position: right
+        type: categories
+    -
+        position: left
+        type: recent_posts
+    -
+        position: left
+        type: archives
+    -
+        position: left
+        type: tags
+    -
+        position: left
+        type: adsense
+        client_id: ca-pub-7334225597653931
+        slot_id: '5455350894'
+    -
+        position: left
+        type: followit
+        description: 
+        action_url: https://api.follow.it/subscription-form/N3FZc2ZodG5LNDZmMDE2SUFKR2dvSHRzYWk1RVd1T2kzN0ppMWhGc3RONFJaV2J0MDU3aDNMRkorQS9KS0RaN0pwVzVrQmlXWUJJc3J6bWJqQnZzVzFJSDJqT2pqUmorcElocjltN2QzdVh0eEp5eUZZbVI4dE9SNXVQTHpoS2V8VTRzNEhaaWRURzFycEZhQlkwd29NT05pRkZoVVY5Wng0VWwxdmd2OTlWcz0=/8
+        verification_code: K4jjjLu6a4GvlqnW19UK
+plugins:
+    animejs: true
+    back_to_top: true
+    baidu_analytics:
+        tracking_id: 
+    bing_webmaster:
+        tracking_id: 
+    busuanzi: false
+    cnzz:
+        id: 
+        web_id: 
+    cookie_consent:
+        type: info
+        theme: edgeless
+        static: false
+        position: bottom-left
+        policyLink: https://www.cookiesandyou.com/
+    gallery: true
+    google_analytics:
+        tracking_id: 
+    hotjar:
+        site_id: 
+    katex: false
+    mathjax: false
+    outdated_browser: false
+    progressbar: true
+    statcounter:
+        project: 
+        security: 
+    twitter_conversion_tracking:
+        pixel_id: 
+providers:
+    cdn: jsdelivr
+    fontcdn: google
+    iconcdn: fontawesome
