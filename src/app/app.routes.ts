@@ -12,7 +12,7 @@ export const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'mentorship', component: MentorshipComponent },
   { path: 'resources', component: ResourcesComponent },
-  { path: 'community', component: CommunityComponent },
+  { path: 'courses', component: CommunityComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'get-started', component: GetStartedComponent },
   { path: '**', redirectTo: '' }
