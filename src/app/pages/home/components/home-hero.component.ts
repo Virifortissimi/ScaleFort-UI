@@ -27,9 +27,11 @@ import { AnimatedCircuitComponent } from '../../../shared/components/animated-ci
                  class="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold inline-block hover:bg-blue-50 transition">
                 Get Started
               </a>
-              <a routerLink="/about" 
-                 class="border-2 border-white text-white px-8 py-3 rounded-md font-semibold inline-block hover:bg-white/10 transition">
-                Learn More
+              <a 
+                href="assets/pdf/scalefort-brochure.pdf"
+                download="Scalefort-Brochure.pdf" 
+                class="border-2 border-white text-white px-8 py-3 rounded-md font-semibold inline-block hover:bg-white/10 transition">
+                    Download Brochure
               </a>
             </div>
           </div>
