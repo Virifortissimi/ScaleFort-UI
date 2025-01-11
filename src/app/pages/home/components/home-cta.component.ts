@@ -14,8 +14,11 @@ import { RouterLink } from '@angular/router';
           <a routerLink="/get-started" class="bg-blue-600 text-white px-8 py-3 rounded-md font-semibold inline-block">
             Get Started
           </a>
-          <a routerLink="/resources" class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-md font-semibold inline-block">
-            Download Brochure
+          <a
+            href="assets/pdf/scalefort-brochure.pdf"
+            download="Scalefort-Brochure.pdf" 
+            class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-md font-semibold inline-block">
+              Download Brochure
           </a>
         </div>
       </div>

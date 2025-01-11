@@ -11,24 +11,28 @@ interface Faq {
 export class FaqService {
   private faqs: Faq[] = [
     {
-      question: 'How does the mentorship matching process work?',
-      answer: 'Our matching process uses a smart algorithm that considers your goals, expertise level, and industry to pair you with the most suitable mentor. You can also browse and request specific mentors.'
+      question: 'Do I need prior technical experience to join Scalefort?',
+      answer: 'No prior experience is required! Scalefort offers beginner-friendly foundational classes like HTML, CSS, and JavaScript, making it perfect for anyone starting their tech journey. Advanced learners can also benefit from our specialized classes.'
     },
     {
-      question: 'What types of mentorship programs are available?',
-      answer: 'We offer 1:1 mentorship, group sessions, and specialized startup mentoring programs. Each program is tailored to meet different needs and learning styles.'
+      question: 'What is the duration of the Scalefort program?',
+      answer: 'The Scalefort program runs for 12 weeks, divided into structured modules. This includes foundational classes, real-world projects, and mentorship sessions, ensuring you gain practical skills and industry-ready expertise.'
     },
     {
-      question: 'How much does mentorship cost?',
-      answer: 'Mentorship costs vary based on the program type and mentor expertise. We offer flexible pricing options and some free community resources to ensure accessibility.'
+      question: 'Would there be Recruitment Support?',
+      answer: 'Scalefort would help all candidates to comprehensive recruitment training and support by the end of the training. Please download and go through the brochure'
+    },
+    {
+      question: 'How much does training cost?',
+      answer: 'Training costs 249,999 Naira. We offer flexible pricing options and some free community resources to ensure accessibility. Please download and go through the brochure'
     },
     {
       question: 'Can I become a mentor?',
-      answer: 'Yes! If you have significant experience in tech or entrepreneurship, you can apply to become a mentor. We review applications based on expertise and commitment to helping others.'
+      answer: 'Yes! If you have significant experience in tech, you can apply to become a mentor. We review applications based on expertise and commitment to helping others. Send an email'
     },
     {
       question: 'What resources are available?',
-      answer: 'We provide access to tutorials, business guides, case studies, webinars, templates, and a resource library covering various tech and business topics.'
+      answer: 'We provide access to tutorials, classes, documents, structured guides, and a resource library covering various tech topics.'
     }
   ];
 
