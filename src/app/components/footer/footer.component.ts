@@ -23,7 +23,7 @@ import { FooterNewsletterComponent } from './footer-newsletter.component';
           <app-footer-newsletter />
         </div>
         <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; 2024 ScaleFort. All rights reserved.</p>
+          <p>&copy; 2025 ScaleFort. All rights reserved.</p>
         </div>
       </div>
     </footer>

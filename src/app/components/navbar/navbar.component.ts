@@ -10,7 +10,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center h-16">
           <div class="flex-shrink-0">
-            <a routerLink="/" class="text-2xl font-bold text-blue-600">ScaleFort</a>
+            <a routerLink="/" class="text-2xl font-bold text-blue-600"><img src='https://res.cloudinary.com/virifortissimi/image/upload/v1736430718/Goals/unkxyhoxbt2mgqikwe8y.png' alt='logo' width='200px'/></a>
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-center space-x-4">

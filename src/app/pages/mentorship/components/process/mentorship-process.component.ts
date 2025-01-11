@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { ProcessStepComponent } from './process-step.component';
 import { processSteps } from './process-steps.data';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-mentorship-process',
   standalone: true,
-  imports: [NgFor, ProcessStepComponent],
+  imports: [NgFor, ProcessStepComponent, RouterLink],
   template: `
     <section class="py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4">
@@ -31,12 +32,10 @@ import { processSteps } from './process-steps.data';
 
         <!-- CTA -->
         <div class="text-center mt-16">
-          <button 
-            class="bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 
-                   transform transition-transform hover:scale-105 shadow-lg"
-          >
+          <a routerLink="/get-started" 
+            class="bg-blue-600 text-white px-8 py-3 rounded-md font-semibold inline-block">
             Start Your Journey
-          </button>
+        </a>
         </div>
       </div>
     </section>

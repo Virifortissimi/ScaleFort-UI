@@ -10,23 +10,28 @@ import { Component } from '@angular/core';
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div class="text-center">
             <div class="text-2xl font-bold text-blue-600 mb-4">1</div>
-            <h3 class="text-xl font-semibold mb-2">Sign Up</h3>
-            <p class="text-gray-600">Create your profile and set your goals</p>
+            <h3 class="text-xl font-semibold mb-2">Explore Our Programs</h3>
+            <p class="text-gray-600">Visit our website to learn about our learning tracks, including foundational and advanced classes in tech skills like 
+            Cloud, .NET backend development, and more. Choose the path that fits your career goals</p>
           </div>
           <div class="text-center">
             <div class="text-2xl font-bold text-blue-600 mb-4">2</div>
-            <h3 class="text-xl font-semibold mb-2">Match</h3>
-            <p class="text-gray-600">Get matched with the perfect mentor</p>
+            <h3 class="text-xl font-semibold mb-2">Complete the Application</h3>
+            <p class="text-gray-600">Fill out the online application form and pay a non-refundable application fee. 
+            This step ensures we gather all necessary details to match you to the right training.
+            </p>
           </div>
           <div class="text-center">
             <div class="text-2xl font-bold text-blue-600 mb-4">3</div>
-            <h3 class="text-xl font-semibold mb-2">Connect</h3>
-            <p class="text-gray-600">Schedule and attend mentoring sessions</p>
+            <h3 class="text-xl font-semibold mb-2"> Secure Your Spot</h3>
+            <p class="text-gray-600">Confirm your participation, Prepare by completing all pre training instructions. This commitment reinforces your dedication to the journey</p>
           </div>
           <div class="text-center">
             <div class="text-2xl font-bold text-blue-600 mb-4">4</div>
-            <h3 class="text-xl font-semibold mb-2">Grow</h3>
-            <p class="text-gray-600">Track progress and achieve your goals</p>
+            <h3 class="text-xl font-semibold mb-2">Kickstart Your Journey</h3>
+            <p class="text-gray-600">Once enrolled, prepare to embark on a transformative learning experience. Dive into live classes, real-world projects, mentorship sessions, and internship opportunities designed to set you up for success.
+
+              Scalefort is your gateway to tech excellence—take the first step today!</p>
           </div>
         </div>
       </div>

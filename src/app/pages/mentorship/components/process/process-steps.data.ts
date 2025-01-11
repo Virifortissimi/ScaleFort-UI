@@ -5,19 +5,19 @@ export interface ProcessStep {
 
 export const processSteps: ProcessStep[] = [
   {
-    title: 'Sign Up',
-    description: 'Create your profile and tell us about your goals, experience, and what you want to achieve.'
+    title: 'Explore Our Programs',
+    description: 'Visit our website to learn about our learning tracks, including foundational and advanced classes in tech skills like Cloud, .NET backend development, and more. Choose the path that fits your career goals'
   },
   {
-    title: 'Get Matched',
-    description: 'Our AI-powered system matches you with mentors who align with your goals and expertise level.'
+    title: 'Complete the Application',
+    description: 'Fill out the online application form and pay a non-refundable application fee. This step ensures we gather all necessary details to match you to the right training.'
   },
   {
-    title: 'Connect',
-    description: 'Schedule your first session and start your journey with personalized guidance and support.'
+    title: 'Secure Your Spot',
+    description: 'Confirm your participation, Prepare by completing all pre training instructions. This commitment reinforces your dedication to the journey'
   },
   {
-    title: 'Grow & Scale',
-    description: 'Track your progress, achieve milestones, and scale your career or business with expert guidance.'
+    title: 'Kickstart Your Journey',
+    description: 'Once enrolled, prepare to embark on a transformative learning experience. Dive into live classes, real-world projects, mentorship sessions, and internship opportunities designed to set you up for success. Scalefort is your gateway to tech excellence—take the first step today!'
   }
 ];

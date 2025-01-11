@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { AnimatedCircuitComponent } from '../../shared/components/animated-circuit.component';
 
 @Component({
   selector: 'app-about',
+  imports: [AnimatedCircuitComponent],
   standalone: true,
   template: `
     <div class="pt-16">
@@ -20,8 +22,8 @@ import { Component } from '@angular/core';
             <div>
               <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
               <p class="text-gray-600 mb-4">
-                ScaleFort is dedicated to empowering tech users, entrepreneurs, developers, 
-                and startups across Africa through mentorship, resources, and community support.
+                ScaleFort is dedicated to empowering tech users, developers, 
+                and enthusiasts across Africa through mentorship, resources, and community support.
               </p>
               <p class="text-gray-600">
                 We believe in bridging the gap in tech mentorship and resources, fostering 

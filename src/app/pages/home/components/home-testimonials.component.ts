@@ -9,29 +9,29 @@ import { Component } from '@angular/core';
         <h2 class="text-3xl font-bold text-center mb-12">Success Stories</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="bg-white p-6 rounded-lg shadow-md">
-            <p class="text-gray-600 mb-4">"ScaleFort's mentorship program helped me scale my startup from idea to serving 10,000+ customers in just 18 months."</p>
+            <p class="text-gray-600 mb-4">"Scalefort was a game-changer for me. The structured learning, practical projects, and supportive mentors provided all I needed to transition into tech confidently."</p>
             <div class="flex items-center">
               <div class="ml-3">
-                <div class="font-semibold">Sarah Johnson</div>
-                <div class="text-gray-500 text-sm">CEO, TechFlow</div>
+                <div class="font-semibold">Samuel A.</div>
+                <div class="text-gray-500 text-sm">Dotnet Developer, Kaybill Technologies</div>
               </div>
             </div>
           </div>
           <div class="bg-white p-6 rounded-lg shadow-md">
-            <p class="text-gray-600 mb-4">"The resources and community support were invaluable in helping me transition from a developer to a tech lead."</p>
+            <p class="text-gray-600 mb-4">"Scalefort gave me the skills and confidence to excel in tech. The hands-on projects, expert mentorship, and real-world focus made all the difference. "</p>
             <div class="flex items-center">
               <div class="ml-3">
-                <div class="font-semibold">Michael Okonjo</div>
-                <div class="text-gray-500 text-sm">Tech Lead, PayFast</div>
+                <div class="font-semibold">Halimat B.</div>
+                <div class="text-gray-500 text-sm">Intern, Wema Bank</div>
               </div>
             </div>
           </div>
           <div class="bg-white p-6 rounded-lg shadow-md">
-            <p class="text-gray-600 mb-4">"As a mentor, I've seen incredible transformations. The platform makes it easy to connect and make real impact."</p>
+            <p class="text-gray-600 mb-4">"Scalefort provided me with a solid foundation in programming, equipping me with the technical skills and knowledge I needed to thrive in the tech industry."</p>
             <div class="flex items-center">
               <div class="ml-3">
-                <div class="font-semibold">Amina Diallo</div>
-                <div class="text-gray-500 text-sm">CTO, DataSense</div>
+                <div class="font-semibold">Maureen O.</div>
+                <div class="text-gray-500 text-sm">Software Engineer, Sterling Bank</div>
               </div>
             </div>
           </div>

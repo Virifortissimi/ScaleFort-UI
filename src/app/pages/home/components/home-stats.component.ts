@@ -8,20 +8,20 @@ import { Component } from '@angular/core';
       <div class="max-w-7xl mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
           <div>
-            <div class="text-4xl font-bold text-blue-600 mb-2">500+</div>
-            <div class="text-gray-600">Active Mentors</div>
+            <div class="text-4xl font-bold text-blue-600 mb-2">100+</div>
+            <div class="text-gray-600">Learners Served</div>
           </div>
           <div>
-            <div class="text-4xl font-bold text-blue-600 mb-2">2,000+</div>
-            <div class="text-gray-600">Success Stories</div>
+            <div class="text-4xl font-bold text-blue-600 mb-2">5,000+</div>
+            <div class="text-gray-600">Time Spent on Content</div>
           </div>
           <div>
-            <div class="text-4xl font-bold text-blue-600 mb-2">50+</div>
-            <div class="text-gray-600">Partner Companies</div>
+            <div class="text-4xl font-bold text-blue-600 mb-2">4+</div>
+            <div class="text-gray-600">Countries</div>
           </div>
           <div>
-            <div class="text-4xl font-bold text-blue-600 mb-2">10,000+</div>
-            <div class="text-gray-600">Community Members</div>
+            <div class="text-4xl font-bold text-blue-600 mb-2">30+</div>
+            <div class="text-gray-600">Courses</div>
           </div>
         </div>
       </div>

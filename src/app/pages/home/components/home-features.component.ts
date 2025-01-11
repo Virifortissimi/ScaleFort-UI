@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="text-center p-6">
             <div class="text-blue-600 text-4xl mb-4">🎯</div>
-            <h3 class="text-xl font-semibold mb-4">Expert Matching</h3>
+            <h3 class="text-xl font-semibold mb-4">Expert Training</h3>
             <p class="text-gray-600">Get matched with mentors who understand your goals and can guide your growth.</p>
           </div>
           <div class="text-center p-6">

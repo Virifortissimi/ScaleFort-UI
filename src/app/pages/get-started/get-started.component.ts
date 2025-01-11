@@ -21,11 +21,11 @@ import { Component } from '@angular/core';
               <ul class="space-y-4 text-gray-600">
                 <li class="flex items-start">
                   <span class="text-blue-600 mr-2">✓</span>
-                  <span>Must be actively involved in tech (developer, designer, product manager, etc.)</span>
+                  <span>Basic computer literacy: Familiarity with technology is essential.</span>
                 </li>
                 <li class="flex items-start">
                   <span class="text-blue-600 mr-2">✓</span>
-                  <span>Minimum of 1 year experience in your field</span>
+                  <span>Passion for learning: A drive to solve problems and grow in the field.</span>
                 </li>
                 <li class="flex items-start">
                   <span class="text-blue-600 mr-2">✓</span>
@@ -33,7 +33,7 @@ import { Component } from '@angular/core';
                 </li>
                 <li class="flex items-start">
                   <span class="text-blue-600 mr-2">✓</span>
-                  <span>Strong desire to learn and grow in your tech career</span>
+                  <span>Personal Computer: A laptop or PC with the minimum specifications: Minimum 250 GB Storage | 4GB RAM | Functional Speakers Microphone and Camera</span>
                 </li>
               </ul>
             </div>
@@ -52,11 +52,15 @@ import { Component } from '@angular/core';
                 </li>
                 <li class="flex items-start">
                   <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">3</span>
-                  <span>Schedule an initial consultation call if approved</span>
+                  <span>Make payment of training fee </span>
                 </li>
                 <li class="flex items-start">
                   <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">4</span>
-                  <span>Get matched with your mentor and begin your journey</span>
+                  <span>Schedule an initial consultation call</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">5</span>
+                  <span>Begin your journey to a future with Tech</span>
                 </li>
               </ol>
             </div>
@@ -64,12 +68,13 @@ import { Component } from '@angular/core';
             <!-- Apply Button -->
             <div class="text-center">
               <a 
-                href="https://docs.google.com/forms/d/e/your-form-id/viewform" 
+                href="#" 
                 target="_blank"
+                disabled
                 rel="noopener noreferrer" 
                 class="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
               >
-                Apply Now
+                Cohort 4 Coming Soon
               </a>
               <p class="mt-4 text-sm text-gray-500">
                 Applications are reviewed on a rolling basis

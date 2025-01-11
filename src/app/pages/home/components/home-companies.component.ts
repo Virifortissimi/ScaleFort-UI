@@ -58,7 +58,9 @@ interface CompanyLogo {
 export class HomeCompaniesComponent {
   companyLogos: CompanyLogo[] = [
     { name: 'EBango', imageUrl: 'https://www.ebanqo.com/new-ebanqo-logo.svg' },
-    { name: 'Wellahealth', imageUrl: 'https://www.wellahealth.com/images/common/wellahealth-transparent.svg' },
-    { name: 'Sterling Bank', imageUrl: 'https://sterling.ng/wp-content/uploads/2019/02/cropped-cropped-Sterling_favicon.png'}
+    { name: 'Wellahealth', imageUrl: 'https://res.cloudinary.com/virifortissimi/image/upload/v1736432053/Goals/cnbdfl53ndtqpowcadtq.svg' },
+    { name: 'Sterling Bank', imageUrl: 'https://sterling.ng/wp-content/uploads/2019/02/cropped-cropped-Sterling_favicon.png'},
+    { name: 'Prunedge', imageUrl: 'https://prunedge.com/wp-content/uploads/2022/03/logo.svg' },
+    { name: 'Kaybills Technologies', imageUrl: 'https://res.cloudinary.com/virifortissimi/image/upload/v1736432185/Goals/i74od5zidd4j0jxonxvw.svg' }
   ];
 }

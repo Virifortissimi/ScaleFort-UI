@@ -20,7 +20,7 @@ import { AnimatedCircuitComponent } from '../../../shared/components/animated-ci
               Scale with Confidence. Scale with ScaleFort.
             </h1>
             <p class="text-xl mb-8">
-              Empowering Africa's tech innovators with expert mentorship, resources, and a supportive community.
+              Empowering Africa's tech innovators with expert trainings, mentorship, resources, and a supportive community.
             </p>
             <div class="space-x-4">
               <a routerLink="/get-started" 
@@ -37,7 +37,7 @@ import { AnimatedCircuitComponent } from '../../../shared/components/animated-ci
             <div class="grid grid-cols-2 gap-4">
               <div class="space-y-4">
                 <div class="bg-blue-600/30 p-6 rounded-lg backdrop-blur-sm">
-                  <h3 class="font-semibold mb-2">500+ Mentors</h3>
+                  <h3 class="font-semibold mb-2">100+ Learners Served</h3>
                   <p class="text-sm text-blue-100">Connect with industry experts</p>
                 </div>
                 <div class="bg-blue-600/30 p-6 rounded-lg backdrop-blur-sm">
