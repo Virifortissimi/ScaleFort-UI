@@ -10,9 +10,10 @@ import { Component } from '@angular/core';
         <p class="text-gray-600 mb-6">
           Our support team is here to help you with any questions you might have.
         </p>
-        <button class="bg-blue-600 text-white px-6 py-3 rounded-md font-semibold">
+        <a href="mailto:info@scalefort.org" 
+          class="bg-blue-600 text-white px-6 py-3 rounded-md font-semibold">
           Contact Support
-        </button>
+        </a>
       </div>
     </section>
   `
