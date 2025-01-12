@@ -17,7 +17,7 @@ import { AnimatedCircuitComponent } from '../../../shared/components/animated-ci
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 class="text-5xl font-bold mb-6">
-              Scale with Confidence. Scale with ScaleFort.
+              Welcome to Scalefort: Your Path to a Thriving Tech Career
             </h1>
             <p class="text-xl mb-8">
               Empowering Africa's tech innovators with expert trainings, mentorship, resources, and a supportive community.
