@@ -16,10 +16,10 @@ import { RouterLink } from '@angular/router';
           <a routerLink="/mentorship" class="text-gray-400 hover:text-white transition">Mentorship</a>
         </li>
         <li>
-          <a routerLink="/resources" class="text-gray-400 hover:text-white transition">Resources</a>
+          <a routerLink="/courses" class="text-gray-400 hover:text-white transition">Courses</a>
         </li>
         <li>
-          <a routerLink="/community" class="text-gray-400 hover:text-white transition">Community</a>
+          <a routerLink="/faq" class="text-gray-400 hover:text-white transition">FAQ</a>
         </li>
       </ul>
     </div>
