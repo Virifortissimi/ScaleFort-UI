@@ -17,7 +17,7 @@ import { RouterLink } from '@angular/router';
           <a
             href="assets/pdf/scalefort-brochure.pdf"
             download="Scalefort-Brochure.pdf" 
-            class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-md font-semibold inline-block">
+            class="border-2 border-blue-600 text-blue-600 download-brochure px-8 py-3 rounded-md font-semibold inline-block">
               Download Brochure
           </a>
         </div>

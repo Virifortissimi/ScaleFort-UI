@@ -17,3 +17,15 @@ body {
 .animate-scroll {
   -webkit-font-smoothing: antialiased;
 }
+
+@media (max-width: 430px) {
+  .space-x-4 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  a.download-brochure {
+    margin-left: 0px !important;
+    margin-top: 10px;
+  }
+}

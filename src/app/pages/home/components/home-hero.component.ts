@@ -30,7 +30,7 @@ import { AnimatedCircuitComponent } from '../../../shared/components/animated-ci
               <a 
                 href="assets/pdf/scalefort-brochure.pdf"
                 download="Scalefort-Brochure.pdf" 
-                class="border-2 border-white text-white px-8 py-3 rounded-md font-semibold inline-block hover:bg-white/10 transition">
+                class="border-2 border-white text-white px-8 py-3 download-brochure rounded-md font-semibold inline-block hover:bg-white/10 transition">
                     Download Brochure
               </a>
             </div>
