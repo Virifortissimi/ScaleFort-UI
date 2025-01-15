@@ -10,16 +10,19 @@ import { RouterLink } from '@angular/router';
       <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
       <ul class="space-y-2">
         <li>
-          <a href="https://facebook.com/scalefortHQ" class="text-gray-400 hover:text-white transition">Facebook</a>
+          <a href="https://x.com/scalefortHQ" target="_blank" class="text-gray-400 hover:text-white transition">X</a>
         </li>
         <li>
-          <a href="https://x.com/scalefortHQ" class="text-gray-400 hover:text-white transition">X</a>
+          <a href="https://medium.com/@scalefort" target="_blank" class="text-gray-400 hover:text-white transition">Blog</a>
         </li>
         <li>
-          <a href="https://instagram.com/scalefort" class="text-gray-400 hover:text-white transition">Instagram</a>
+          <a href="https://linkedin.com/company/scalefort" target="_blank" class="text-gray-400 hover:text-white transition">LinkedIn</a>
         </li>
         <li>
-          <a href="https://linkedin.com/scalefort" class="text-gray-400 hover:text-white transition">LinkedIn</a>
+          <a href="https://facebook.com/scalefort" target="_blank" class="text-gray-400 hover:text-white transition">Facebook</a>
+        </li>
+        <li>
+          <a href="https://instagram.com/scalefort" target="_blank" class="text-gray-400 hover:text-white transition">Instagram</a>
         </li>
       </ul>
     </div>

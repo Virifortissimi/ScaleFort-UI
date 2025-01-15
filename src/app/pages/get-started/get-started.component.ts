@@ -37,6 +37,22 @@ import { Component } from '@angular/core';
                 </li>
               </ul>
             </div>
+            
+            <!-- Apply Button -->
+            <div class="text-center">
+              <a 
+                href="https://paystack.com/buy/scalefort" 
+                target="_blank"
+                disabled
+                rel="noopener noreferrer" 
+                class="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
+              >
+                Apply Now
+              </a>
+              <p class="mt-4 text-sm text-gray-500">
+                Applications are reviewed on a rolling basis
+              </p>
+            </div>
 
             <!-- Process -->
             <div>
@@ -68,13 +84,51 @@ import { Component } from '@angular/core';
             <!-- Apply Button -->
             <div class="text-center">
               <a 
-                href="#" 
+                href="https://paystack.com/buy/scalefort" 
                 target="_blank"
                 disabled
                 rel="noopener noreferrer" 
                 class="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
               >
-                Cohort 4 Coming Soon
+                Apply Now
+              </a>
+              <p class="mt-4 text-sm text-gray-500">
+                Applications are reviewed on a rolling basis
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-bold mb-6">Bank Transfer</h2>
+              <ol class="space-y-4 text-gray-600">
+                <li class="flex items-start">
+                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                  <span>Transfer the sum of N299,999 to <strong>Bank:</strong> Moniepoint MFB, <strong>Account Number:</strong> 6908252843, <strong>Account Name:</strong> Scalefort Services</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                  <span>Send evidence of payment to <a href="mailto:school@scalefort.org">school&#64;scalefort.org</a></span>
+                </li>
+                <li class="flex items-start">
+                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">4</span>
+                  <span>Schedule an initial consultation call</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">5</span>
+                  <span>Begin your journey to a future with Tech</span>
+                </li>
+              </ol>
+            </div>
+            
+            <!-- Apply Button -->
+            <div class="text-center">
+              <a 
+                href="https://paystack.com/buy/scalefort" 
+                target="_blank"
+                disabled
+                rel="noopener noreferrer" 
+                class="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
+              >
+                Apply Now
               </a>
               <p class="mt-4 text-sm text-gray-500">
                 Applications are reviewed on a rolling basis
