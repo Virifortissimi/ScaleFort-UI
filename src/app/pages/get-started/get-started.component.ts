@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-get-started',
+  imports: [RouterLink],
   standalone: true,
   template: `
     <div class="pt-16">
       <section class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-4">
-          <h1 class="text-4xl font-bold mb-4">Get Started with ScaleFort</h1>
-          <p class="text-xl">Your journey to tech excellence begins here</p>
+          <h1 class="text-4xl font-bold mb-7">Get Started with ScaleFort</h1>
+          <p class="text-xl">Your journey to tech excellence begins here. </p>
+              <a 
+                href="assets/pdf/scalefort-brochure.pdf"
+                download="Scalefort-Brochure.pdf" 
+                class="bg-white text-blue-600 px-8 py-3 mt-7 rounded-md font-semibold inline-block hover:bg-blue-50 transition">
+                    Download Brochure
+              </a>
         </div>
       </section>
 
@@ -140,4 +148,4 @@ import { Component } from '@angular/core';
     </div>
   `
 })
-export class GetStartedComponent {}
+export class GetStartedComponent { }
