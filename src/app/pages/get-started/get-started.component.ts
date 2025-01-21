@@ -49,7 +49,7 @@ import { RouterLink } from '@angular/router';
             <!-- Apply Button -->
             <div class="text-center">
               <a 
-                href="https://paystack.com/buy/scalefort" 
+                href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" 
                 target="_blank"
                 disabled
                 rel="noopener noreferrer" 
@@ -92,7 +92,7 @@ import { RouterLink } from '@angular/router';
             <!-- Apply Button -->
             <div class="text-center">
               <a 
-                href="https://paystack.com/buy/scalefort" 
+                href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" 
                 target="_blank"
                 disabled
                 rel="noopener noreferrer" 
@@ -130,7 +130,7 @@ import { RouterLink } from '@angular/router';
             <!-- Apply Button -->
             <div class="text-center">
               <a 
-                href="https://paystack.com/buy/scalefort" 
+                href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" 
                 target="_blank"
                 disabled
                 rel="noopener noreferrer" 
