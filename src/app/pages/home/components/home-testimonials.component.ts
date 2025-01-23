@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-home-testimonials',
   standalone: true,
   template: `
-    <section class="py-20 bg-gray-50">
+    <section class="py-20 bg-blue-50">
       <div class="max-w-7xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Success Stories</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">

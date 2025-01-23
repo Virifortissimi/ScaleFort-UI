@@ -5,6 +5,7 @@ import { HomeTestimonialsComponent } from './components/home-testimonials.compon
 import { HomeCtaComponent } from './components/home-cta.component';
 import { HomeHeroComponent } from './components/home-hero.component';
 import { HomeCompaniesComponent } from './components/home-companies.component';
+import { CoursesComponent } from './components/courses.component';
 
 @Component({
   selector: 'app-home',
@@ -15,12 +16,14 @@ import { HomeCompaniesComponent } from './components/home-companies.component';
     HomeFeaturesComponent,
     HomeTestimonialsComponent,
     HomeCompaniesComponent,
-    HomeCtaComponent
+    HomeCtaComponent,
+    CoursesComponent
   ],
   template: `
     <div class="pt-16">
       <app-home-hero/>
       <app-home-features />
+      <app-courses />
       <app-home-stats />
       <app-home-testimonials />
       <app-home-companies />

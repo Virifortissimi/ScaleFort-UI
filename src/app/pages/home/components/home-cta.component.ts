@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   template: `
-    <section class="py-20">
+    <section class="py-20 bg-blue-50">
       <div class="max-w-4xl mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold mb-6">Ready to Scale Your Tech Journey?</h2>
         <p class="text-xl text-gray-600 mb-8">Join thousands of tech professionals in Lagos, Nigeria and Africa who are scaling their careers with ScaleFort.</p>
