@@ -37,7 +37,7 @@ import { Component } from '@angular/core';
       </div>
       <!-- Right: Intro and Link -->
       <div>
-        <h3 class="text-2xl font-bold mb-4">Upcoming BootCamp</h3>
+        <h3 class="text-2xl font-bold mb-4">Upcoming Webinar</h3>
         <p class="text-gray-600 mb-4">
           Don't know where to start your tech career in 2025? Attend our upcoming Webinar and
           see firsthand how we unveil the steps to scaling your tech careers this 2025. 
@@ -46,7 +46,7 @@ import { Component } from '@angular/core';
           href="https://bit.ly/sc-y"
           class="inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
         >
-          Attend BootCamp
+          Attend Webinar
         </a>
       </div>
     </div>
