@@ -57,9 +57,6 @@ import { RouterLink } from '@angular/router';
               >
                 Apply Now
               </a>
-              <p class="mt-4 text-sm text-gray-500">
-                Applications are reviewed on a rolling basis
-              </p>
             </div>
 
             <!-- Process -->
@@ -100,9 +97,6 @@ import { RouterLink } from '@angular/router';
               >
                 Apply Now
               </a>
-              <p class="mt-4 text-sm text-gray-500">
-                Applications are reviewed on a rolling basis
-              </p>
             </div>
 
             <div>
@@ -138,9 +132,6 @@ import { RouterLink } from '@angular/router';
               >
                 Apply Now
               </a>
-              <p class="mt-4 text-sm text-gray-500">
-                Applications are reviewed on a rolling basis
-              </p>
             </div>
           </div>
         </div>
