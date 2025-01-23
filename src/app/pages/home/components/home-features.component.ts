@@ -30,7 +30,7 @@ import { Component } from '@angular/core';
       <!-- Left: Image -->
       <div>
         <img
-          src="https://via.placeholder.com/500x300"
+          src="https://res.cloudinary.com/virifortissimi/image/upload/v1737550959/Goals/Youtube_Live.png"
           alt="Upcoming Webinar"
           class="w-full rounded-lg shadow-lg"
         />
