@@ -24,7 +24,7 @@ export class FaqService {
     },
     {
       question: 'How much does training cost?',
-      answer: 'Training costs 299,999 Naira. We offer flexible pricing options and some free community resources to ensure accessibility. Please download and go through the brochure'
+      answer: 'Training costs <s>350,000</s> 299,999 Naira. We offer flexible pricing options and some free community resources to ensure accessibility. Please download and go through the brochure'
     },
     {
       question: 'Can I become a mentor?',
