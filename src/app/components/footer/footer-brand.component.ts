@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <div>
-      <h3 class="text-xl font-bold mb-4"><img src='https://res.cloudinary.com/virifortissimi/image/upload/v1736430718/Goals/unkxyhoxbt2mgqikwe8y.png' alt='logo' width='290px'/></h3>
+      <h3 class="text-xl font-bold mb-4"><img src='https://res.cloudinary.com/virifortissimi/image/upload/v1737720710/Goals/SCALE-small.png' alt='logo' width='290px'/></h3>
       <p class="text-gray-400">Scale with Confidence. Scale with ScaleFort.</p>
     </div>
   `
