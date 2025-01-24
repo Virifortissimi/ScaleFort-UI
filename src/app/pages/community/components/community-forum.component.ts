@@ -11,12 +11,12 @@ import { Component } from '@angular/core';
           <div class="bg-white p-6 rounded-lg shadow-md">
             <h3 class="text-xl font-semibold mb-2">Backend Development with .NET:</h3>
             <p class="text-gray-600 mb-4">Build robust, scalable, and secure APIs and systems using .NET technologies.</p>
-            <a href="/get-started" class="text-blue-600 font-semibold">Apply Now →</a>
+            <a href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" target="_blank" class="text-blue-600 font-semibold">Apply Now →</a>
           </div>
           <div class="bg-white p-6 rounded-lg shadow-md">
             <h3 class="text-xl font-semibold mb-2">Backend Development with Python:</h3>
             <p class="text-gray-600 mb-4"> Develop efficient, high-performance backends using Python and Django. </p>
-            <a href="/get-started" class="text-blue-600 font-semibold">Apply Now →</a>
+            <a href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" target="_blank" class="text-blue-600 font-semibold">Apply Now →</a>
           </div>
         </div>
       </div>

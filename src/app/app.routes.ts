@@ -15,6 +15,6 @@ export const routes: Routes = [
   { path: 'resources', component: ResourcesComponent, title: "Scalefort - Resources" },
   { path: 'courses', component: CommunityComponent, title: "Scalefort - Courses" },
   { path: 'faq', component: FaqComponent, title: "Scalefort - FAQ" },
-  { path: 'get-started', component: GetStartedComponent, title: "Scalefort - Get STarted" },
+  { path: 'get-started', component: GetStartedComponent, title: "Scalefort - Get Started" },
   { path: '**', redirectTo: '' }
 ];

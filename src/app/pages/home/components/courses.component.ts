@@ -144,6 +144,6 @@ export class CoursesComponent implements OnInit, OnDestroy {
     }
 
     applyNow() {
-        window.location.href = '/get-started'; // Replace with the correct route or external URL
+        window.location.href = 'https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025'; // Replace with the correct route or external URL
     }
 }
