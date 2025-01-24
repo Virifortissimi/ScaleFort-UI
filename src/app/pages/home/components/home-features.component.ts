@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   template: `
     <section class="py-20">
   <div class="max-w-7xl mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-12">Why Choose ScaleFort?</h2>
+    <h4 class="text-2xl font-bold text-center mb-12 text-blue-600">Why Choose ScaleFort?</h4>
+    <h2 class="text-5xl font-bold text-center mb-12 text-blue-900">We are committed to customer satisfaction.</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="text-center p-6">
         <div class="text-blue-600 text-4xl mb-4">🎯</div>

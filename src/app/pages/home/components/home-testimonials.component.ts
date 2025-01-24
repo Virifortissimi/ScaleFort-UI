@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   template: `
     <section class="py-20 bg-blue-50">
       <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">Success Stories</h2>
+        <h2 class="text-3xl font-bold text-center mb-12">What our Graduates and Mentees Say?</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="bg-white p-6 rounded-lg shadow-md">
             <p class="text-gray-600 mb-4">"Scalefort was a game-changer for me. The structured learning, practical projects, and supportive mentors provided all I needed to transition into tech confidently."</p>

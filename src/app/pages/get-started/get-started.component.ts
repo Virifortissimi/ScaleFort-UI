@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
     <div class="pt-16">
       <section class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-4">
-          <h1 class="text-4xl font-bold mb-7">Get Started with ScaleFort</h1>
+          <h1 class="text-4xl font-bold mb-7">Register with ScaleFort</h1>
           <p class="text-xl">Your journey to tech excellence begins here. </p>
               <a 
                 href="assets/pdf/scalefort-brochure.pdf"

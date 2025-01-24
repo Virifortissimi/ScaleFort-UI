@@ -33,6 +33,22 @@ export class FaqService {
     {
       question: 'What resources are available?',
       answer: 'We provide access to tutorials, classes, documents, structured guides, and a resource library covering various tech topics.'
+    },
+    {
+      question: 'Is there a mentorship program for students?',
+      answer: 'Enrolling with us grants you exclusive access to our comprehensive career mentorship program.'
+    },
+    {
+      question: 'Do you issue certificates upon completion?',
+      answer: 'Yes, you will receive a recognized certificate of completion at the end of your program.'
+    },
+    {
+      question: 'What are the laptop specifications needed for enrollment?',
+      answer: 'To enroll, you will need a laptop with at least the following specifications: Core i5 processor, 8GB RAM, 256GB SSD or HDD, and a minimum of 2.5 GHz processor speed.'
+    },
+    {
+      question: 'Can payments be made in installments?',
+      answer: 'Yes, we offer the option to pay in up to 2 installments, subject to terms and conditions.'
     }
   ];
 

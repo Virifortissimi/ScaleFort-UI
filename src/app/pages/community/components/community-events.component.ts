@@ -20,6 +20,11 @@ import { Component } from '@angular/core';
                 <p class="text-gray-600 mb-4">
                   HTML/CSS/JavaScript: Learn the building blocks of web development and create stunning, interactive websites.
                 </p>
+
+                <p class="text-gray-700 mb-4">
+                  <strong>Next Cohort:</strong> March 1st, 2025 <br>
+                  <strong>Weekend Classes:</strong> Saturdays
+                </p>
                 <a href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" target="_blank" class="text-blue-600 font-semibold">Apply Now →</a>
               </div>
             </div>
@@ -31,6 +36,11 @@ import { Component } from '@angular/core';
                 <h3 class="text-2xl font-semibold mb-4">Cloud Computing</h3>
                 <p class="text-gray-600 mb-4">
                   Understand cloud platforms, deployments, and how to leverage services like AWS and Azure.
+                </p>
+                
+                <p class="text-gray-700 mb-4">
+                  <strong>Next Cohort:</strong> March 1st, 2025 <br>
+                  <strong>Weekend Classes:</strong> Saturdays
                 </p>
                 <a href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" target="_blank" class="text-blue-600 font-semibold">Apply Now →</a>
               </div>
@@ -51,6 +61,11 @@ import { Component } from '@angular/core';
                 <h3 class="text-2xl font-semibold mb-4">Customer Support/Success</h3>
                 <p class="text-gray-600 mb-4">
                   Gain essential communication, problem-solving, and technical skills to excel in tech-driven customer support roles.
+                </p>
+                
+                <p class="text-gray-700 mb-4">
+                  <strong>Next Cohort:</strong> March 1st, 2025 <br>
+                  <strong>Weekend Classes:</strong> Saturdays
                 </p>
                 <a href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" target="_blank" class="text-blue-600 font-semibold">Apply Now →</a>
               </div>

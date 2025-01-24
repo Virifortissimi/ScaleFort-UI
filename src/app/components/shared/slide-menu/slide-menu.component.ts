@@ -57,6 +57,6 @@ export class SlideMenuComponent {
     { path: '/mentorship', text: 'Mentorship' },
     { path: '/courses', text: 'Courses' },
     { path: '/faq', text: 'FAQ' },
-    { path: '/get-started', text: 'Get Started' }
+    { path: '/get-started', text: 'Register' }
   ];
 }

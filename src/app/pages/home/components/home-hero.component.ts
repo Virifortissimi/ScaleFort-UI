@@ -15,7 +15,13 @@ import { AnimatedCircuitComponent } from '../../../shared/components/animated-ci
       
       <div class="max-w-7xl mx-auto px-4 relative">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
+          <div>          
+            <p class="bg-blue-100 text-blue-600 px-4 py-2 rounded-full inline-flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.518 4.674a1 1 0 00.95.69h4.905c.969 0 1.371 1.24.588 1.81l-3.974 2.89a1 1 0 00-.364 1.118l1.518 4.675c.3.922-.755 1.688-1.54 1.118L10 15.347l-3.974 2.89c-.784.57-1.839-.196-1.54-1.118l1.518-4.674a1 1 0 00-.364-1.118L1.665 9.1c-.784-.57-.38-1.81.588-1.81h4.905a1 1 0 00.95-.69L9.05 2.927z" />
+              </svg>
+              No 1 Tech School in Lagos
+            </p>
             <h1 class="text-5xl font-bold mb-6">
               Welcome to Scalefort: Your Path to a Thriving Tech Career
             </h1>
@@ -25,7 +31,7 @@ import { AnimatedCircuitComponent } from '../../../shared/components/animated-ci
             <div class="space-x-4">
               <a routerLink="/get-started" 
                  class="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold inline-block hover:bg-blue-50 transition">
-                Get Started
+                Register
               </a>
               <a 
                 href="assets/pdf/scalefort-brochure.pdf"

@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
         <p class="text-xl text-gray-600 mb-8">Join thousands of tech professionals in Lagos, Nigeria and Africa who are scaling their careers with ScaleFort.</p>
         <div class="space-x-4">
           <a routerLink="/get-started" class="bg-blue-600 text-white px-8 py-3 rounded-md font-semibold inline-block">
-            Get Started
+            Register
           </a>
           <a
             href="assets/pdf/scalefort-brochure.pdf"

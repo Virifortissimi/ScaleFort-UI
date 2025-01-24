@@ -6,6 +6,7 @@ import { HomeCtaComponent } from './components/home-cta.component';
 import { HomeHeroComponent } from './components/home-hero.component';
 import { HomeCompaniesComponent } from './components/home-companies.component';
 import { CoursesComponent } from './components/courses.component';
+import { TalkToExpertComponent } from './components/talk-to-expert.component';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,8 @@ import { CoursesComponent } from './components/courses.component';
     HomeTestimonialsComponent,
     HomeCompaniesComponent,
     HomeCtaComponent,
-    CoursesComponent
+    CoursesComponent,
+    TalkToExpertComponent
   ],
   template: `
     <div class="pt-16">
@@ -28,6 +30,7 @@ import { CoursesComponent } from './components/courses.component';
       <app-home-testimonials />
       <app-home-companies />
       <app-home-cta />
+      <app-talk-to-expert />
     </div>
   `
 })

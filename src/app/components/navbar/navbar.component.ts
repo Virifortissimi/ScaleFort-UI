@@ -30,7 +30,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
           <div class="hidden md:block">
             <a routerLink="/get-started" 
                class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition">
-              Get Started
+              Register
             </a>
           </div>
         </div>

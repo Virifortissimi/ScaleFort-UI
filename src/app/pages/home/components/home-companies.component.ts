@@ -13,7 +13,9 @@ interface CompanyLogo {
   template: `
     <section class="py-20 bg-white">
       <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">Where our Mentees and Graduates Work</h2>
+        <h4 class="text-2xl font-bold text-center mb-12 text-blue-600">LIFE-AFTER TRAINING</h4>
+        <h2 class="text-5xl font-bold text-center mb-12 text-blue-900">Where our Graduates and Mentees work?.</h2>
+        <p class="text-center mb-9">Our talented graduates thrive in top companies worldwide, making meaningful contributions to their personal development and the success of the organizations they serve. They excel across diverse industries, including health technology, banking, and many more.</p>
         
         <div class="overflow-hidden relative">
           <div class="flex animate-scroll">
