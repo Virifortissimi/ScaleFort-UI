@@ -104,7 +104,7 @@ import { RouterLink } from '@angular/router';
               <ol class="space-y-4 text-gray-600">
                 <li class="flex items-start">
                   <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
-                  <span>Transfer the sum of N299,999 to <strong>Bank:</strong> Moniepoint MFB, <strong>Account Number:</strong> 6908252843, <strong>Account Name:</strong> Scalefort Services</span>
+                  <span>Transfer the sum of <del> 350,000</del> N299,999 to <strong>Bank:</strong> Moniepoint MFB, <strong>Account Number:</strong> 6908252843, <strong>Account Name:</strong> Scalefort Services</span>
                 </li>
                 <li class="flex items-start">
                   <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>

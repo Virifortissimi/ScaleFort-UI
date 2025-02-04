@@ -21,7 +21,8 @@ import { Component } from '@angular/core';
                 
                 <p class="text-gray-700 mb-4">
                   <strong>Next Cohort:</strong> March 1st, 2025 <br>
-                  <strong>Weekend Classes:</strong> Saturdays
+                  <strong>Weekend Classes:</strong> Saturdays <br>
+                  <strong>Price:</strong> <del> 350,000</del> N299,999
                 </p>
                 <a href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" target="_blank" class="text-blue-600 font-semibold">Apply Now →</a>
               </div>
@@ -36,7 +37,8 @@ import { Component } from '@angular/core';
                 
                 <p class="text-gray-700 mb-4">
                   <strong>Next Cohort:</strong> March 1st, 2025 <br>
-                  <strong>Weekend Classes:</strong> Saturdays
+                  <strong>Weekend Classes:</strong> Saturdays <br>
+                  <strong>Price:</strong> <del> 350,000</del> N299,999
                 </p>
                 <a href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" target="_blank" class="text-blue-600 font-semibold">Apply Now →</a>
               </div>
