@@ -12,8 +12,8 @@ import { Component } from '@angular/core';
             <div class="text-gray-600">Learners Served</div>
           </div>
           <div>
-            <div class="text-4xl font-bold text-blue-600 mb-2">5,000+</div>
-            <div class="text-gray-600">Time Spent on Content</div>
+            <div class="text-4xl font-bold text-blue-600 mb-2">10+</div>
+            <div class="text-gray-600">Clients</div>
           </div>
           <div>
             <div class="text-4xl font-bold text-blue-600 mb-2">4+</div>
