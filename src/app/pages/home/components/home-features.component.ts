@@ -30,7 +30,7 @@ import { Component } from '@angular/core';
     <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <!-- Left: Image -->
       <div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/LPbiCAsuWko?si=t21Xc-a_GhBA8qSW&amp;start=1927" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="youtube-video" width="560" height="315" src="https://www.youtube.com/embed/LPbiCAsuWko?si=t21Xc-a_GhBA8qSW&amp;start=1927" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
       <!-- Right: Intro and Link -->
       <div>

@@ -54,6 +54,7 @@ export class SlideMenuComponent {
   links = [
     { path: '/', text: 'Home' },
     { path: '/about', text: 'About' },
+    { path: '/services', text: 'Services' },
     { path: '/mentorship', text: 'Mentorship' },
     { path: '/courses', text: 'Courses' },
     { path: '/faq', text: 'FAQ' },

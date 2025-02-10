@@ -47,4 +47,7 @@ h1, h2, h3, h4, h5, h6 {
   .talk-to-expert {
     padding: 25px !important;
   }
+  .youtube-video {
+    width: auto;
+  }
 }
