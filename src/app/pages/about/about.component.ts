@@ -67,19 +67,19 @@ interface Partner {
               >
             </div>
             <div class="md:w-1/2">
-              <h3 class="text-2xl font-bold mb-4">Gabriel Eghosa</h3>
+              <h3 class="text-2xl font-bold mb-4">Gabriel Eghosa – Transforming Business Through Technology</h3>
               <p class="text-gray-600 mb-6 text-lg">
-                With over 15 years of experience in scaling African startups and a deep understanding of the continent's tech ecosystem, Sarah founded ScaleFort with a vision to bridge the gap between technology and business growth in Africa.
+                With over 5 years of experience in scaling African startups and a deep understanding of the continent's tech ecosystem, Eghosa founded ScaleFort with a vision to bridge the gap between technology and business growth in Africa.
               </p>
               <p class="text-gray-600 mb-6">
-                Prior to founding ScaleFort, Sarah led technology initiatives at several Fortune 500 companies and helped scale multiple African startups to successful exits. Her passion for mentorship and technology education has helped shape ScaleFort's mission to empower the next generation of African tech leaders.
+                Eghosa is a seasoned technology strategist and business consultant dedicated to empowering organizations in Africa and accross the Globe. With a career spanning over 5 years, Eghosa specializes in bridging the gap between cutting-edge technology and practical business solutions. His approach centers on delivering strategies that are not only innovative but also immediately implementable—prioritizing practical results over theoretical perfection.
               </p>
-              <div class="space-y-4 text-gray-600">
-                <p>• Former Google Engineering Lead</p>
-                <p>• Stanford University, M.S. Computer Science</p>
-                <p>• Named in Forbes 40 Under 40 Africa</p>
-                <p>• Tech Africa Summit Keynote Speaker</p>
-              </div>
+              
+              <p class="text-gray-600 mb-6">Throughout his career, Eghosa has led numerous digital transformation initiatives, focusing on application development, cloud computing, and process re-engineering. He has consistently helped businesses streamline operations, optimize performance, and secure a competitive edge in rapidly evolving markets. His work in integrating technology solutions with business strategies has been pivotal in driving sustainable growth for clients in industries such as financial services, healthcare, telecommunications, and retail.</p>
+              
+              <p class="text-gray-600 mb-6">Prior to his current role, Eghosa held various leadership positions in prominent technology firms, where he honed his expertise in digital innovation and value management. He continues to contribute to the industry through speaking engagements, mentorship programs, and thought leadership.</p>
+              
+              <p class="text-gray-600 mb-6">Eghosa is passionate about helping businesses unlock the potential of digital transformation and looks forward to collaborating with forward-thinking organizations to shape the future of technology.</p>
             </div>
           </div>
         </div>
@@ -143,32 +143,32 @@ export class AboutComponent {
     {
       name: 'Netlify',
       description: 'Cloud solutions partner for modern web development and seamless deployment.',
-      logoUrl: '/assets/images/companies/netlify.svg'
+      logoUrl: 'https://res.cloudinary.com/virifortissimi/image/upload/v1739180776/Goals/t1ijtk5ykcuwvkpf3t1b.png'
     },
     {
       name: 'Paystack',
       description: 'Trusted payment gateway and integration partner powering African businesses.',
-      logoUrl: '/assets/images/companies/paystack.svg'
+      logoUrl: 'https://res.cloudinary.com/virifortissimi/image/upload/v1739180775/Goals/w8iczdh6x5wr8f90f3fc.png'
     },
     {
       name: 'Whogohost',
       description: 'Reliable web hosting and cloud infrastructure partner, empowering online businesses.',
-      logoUrl: '/assets/images/companies/whogohost.svg'
+      logoUrl: 'https://res.cloudinary.com/virifortissimi/image/upload/v1739180610/Goals/jvfxctfwkf33r73snbbg.png'
     },
     {
       name: 'Cloudinary',
       description: 'Visual content management partner offering powerful image and video optimization for fast, responsive websites.',
-      logoUrl: '/assets/images/companies/cloudinary.svg'
+      logoUrl: 'https://res.cloudinary.com/virifortissimi/image/upload/v1739180927/Goals/ctmznf0qrbcmklrscevr.png'
     },
     {
       name: 'Namecheap',
       description: 'Affordable domain registration and hosting partner, delivering reliable digital identity solutions.',
-      logoUrl: '/assets/images/companies/namecheap.svg'
+      logoUrl: 'https://res.cloudinary.com/virifortissimi/image/upload/v1739180610/Goals/eddli7qf4na8aux510aw.svg'
     },
     {
       name: 'Cloudflare',
       description: 'Global CDN and security partner, protecting websites and accelerating performance.',
-      logoUrl: '/assets/images/companies/cloudflare.svg'
+      logoUrl: 'https://res.cloudinary.com/virifortissimi/image/upload/v1739180775/Goals/sglpcs2fheyuyancqptu.png'
     }
   ];  
 }

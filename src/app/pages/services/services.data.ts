@@ -16,7 +16,7 @@ export const services: Service[] = [
   {
     id: 'application-development',
     icon: '💻',
-    title: 'Application Development',
+    title: 'Web Development',
     description:
       'Custom web applications built with modern technologies to meet your specific business requirements.',
     features: [
@@ -70,7 +70,7 @@ export const services: Service[] = [
   {
     id: 'mobile-development',
     icon: '📱',
-    title: 'Mobile Application Development',
+    title: 'Mobile App Development',
     description:
       'Native and cross-platform mobile applications that deliver exceptional user experiences.',
     features: [
@@ -174,7 +174,7 @@ export const services: Service[] = [
   {
     id: 'quality-assurance-testing',
     icon: '🧪',
-    title: 'Quality Assurance Testing',
+    title: 'QA Testing',
     description:
       'Comprehensive testing services to ensure your applications meet the highest quality standards and perform flawlessly.',
     features: [
@@ -228,7 +228,7 @@ export const services: Service[] = [
   {
     id: 'consultation-services',
     icon: '💡',
-    title: 'Consultation Services',
+    title: 'Consulting',
     description:
       'Expert consultation to help you navigate technology challenges and optimize your IT strategy for success.',
     features: [
