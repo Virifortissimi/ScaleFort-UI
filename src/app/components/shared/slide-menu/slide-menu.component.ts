@@ -55,6 +55,7 @@ export class SlideMenuComponent {
     { path: '/', text: 'Home' },
     { path: '/about', text: 'About' },
     { path: '/services', text: 'Services' },
+    { path: '/bulk-vouchers', text: 'Vouchers' },
     { path: '/mentorship', text: 'Mentorship' },
     { path: '/courses', text: 'Courses' },
     { path: '/faq', text: 'FAQ' },
