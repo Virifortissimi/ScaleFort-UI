@@ -167,8 +167,6 @@ import { CommonModule } from '@angular/common';
         </div>
       </section>
 
-
-      <!-- Pricing Section -->
       <!-- Pricing Section -->
 <section id="pricing" class="py-16 bg-gradient-to-r from-blue-50 to-blue-100">
   <div class="max-w-7xl mx-auto px-4 text-center">
@@ -184,7 +182,7 @@ import { CommonModule } from '@angular/common';
             <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
-            Certification Vouchers
+            Training Vouchers
           </li>
           <li class="flex items-center">
             <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -217,7 +215,7 @@ import { CommonModule } from '@angular/common';
             <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
-            Certification Vouchers
+            Training Vouchers
           </li>
           <li class="flex items-center">
             <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -255,7 +253,7 @@ import { CommonModule } from '@angular/common';
             <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
-            Certification Vouchers
+            Training Vouchers
           </li>
           <li class="flex items-center">
             <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
