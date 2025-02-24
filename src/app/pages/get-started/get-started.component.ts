@@ -7,131 +7,215 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   template: `
     <div class="pt-16">
+
+      <!-- Hero Section -->
       <section class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4">
-          <h1 class="text-4xl font-bold mb-7">Register with ScaleFort</h1>
-          <p class="text-xl">Your journey to tech excellence begins here. </p>
-              <a 
-                href="assets/pdf/scalefort-brochure.pdf"
-                download="Scalefort-Brochure.pdf" 
-                class="bg-white text-blue-600 px-8 py-3 mt-7 rounded-md font-semibold inline-block hover:bg-blue-50 transition">
-                    Download Brochure
-              </a>
+        <div class="max-w-7xl mx-auto px-4 text-center">
+          <h1 class="text-5xl font-extrabold mb-6">Register with ScaleFort</h1>
+          <p class="text-xl mb-6">Your journey to tech excellence begins here. Join us and make a real impact.</p>
+          
+          <!-- Download Brochure Button -->
+          <a 
+            href="assets/pdf/scalefort-brochure.pdf"
+            download="Scalefort-Brochure.pdf" 
+            class="bg-white text-blue-600 px-10 py-4 rounded-md font-semibold inline-block hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block mr-2 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+              <path fill-rule="evenodd" d="M5 13l4 4 4-4H9V3H7v10H5z" clip-rule="evenodd" />
+            </svg> Download Brochure
+          </a>
         </div>
       </section>
 
-      <section class="py-16">
-        <div class="max-w-4xl mx-auto px-4">
-          <div class="space-y-12">
-            <!-- Requirements -->
-            <div>
-              <h2 class="text-2xl font-bold mb-6">Requirements</h2>
-              <ul class="space-y-4 text-gray-600">
-                <li class="flex items-start">
-                  <span class="text-blue-600 mr-2">✓</span>
-                  <span>Basic computer literacy: Familiarity with technology is essential.</span>
-                </li>
-                <li class="flex items-start">
-                  <span class="text-blue-600 mr-2">✓</span>
-                  <span>Passion for learning: A drive to solve problems and grow in the field.</span>
-                </li>
-                <li class="flex items-start">
-                  <span class="text-blue-600 mr-2">✓</span>
-                  <span>Commitment to attend scheduled mentorship sessions</span>
-                </li>
-                <li class="flex items-start">
-                  <span class="text-blue-600 mr-2">✓</span>
-                  <span>Personal Computer: A laptop or PC with the minimum specifications: Minimum 250 GB Storage | 4GB RAM | Functional Speakers Microphone and Camera</span>
-                </li>
-              </ul>
-            </div>
-            
-            <!-- Apply Button -->
-            <div class="text-center">
-              <a 
-                href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" 
-                target="_blank"
-                disabled
-                rel="noopener noreferrer" 
-                class="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
-              >
-                Apply Now
-              </a>
+      <!-- Requirements Section -->
+<section class="py-16 bg-gradient-to-r from-blue-50 to-blue-100">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold text-blue-600 mb-8">Requirements</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Requirement Item 1 -->
+      <div class="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
+        <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+          <path fill-rule="evenodd" d="M9 11V5H5v6H9zm0 4H5v6h4v-6z" clip-rule="evenodd" />
+        </svg>
+        <span class="text-lg text-gray-700 font-medium">Basic computer literacy: Familiarity with technology is essential.</span>
+      </div>
+
+      <!-- Requirement Item 2 -->
+      <div class="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
+        <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+          <path fill-rule="evenodd" d="M9 11V5H5v6H9zm0 4H5v6h4v-6z" clip-rule="evenodd" />
+        </svg>
+        <span class="text-lg text-gray-700 font-medium">Passion for learning and a drive to grow in the field.</span>
+      </div>
+
+      <!-- Requirement Item 3 -->
+      <div class="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
+        <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+          <path fill-rule="evenodd" d="M9 11V5H5v6H9zm0 4H5v6h4v-6z" clip-rule="evenodd" />
+        </svg>
+        <span class="text-lg text-gray-700 font-medium">Commitment to attend scheduled mentorship sessions.</span>
+      </div>
+
+      <!-- Requirement Item 4 -->
+      <div class="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
+        <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+          <path fill-rule="evenodd" d="M9 11V5H5v6H9zm0 4H5v6h4v-6z" clip-rule="evenodd" />
+        </svg>
+        <span class="text-lg text-gray-700 font-medium">Personal computer with minimum specs: 250 GB Storage, 4GB RAM, Speakers, Microphone, and Camera.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      <!-- Application Process Section -->
+      <section class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+          <h2 class="text-3xl font-bold text-blue-600 mb-8">Application Process</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Step 1 -->
+            <div class="relative p-6 bg-white shadow-lg rounded-xl text-center">
+              <div class="absolute left-0 right-0 top-[-16px] flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+                  <path fill-rule="evenodd" d="M5 13l4 4 4-4H9V3H7v10H5z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <h3 class="font-bold text-xl mb-4">Step 1: Fill out the application</h3>
+              <p class="text-gray-700">Provide your background and goals to start the process.</p>
             </div>
 
-            <!-- Process -->
-            <div>
-              <h2 class="text-2xl font-bold mb-6">Application Process</h2>
-              <ol class="space-y-4 text-gray-600">
-                <li class="flex items-start">
-                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
-                  <span>Fill out the application form with your background and goals</span>
-                </li>
-                <li class="flex items-start">
-                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>
-                  <span>Our team reviews your application (typically within 48 hours)</span>
-                </li>
-                <li class="flex items-start">
-                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">3</span>
-                  <span>Make payment of training fee </span>
-                </li>
-                <li class="flex items-start">
-                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">4</span>
-                  <span>Schedule an initial consultation call</span>
-                </li>
-                <li class="flex items-start">
-                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">5</span>
-                  <span>Begin your journey to a future with Tech</span>
-                </li>
-              </ol>
+            <!-- Step 2 -->
+            <div class="relative p-6 bg-white shadow-lg rounded-xl text-center">
+              <div class="absolute left-0 right-0 top-[-16px] flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+                  <path fill-rule="evenodd" d="M5 13l4 4 4-4H9V3H7v10H5z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <h3 class="font-bold text-xl mb-4">Step 2: Application Review</h3>
+              <p class="text-gray-700">Our team will review your application within 48 hours.</p>
             </div>
 
-            <!-- Apply Button -->
-            <div class="text-center">
-              <a 
-                href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" 
-                target="_blank"
-                disabled
-                rel="noopener noreferrer" 
-                class="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
-              >
-                Apply Now
-              </a>
+            <!-- Step 3 -->
+            <div class="relative p-6 bg-white shadow-lg rounded-xl text-center">
+              <div class="absolute left-0 right-0 top-[-16px] flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+                  <path fill-rule="evenodd" d="M5 13l4 4 4-4H9V3H7v10H5z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <h3 class="font-bold text-xl mb-4">Step 3: Payment</h3>
+              <p class="text-gray-700">Make the payment to proceed with the training.</p>
             </div>
 
-            <div>
-              <h2 class="text-2xl font-bold mb-6">Bank Transfer</h2>
-              <ol class="space-y-4 text-gray-600">
-                <li class="flex items-start">
-                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
-                  <span>Transfer the sum of <del> 350,000</del> N299,999 to <strong>Bank:</strong> Moniepoint MFB, <strong>Account Number:</strong> 6908252843, <strong>Account Name:</strong> Scalefort Services</span>
-                </li>
-                <li class="flex items-start">
-                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>
-                  <span>Send evidence of payment to <a href="mailto:school@scalefort.org">school&#64;scalefort.org</a></span>
-                </li>
-                <li class="flex items-start">
-                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">4</span>
-                  <span>Schedule an initial consultation call</span>
-                </li>
-                <li class="flex items-start">
-                  <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">5</span>
-                  <span>Begin your journey to a future with Tech</span>
-                </li>
-              </ol>
+            <!-- Step 4 -->
+            <div class="relative p-6 bg-white shadow-lg rounded-xl text-center">
+              <div class="absolute left-0 right-0 top-[-16px] flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+                  <path fill-rule="evenodd" d="M5 13l4 4 4-4H9V3H7v10H5z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <h3 class="font-bold text-xl mb-4">Step 4: Consultation</h3>
+              <p class="text-gray-700">Schedule an initial consultation call with our experts.</p>
             </div>
-            
-            <!-- Apply Button -->
-            <div class="text-center">
-              <a 
-                href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" 
-                target="_blank"
-                disabled
-                rel="noopener noreferrer" 
-                class="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
-              >
-                Apply Now
-              </a>
+
+            <!-- Step 5 -->
+            <div class="relative p-6 bg-white shadow-lg rounded-xl text-center">
+              <div class="absolute left-0 right-0 top-[-16px] flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+                  <path fill-rule="evenodd" d="M5 13l4 4 4-4H9V3H7v10H5z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <h3 class="font-bold text-xl mb-4">Step 5: Begin Your Journey</h3>
+              <p class="text-gray-700">Start your exciting tech journey with ScaleFort!</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Bank Transfer Section -->
+<section class="py-16 bg-gradient-to-r from-blue-50 to-blue-100">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold text-blue-600 mb-8">Bank Transfer Details</h2>
+    <div class="space-y-6 text-left text-lg text-gray-700">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Step 1 -->
+        <div class="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+            <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
+          </svg>
+          <span class="text-lg text-gray-700 font-medium">
+            Transfer N299,999 to <strong>Moniepoint MFB</strong> Account: <strong>6908252843</strong>, Account Name: <strong>Scalefort Services</strong>
+          </span>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+            <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
+          </svg>
+          <span class="text-lg text-gray-700 font-medium">
+            Send evidence of payment to <a href="mailto:school@scalefort.org" class="text-blue-600">school&#64;scalefort.org</a>
+          </span>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+            <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
+          </svg>
+          <span class="text-lg text-gray-700 font-medium">
+            Schedule an initial consultation call.
+          </span>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+            <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
+          </svg>
+          <span class="text-lg text-gray-700 font-medium">
+            Begin your journey towards tech excellence.
+          </span>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      <!-- Apply Button -->
+      <section class="py-16 text-center">
+        <div>
+          <a 
+            href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025"  
+            target="_blank"
+            class="inline-block bg-blue-600 text-white px-10 py-4 rounded-md font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block mr-2 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+              <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
+            </svg> Apply Now
+          </a>
+        </div>
+      </section>
+
+
+      <!-- Testimonials Section -->
+      <section class="py-16 bg-gray-100">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+          <h2 class="text-3xl font-bold text-blue-600 mb-8">What Our Graduates Say</h2>
+          <div class="space-y-6 text-lg text-gray-700">
+            <div class="border p-6 rounded-md shadow-lg">
+              <p class="italic">"Scalefort provided me with a solid foundation in programming, equipping me with the technical skills and knowledge I needed to thrive in the tech industry."</p>
+              <p class="font-semibold mt-4">- Maureen O., Software Engineer, Sterling Bank</p>
+            </div>
+            <div class="border p-6 rounded-md shadow-lg">
+              <p class="italic">"Scalefort was a game-changer for me. The structured learning, practical projects, and supportive mentors provided all I needed to transition into tech confidently."</p>
+              <p class="font-semibold mt-4">- Samuel A., Dotnet Developer, Kaybill Technologies</p>
             </div>
           </div>
         </div>

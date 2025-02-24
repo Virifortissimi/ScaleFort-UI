@@ -24,7 +24,7 @@ import { SlideMenuComponent } from '../shared/slide-menu/slide-menu.component';
                 <a routerLink="/services" routerLinkActive="text-blue-600"
                   class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Services</a>
                 <a routerLink="/bulk-vouchers" routerLinkActive="text-blue-600"
-                  class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Vouchers</a>
+                  class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Bulk Vouchers</a>
                 <a routerLink="/mentorship" routerLinkActive="text-blue-600"
                   class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Mentorship</a>
                 <!-- <a routerLink="/resources" routerLinkActive="text-blue-600" class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Resources</a> -->
