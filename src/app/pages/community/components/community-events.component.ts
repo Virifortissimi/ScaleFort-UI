@@ -27,13 +27,13 @@ import { Component } from '@angular/core';
       <!-- Course 2: Cloud Computing -->
       <div class="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-105">
         <div class="w-full mb-6">
-          <img src="https://res.cloudinary.com/virifortissimi/image/upload/v1737717982/Goals/undraw_cloud-hosting_tfeh.svg" alt="Cloud Computing Icon" class="w-full h-48 object-cover rounded-lg shadow-md">
+          <img src="https://res.cloudinary.com/virifortissimi/image/upload/v1740576651/Goals/jxxcvbyk9doxdrrhbvmq.svg" alt="Cloud Computing Icon" class="w-full h-48 object-cover rounded-lg shadow-md">
         </div>
         <div>
-          <h3 class="text-2xl font-semibold text-blue-600 mb-4">Cloud Computing</h3>
-          <p class="text-gray-700 mb-4">Dive into the world of cloud technologies like AWS and Azure. Learn how to deploy, manage, and scale applications in the cloud to meet modern business needs.</p>
-          <p class="text-gray-800 mb-4"><strong>Next Cohort:</strong> March 1st, 2025 <br><strong>Weekend Classes:</strong> Saturdays <br><strong class="text-red-500">Price:</strong> <del class="text-gray-500">350,000</del> <span class="font-bold text-blue-600">N299,999</span></p>
-          <a href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" target="_blank" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-all duration-200">Apply Now →</a>
+          <h3 class="text-2xl font-semibold text-blue-600 mb-4">Build A Website With AI</h3>
+          <p class="text-gray-700 mb-4">Buildf and Deploy your website in under 2 Hours leveraging AI technologies. Start your journey to a new career or building your personal website yourself.</p>
+          <p class="text-gray-800 mb-4"><strong>Next Cohort:</strong> TBD <br><strong>Time:</strong> 5pm / 7pm <br><strong class="text-red-500">Price:</strong> <del class="text-gray-500">N13,999</del> <span class="font-bold text-blue-600">N10,000</span></p>
+          <a href="https://paystack.com/pay/scalefort-build-with-ai" target="_blank" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-all duration-200">Apply Now →</a>
         </div>
       </div>
 
