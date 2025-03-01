@@ -13,6 +13,12 @@ import { RouterLink } from '@angular/router';
           <a routerLink="/about" class="text-gray-400 hover:text-white transition">About Us</a>
         </li>
         <li>
+          <a routerLink="/services" class="text-gray-400 hover:text-white transition">Services</a>
+        </li>
+        <li>
+          <a routerLink="/bulk-vouchers" class="text-gray-400 hover:text-white transition">Corporate</a>
+        </li>
+        <li>
           <a routerLink="/mentorship" class="text-gray-400 hover:text-white transition">Mentorship</a>
         </li>
         <li>

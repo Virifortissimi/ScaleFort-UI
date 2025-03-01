@@ -10,6 +10,7 @@ import { TalkToExpertComponent } from './components/talk-to-expert.component';
 import { HomeServicesComponent } from './components/home-services.component';
 import { HomeCarouselComponent } from './components/home-carousel.component';
 import { HomeVoucherComponent } from './components/home-voucher.component';
+import { HomeBlogComponent } from './components/home-blog.component';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ import { HomeVoucherComponent } from './components/home-voucher.component';
     HomeCtaComponent,
     CoursesComponent,
     TalkToExpertComponent,
+    HomeBlogComponent,
     HomeVoucherComponent
   ],
   template: `
@@ -40,6 +42,7 @@ import { HomeVoucherComponent } from './components/home-voucher.component';
       <app-home-companies />
       <app-home-cta />
       <app-talk-to-expert />
+      <app-home-blog />
     </div>
   `
 })

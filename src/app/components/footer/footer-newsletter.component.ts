@@ -7,7 +7,7 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   template: `
     <div>
-      <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+      <h4 class="text-lg font-semibold mb-4">Socials</h4>
       <ul class="space-y-2">
         <li>
           <a href="https://x.com/scalefortHQ" target="_blank" class="text-gray-400 hover:text-white transition">X</a>

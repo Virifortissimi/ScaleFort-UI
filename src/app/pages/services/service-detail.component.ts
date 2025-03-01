@@ -90,7 +90,7 @@ import { services, Service } from './services.data';
           <p class="text-xl mb-8 opacity-90">
             Let's discuss how we can help your business with {{ service.title.toLowerCase() }}.
           </p>
-          <a routerLink="/get-started" 
+          <a href="mailto:sales@scalefort.org" 
              class="bg-white text-blue-600 px-10 py-4 rounded-full font-semibold inline-block
                     hover:bg-blue-50 transform hover:scale-105 transition-all shadow-lg">
             Contact Us
