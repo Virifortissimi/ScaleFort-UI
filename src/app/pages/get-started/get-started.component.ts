@@ -135,57 +135,78 @@ import { RouterLink } from '@angular/router';
       </section>
 
       <!-- Bank Transfer Section -->
-<section class="py-16 bg-gradient-to-r from-blue-50 to-blue-100">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <h2 class="text-3xl font-bold text-blue-600 mb-8">Bank Transfer Details</h2>
-    <div class="space-y-6 text-left text-lg text-gray-700">
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <!-- Step 1 -->
-        <div class="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
-          <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
-            <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
-          </svg>
-          <span class="text-lg text-gray-700 font-medium">
-            Transfer N299,999 to <strong>Moniepoint MFB</strong> Account: <strong>6908252843</strong>, Account Name: <strong>Scalefort Services</strong>
-          </span>
-        </div>
+      <section class="py-16 bg-gradient-to-r from-blue-50 to-blue-100">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+          <h2 class="text-3xl font-bold text-blue-600 mb-8">Bank Transfer Details</h2>
+          <div class="space-y-6 text-left text-lg text-gray-700">
+            
+            <div class="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">Transfer Amount To:</h3>
+              <div class="space-y-4">
+              
+                <!-- FirstBank Account -->
+                <div class="flex items-center space-x-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+                    <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-lg text-gray-700 font-medium">
+                    FirstBank - <strong>2046392385</strong> (Account Name: <strong>Scalefort Services</strong>)
+                  </span>
+                </div>
 
-        <!-- Step 2 -->
-        <div class="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
-          <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
-            <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
-          </svg>
-          <span class="text-lg text-gray-700 font-medium">
-            Send evidence of payment to <a href="mailto:school@scalefort.org" class="text-blue-600">school&#64;scalefort.org</a>
-          </span>
-        </div>
+                <!-- Moniepoint Account -->
+                <div class="flex items-center space-x-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+                    <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-lg text-gray-700 font-medium">
+                    Moniepoint MFB - <strong>6908252843</strong> (Account Name: <strong>Scalefort Services</strong>)
+                  </span>
+                </div>
+              </div>
+            </div>
 
-        <!-- Step 3 -->
-        <div class="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
-          <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
-            <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
-          </svg>
-          <span class="text-lg text-gray-700 font-medium">
-            Schedule an initial consultation call.
-          </span>
-        </div>
+            <!-- Steps -->
+            <div class="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">Next Steps:</h3>
+              <div class="flex flex-col space-y-4">
+                <!-- Step 1 -->
+                <div class="flex items-center space-x-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+                    <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-lg text-gray-700 font-medium">
+                    Send evidence of payment to <a href="mailto:school@scalefort.org" class="text-blue-600">school&#64;scalefort.org</a>
+                  </span>
+                </div>
 
-        <!-- Step 4 -->
-        <div class="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
-          <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
-            <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
-          </svg>
-          <span class="text-lg text-gray-700 font-medium">
-            Begin your journey towards tech excellence.
-          </span>
+                <!-- Step 2 -->
+                <div class="flex items-center space-x-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+                    <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-lg text-gray-700 font-medium">
+                    Schedule an initial consultation call.
+                  </span>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex items-center space-x-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-600 w-8 h-8" fill="currentColor" viewBox="0 0 20 20" stroke="currentColor">
+                    <path fill-rule="evenodd" d="M5 3l7 7-7 7V3z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-lg text-gray-700 font-medium">
+                    Begin your journey towards tech excellence.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
-        
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
+
+
 
 
       <!-- Apply Button -->
