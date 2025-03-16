@@ -50,6 +50,20 @@ import { Component } from '@angular/core';
         </div>
       </div>
 
+      <!-- Course 4: Cyber Safety -->
+      <div class="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-105">
+        <div class="w-full mb-6">
+          <img src="https://res.cloudinary.com/virifortissimi/image/upload/v1737717982/Goals/undraw_in-the-zone_07y7.svg" alt="Cyber Safety Icon" class="w-full h-48 object-cover rounded-lg shadow-md">
+        </div>
+        <div>
+          <h3 class="text-2xl font-semibold text-blue-600 mb-4">Cyber Safety</h3>
+          <p class="text-gray-700 mb-4">Learn how to stay safe online, protect your personal data, and avoid cyber threats. This course covers phishing scams, password security, social engineering, and best practices for digital safety.</p>
+          <p class="text-gray-800 mb-4"><strong>Next Cohort:</strong> TBD <br><strong>Weekend Classes:</strong> Saturdays <br><strong class="text-red-500">Price:</strong> <del class="text-gray-500">100,000</del> <span class="font-bold text-blue-600">N49,999</span></p>
+          <a href="https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025" target="_blank" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-all duration-200">Apply Now →</a>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </section>
