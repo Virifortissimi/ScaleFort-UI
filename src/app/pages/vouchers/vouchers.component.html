@@ -1,0 +1,173 @@
+<div class="pt-12 md:pt-16">
+    <!-- Enhanced Hero Section -->
+    <section class="bg-gradient-to-br from-blue-800 to-indigo-900 text-white py-16 md:py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="space-y-6 animate-fade-in-up">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-indigo-200">Empower
+                        Your Team</span><br>
+                    with Tech Excellence
+                </h1>
+                <p class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto">
+                    Accelerate organizational growth through our bulk training vouchers - invest in skills that drive
+                    real results
+                </p>
+                <div class="mt-8">
+                    <a href="#pricing" class="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl font-semibold 
+                       hover:bg-white/20 transition-all duration-300 hover:shadow-lg">
+                        Explore Pricing Plans
+                        <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Grid -->
+    <section class="py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                <!-- Training Vouchers Card -->
+                <div class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 p-8 md:p-10">
+                    <div class="flex items-start mb-8">
+                        <div class="bg-blue-100 p-4 rounded-xl mr-6">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mt-2">Transformative Learning Solutions
+                        </h3>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Our comprehensive training programs in <strong class="text-blue-600">Frontend
+                            Development</strong>,
+                        <strong class="text-blue-600">Backend Engineering</strong>, and <strong
+                            class="text-blue-600">Cloud Infrastructure</strong>
+                        empower teams to build scalable, secure applications with modern best practices.
+                    </p>
+                    <div class="space-y-4 mb-8">
+                        <div *ngFor="let benefit of trainingBenefits" class="flex items-start">
+                            <svg class="flex-shrink-0 w-6 h-6 text-blue-600 mt-1 mr-4" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            <p class="text-gray-600">{{benefit}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Choose Us Card -->
+                <div class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 p-8 md:p-10">
+                    <div class="flex items-start mb-8">
+                        <div class="bg-blue-100 p-4 rounded-xl mr-6">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mt-2">Why Scalefort Stands Out</h3>
+                    </div>
+                    <div class="space-y-8">
+                        <div *ngFor="let feature of features" class="flex items-start">
+                            <div class="bg-blue-100 p-2 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">{{feature.title}}</h4>
+                                <p class="text-gray-600">{{feature.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 md:py-20 bg-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Proven Impact on Team Performance</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Metrics from organizations using Scalefort-trained
+                    professionals</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div *ngFor="let stat of stats"
+                    class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+                    <div class="text-5xl font-bold text-blue-600 mb-4 animate-count-up">{{stat.value}}</div>
+                    <p class="text-gray-600 text-lg">{{stat.label}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Flexible Training Packages</h2>
+                <p class="text-gray-600 max-w-xl mx-auto">Choose the plan that best fits your organizational needs</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div *ngFor="let plan of pricingPlans" class="relative group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition">
+                    </div>
+                    <div class="relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all h-full p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">{{plan.title}}</h3>
+                        <p class="text-gray-600 mb-6">{{plan.description}}</p>
+                        <div class="text-4xl font-bold text-blue-600 mb-8">{{plan.price}}</div>
+                        <ul class="space-y-4 mb-8">
+                            <li *ngFor="let feature of plan.features" class="flex items-start">
+                                <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-1 mr-3" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="text-gray-600">{{feature}}</span>
+                            </li>
+                        </ul>
+                        <a [href]="plan.ctaLink" class="w-full inline-flex items-center justify-center px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white 
+                          rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all">
+                            {{plan.ctaText}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 md:py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Success Stories</h2>
+                <p class="text-gray-600">Hear from organizations that transformed their teams</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div *ngFor="let testimonial of testimonials"
+                    class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600 mr-4">
+                            {{testimonial.initials}}
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">{{testimonial.name}}</h4>
+                            <p class="text-sm text-gray-600">{{testimonial.position}}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"{{testimonial.quote}}"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
