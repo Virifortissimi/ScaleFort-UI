@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   template: `
     <button 
       (click)="toggle.emit()"
-      class="lg:hidden p-2 hover:text-blue-400 transition-colors"
+      class="md:hidden p-2 hover:text-blue-400 transition-colors"
       aria-label="Toggle menu"
     >
       <svg 

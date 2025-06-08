@@ -6,7 +6,6 @@ import { HomeCtaComponent } from './components/home-cta.component';
 import { HomeHeroComponent } from './components/home-hero.component';
 import { HomeCompaniesComponent } from './components/home-companies.component';
 import { CoursesComponent } from './components/courses.component';
-import { TalkToExpertComponent } from './components/talk-to-expert.component';
 import { HomeServicesComponent } from './components/home-services.component';
 import { HomeCarouselComponent } from './components/home-carousel.component';
 import { HomeVoucherComponent } from './components/home-voucher.component';
@@ -25,7 +24,6 @@ import { HomeBlogComponent } from './components/home-blog.component';
     HomeCompaniesComponent,
     HomeCtaComponent,
     CoursesComponent,
-    TalkToExpertComponent,
     HomeBlogComponent,
     HomeVoucherComponent
   ],
@@ -34,14 +32,9 @@ import { HomeBlogComponent } from './components/home-blog.component';
       <app-home-hero/>
       <app-home-features />
       <app-home-services />
-      <app-home-carousel />
       <app-home-voucher />
-      <app-courses />
-      <app-home-stats />
-      <app-home-testimonials />
       <app-home-companies />
-      <app-home-cta />
-      <app-talk-to-expert />
+      <app-home-testimonials />
       <app-home-blog />
     </div>
   `

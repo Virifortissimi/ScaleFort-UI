@@ -1,73 +1,151 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { AnimatedCircuitComponent } from '../../../shared/components/animated-circuit.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home-hero',
   standalone: true,
-  imports: [RouterLink, AnimatedCircuitComponent],
+  imports: [RouterLink, CommonModule],
   template: `
-    <section class="relative bg-gradient-to-r from-blue-700 to-blue-900 text-white py-24 overflow-hidden">
-      <!-- Animated Circuit Background -->
-      <div class="absolute inset-0 opacity-20">
-        <app-animated-circuit />
+    <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white overflow-hidden">
+      <!-- Animated Background Elements -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-blob1"></div>
+        <div class="absolute w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-blob2"></div>
+        <div class="absolute w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-blob3"></div>
       </div>
+
+      <!-- Grid Pattern -->
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 40px 40px;"></div>
       
-      <div class="max-w-7xl mx-auto px-4 relative">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>          
-            <p class="bg-blue-100 text-blue-600 px-4 py-2 rounded-full inline-flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.518 4.674a1 1 0 00.95.69h4.905c.969 0 1.371 1.24.588 1.81l-3.974 2.89a1 1 0 00-.364 1.118l1.518 4.675c.3.922-.755 1.688-1.54 1.118L10 15.347l-3.974 2.89c-.784.57-1.839-.196-1.54-1.118l1.518-4.674a1 1 0 00-.364-1.118L1.665 9.1c-.784-.57-.38-1.81.588-1.81h4.905a1 1 0 00.95-.69L9.05 2.927z" />
-              </svg>
-              No 1 Tech School/Partner in Lagos
-            </p>
-            <h1 class="text-5xl font-bold mb-6">
-              Scalefort: Africa's Premier Tech School & Technology Solutions Partner
+      <div class="max-w-7xl mx-auto px-4 relative pt-32 pb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <!-- Content Left -->
+          <div class="animate-fade-in">
+            <div class="inline-block px-4 py-1 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm mb-6 animate-slide-up">
+              🚀 Transforming Africa's Digital Future
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight animate-slide-up" style="animation-delay: 200ms">
+              Tech Education & Innovation Hub
             </h1>
-            <p class="text-xl mb-8">
-              Join us and unlock your potential, whether you're building your tech career or accelerating your business growth.
+            <p class="text-xl text-blue-100 mb-8 leading-relaxed animate-slide-up" style="animation-delay: 400ms">
+              Empowering businesses and individuals through world-class tech education, corporate training, and comprehensive IT solutions.
             </p>
-            <div class="space-x-4">
-              <a routerLink="/get-started" 
-                 class="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold inline-block hover:bg-blue-50 transition">
-                Register
+            <div class="space-x-4 animate-slide-up" style="animation-delay: 600ms">
+              <a routerLink="/courses" 
+                 class="inline-flex items-center px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                <span class="mr-2">Start Your Journey</span>
+                <svg class="w-5 h-5 animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
               </a>
-              <a 
-                href="assets/pdf/scalefort-brochure.pdf"
-                download="Scalefort-Brochure.pdf" 
-                class="border-2 border-white text-white px-8 py-3 download-brochure rounded-md font-semibold inline-block hover:bg-white/10 transition">
-                    Download Brochure
+              <a routerLink="/services" 
+                 class="inline-flex items-center px-8 py-3 rounded-full border-2 border-white/50 hover:bg-white/10 transform hover:scale-105 transition-all duration-300">
+                Explore Solutions
               </a>
             </div>
           </div>
-          <div class="hidden md:block">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="space-y-4">
-                <div class="bg-blue-600/30 p-6 rounded-lg backdrop-blur-sm">
-                  <h3 class="font-semibold mb-2">100+ Learners Served</h3>
-                  <p class="text-sm text-blue-100">Connect with industry experts</p>
-                </div>
-                <div class="bg-blue-600/30 p-6 rounded-lg backdrop-blur-sm">
-                  <h3 class="font-semibold mb-2">Resources</h3>
-                  <p class="text-sm text-blue-100">Access curated learning materials</p>
-                </div>
+
+          <!-- Features Grid -->
+          <div class="grid grid-cols-2 gap-6 animate-fade-in" style="animation-delay: 800ms">
+            <div *ngFor="let feature of features; let i = index" 
+                 class="group p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-105"
+                 [style.animation-delay]="i * 200 + 'ms'">
+              <div class="text-3xl mb-4 transform transition-transform group-hover:scale-110 group-hover:rotate-12">
+                {{ feature.icon }}
               </div>
-              <div class="space-y-4 mt-8">
-                <div class="bg-blue-600/30 p-6 rounded-lg backdrop-blur-sm">
-                  <h3 class="font-semibold mb-2">Community</h3>
-                  <p class="text-sm text-blue-100">Join a network of innovators</p>
-                </div>
-                <div class="bg-blue-600/30 p-6 rounded-lg backdrop-blur-sm">
-                  <h3 class="font-semibold mb-2">Growth</h3>
-                  <p class="text-sm text-blue-100">Scale your tech journey</p>
-                </div>
-              </div>
+              <h3 class="text-lg font-semibold mb-2">{{ feature.title }}</h3>
+              <p class="text-sm text-blue-100">{{ feature.description }}</p>
             </div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-in" style="animation-delay: 1000ms">
+          <div *ngFor="let stat of stats" 
+               class="text-center p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10">
+            <div class="text-3xl font-bold text-blue-400 mb-1">{{ stat.value }}</div>
+            <div class="text-sm text-blue-100">{{ stat.label }}</div>
           </div>
         </div>
       </div>
     </section>
-  `
+  `,
+  styles: [`
+    @keyframes blob1 {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30%, -20%) scale(1.1); }
+      66% { transform: translate(-20%, 20%) scale(0.9); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes blob2 {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-30%, 30%) scale(1.1); }
+      66% { transform: translate(20%, -20%) scale(0.9); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes blob3 {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(20%, 20%) scale(1.1); }
+      66% { transform: translate(-30%, -30%) scale(0.9); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    .animate-blob1 { animation: blob1 12s infinite linear; }
+    .animate-blob2 { animation: blob2 12s infinite linear; }
+    .animate-blob3 { animation: blob3 12s infinite linear; }
+    @keyframes bounce-x {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+    }
+    .animate-bounce-x {
+      animation: bounce-x 1s infinite;
+    }
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      opacity: 0;
+      animation: fade-in 1s forwards;
+    }
+    .animate-slide-up {
+      opacity: 0;
+      animation: slide-up 1s forwards;
+    }
+  `]
 })
-export class HomeHeroComponent {}
+export class HomeHeroComponent {
+  features = [
+    {
+      icon: '🎓',
+      title: 'Tech School',
+      description: 'Industry-driven curriculum with hands-on learning experience'
+    },
+    {
+      icon: '💼',
+      title: 'Corporate Training',
+      description: 'Customized upskilling programs for your workforce'
+    },
+    {
+      icon: '🚀',
+      title: 'IT Services',
+      description: 'End-to-end software solutions and consulting'
+    },
+    {
+      icon: '🔄',
+      title: 'Innovation Hub',
+      description: 'Integrated ecosystem for continuous growth'
+    }
+  ];
+
+  stats = [
+    { value: '100+', label: 'Learners Served' },
+    { value: '10+', label: 'Clients' },
+    { value: '5+', label: 'Corporate Partners' },
+    { value: '24/7', label: 'Support' }
+  ];
+}
