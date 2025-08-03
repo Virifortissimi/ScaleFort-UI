@@ -10,14 +10,9 @@ import { PaymentService } from '../../../shared/services/payment.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  // private readonly _paymentService = inject(PaymentService);
-  constructor(
-    private _paymentService: PaymentService
-  ) {}
+  private readonly _paymentService = inject(PaymentService);
   
   ngOnInit(): void {
-    console.log('Login component initialized');
-    
-    this._paymentService.payWithPaystack();
+    // this._paymentService.payWithPaystack();
   }
 }
