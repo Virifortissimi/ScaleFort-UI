@@ -9,10 +9,8 @@ interface CourseSection {
 
 @Component({
   selector: 'app-python-detail',
-  standalone: true,
-  imports: [CommonModule, RouterLink],
   template: `
-    <div class="pt-16">
+    <div>
       <!-- Hero Section with Overlay Info Box -->
       <section class="relative h-[450px] bg-gradient-to-r from-blue-900 to-blue-800 text-center overflow-visible">
         <!-- Background Image -->

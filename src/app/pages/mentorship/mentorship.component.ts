@@ -12,7 +12,7 @@ import { MentorshipProcessComponent } from './components/process/mentorship-proc
     MentorshipProcessComponent
   ],
   template: `
-    <div class="pt-16">
+    <div>
       <app-mentorship-hero />
       <app-mentorship-programs />
       <app-mentorship-process />

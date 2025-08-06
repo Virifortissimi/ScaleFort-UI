@@ -8,7 +8,7 @@ import { FaqContactComponent } from './components/faq-contact.component';
   standalone: true,
   imports: [FaqHeroComponent, FaqListComponent, FaqContactComponent],
   template: `
-    <div class="pt-16">
+    <div>
       <app-faq-hero />
       <app-faq-list />
       <app-faq-contact />

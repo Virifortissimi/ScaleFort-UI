@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NavLinkComponent } from '../shared/nav-link/nav-link.component';
 import { MenuToggleComponent } from '../shared/menu-toggle/menu-toggle.component';
 import { SlideMenuComponent } from '../shared/slide-menu/slide-menu.component';
 import { CommonModule } from '@angular/common';
@@ -8,9 +7,9 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, NavLinkComponent, MenuToggleComponent, SlideMenuComponent, CommonModule],
+  imports: [RouterLink, MenuToggleComponent, SlideMenuComponent, CommonModule],
   template: `
-    <header class="bg-white shadow-lg fixed w-full top-0 z-50">
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50 h-[4rem]">
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center h-16">
           <div class="flex-shrink-0">

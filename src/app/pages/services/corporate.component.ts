@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterLink, CommonModule],
   template: `
-    <div class="pt-16">
+    <div>
       <!-- Hero Section -->
       <section class="relative min-h-[80vh] bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 text-white overflow-hidden flex items-center">
         <div class="absolute inset-0">

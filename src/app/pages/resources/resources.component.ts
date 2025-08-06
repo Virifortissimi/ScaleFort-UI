@@ -12,7 +12,7 @@ import { ResourcesFeaturedComponent } from './components/resources-featured.comp
     ResourcesFeaturedComponent
   ],
   template: `
-    <div class="pt-16">
+    <div>
       <app-resources-hero />
       <app-resources-categories />
       <app-resources-featured />

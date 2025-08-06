@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { services, Service } from './services.data';
 
 @Component({
   selector: 'app-service-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   template: `
-    <div class="pt-16" *ngIf="service">
+    <div *ngIf="service">
       <!-- Hero Section -->
       <section class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-24 relative overflow-hidden">
         <div class="absolute inset-0 bg-black opacity-10"></div>

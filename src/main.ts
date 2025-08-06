@@ -1,40 +1,6 @@
 import { bootstrapApplication } from "@angular/platform-browser";
-import { Component } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
-import { FooterComponent } from "./app/components/footer/footer.component";
-import { HeaderComponent } from "./app/components/header/header.component";
-import { CommonModule } from "@angular/common";
-import { LoaderComponent } from "./app/shared/components/loader.component";
 import { appConfig } from "./app/app.config";
+import { AppComponent } from "./app/app.component";
 
-@Component({
-  selector: "app-root",
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    FooterComponent,
-    HeaderComponent,
-    CommonModule,
-    LoaderComponent,
-  ],
-  template: `
-    <app-loader *ngIf="loading"></app-loader>
-    <div [style.visibility]="loading ? 'hidden' : 'visible'">
-      <app-header></app-header>
-      <router-outlet></router-outlet>
-      <app-footer></app-footer>
-    </div>
-  `,
-})
-export class App {
-  loading = true;
-
-  ngOnInit() {
-    // Simulate loading time (remove in production)
-    setTimeout(() => {
-      this.loading = false;
-    }, 1000);
-  }
-}
-
-bootstrapApplication(App, appConfig);
+bootstrapApplication(AppComponent, appConfig)
+  .catch((err) => console.error(err));

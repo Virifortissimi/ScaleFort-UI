@@ -9,10 +9,8 @@ interface CourseSection {
 
 @Component({
   selector: 'app-data-analysis-detail',
-  standalone: true,
-  imports: [CommonModule, RouterLink],
   template: `
-    <div class="pt-16">
+    <div>
       <!-- Hero Section -->
       <section class="relative h-[450px] bg-gradient-to-r from-green-900 to-teal-900 text-center overflow-visible">
         <div class="absolute inset-0 opacity-30">

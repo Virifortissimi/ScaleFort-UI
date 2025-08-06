@@ -12,7 +12,7 @@ import { CommunityForumComponent } from './components/community-forum.component'
     CommunityForumComponent
   ],
   template: `
-    <div class="pt-16">
+    <div>
       <app-community-hero />
       <app-community-events />
       <app-community-forum />

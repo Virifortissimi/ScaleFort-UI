@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CommonModule, NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 interface CourseSection {
   id: string;
@@ -9,11 +7,9 @@ interface CourseSection {
 }
 
 @Component({
-  selector: 'app-dotnet-detail',
-  standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, NgIf],
+  selector: 'app-dotnet',
   template: `
-    <div class="pt-16">
+    <div>
       <!-- Hero Section -->
       <section class="relative h-[450px] bg-gradient-to-r from-purple-900 to-blue-800 text-center overflow-visible">
         <div class="absolute inset-0 opacity-30">
@@ -320,15 +316,7 @@ interface CourseSection {
       </div>
       
     </div>
-  `,
-  styles: [`
-    :host {
-      display: block;
-    }
-    .scroll-mt-32 {
-      scroll-margin-top: 8rem;
-    }
-  `]
+  `
 })
 export class DotnetComponent implements OnInit {
   sections: CourseSection[] = [

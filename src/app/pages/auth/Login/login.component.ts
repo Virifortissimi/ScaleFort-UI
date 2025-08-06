@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { PaymentService } from '../../../shared/services/payment.service';
+import { AuthenticationService } from '../../../shared/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +10,12 @@ import { PaymentService } from '../../../shared/services/payment.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  private readonly _paymentService = inject(PaymentService);
+  private readonly _authenticationService = inject(AuthenticationService);
   
   ngOnInit(): void {
-    // this._paymentService.payWithPaystack();
+    // this._authenticationService.payWithPaystack();
   }
+
+  
+
 }
