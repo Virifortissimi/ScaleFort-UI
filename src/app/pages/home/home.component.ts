@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { HomeFeaturesComponent } from './components/home-features.component';
 import { HomeTestimonialsComponent } from './components/home-testimonials.component';
 import { HomeHeroComponent } from './components/home-hero.component';
@@ -6,6 +6,7 @@ import { HomeCompaniesComponent } from './components/home-companies.component';
 import { HomeServicesComponent } from './components/home-services.component';
 import { HomeVoucherComponent } from './components/home-voucher.component';
 import { HomeBlogComponent } from './components/home-blog.component';
+import { HealthService } from '../../shared/services/health.service';
 
 @Component({
   selector: 'app-home',
@@ -31,4 +32,15 @@ import { HomeBlogComponent } from './components/home-blog.component';
     </div>
   `
 })
-export class HomeComponent {}
+export class HomeComponent implements OnInit {
+
+  private readonly _healthService = inject(HealthService);
+  
+  ngOnInit(): void {
+    this.getApiHealth();
+  }
+
+  getApiHealth() {
+    this._healthService.getHealth().subscribe();
+  }
+}

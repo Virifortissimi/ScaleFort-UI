@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CourseEnrollmentComponent } from '../course-enrollment/course-enrollment.component';
+import { CourseInterest, DepartmentType } from '../../../shared/models/application-inquiry.model';
 
 interface CourseSection {
   id: string;
@@ -84,9 +86,8 @@ interface CourseSection {
       
             <div class="w-full md:w-auto text-center">
               <a 
-                href="#enroll"
-                (click)="openEnrollmentModal($event)"
-                class="inline-block bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:from-purple-700 hover:to-blue-700 transform hover:scale-105 transition-all duration-300"
+                class="inline-block bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:from-purple-700 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 cursor-pointer"
+                (click)="openErollCourse()"
               >
                 Enroll Now
               </a>
@@ -248,73 +249,6 @@ interface CourseSection {
           </div>
         </div>
       </section>
-
-      <!-- Enrollment Modal -->
-      <div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-xl w-full max-w-md">
-          <div class="p-6">
-            <div class="flex justify-between items-center mb-4">
-              <h3 class="text-2xl font-bold text-gray-800">Enroll in .NET Program</h3>
-              <button (click)="showModal = false" class="text-gray-500 hover:text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            <form (ngSubmit)="submitEnrollment()" class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-                <input type="text" [(ngModel)]="enrollmentData.name" name="name" required 
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-              </div>
-
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-                <input type="email" [(ngModel)]="enrollmentData.email" name="email" required 
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-              </div>
-
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                <input type="tel" [(ngModel)]="enrollmentData.phone" name="phone" 
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-              </div>
-
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Course *</label>
-                <select [(ngModel)]="enrollmentData.course" name="course" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                  <option value="">Select a course</option>
-                  <option value="Enterprise Development with .NET">Enterprise Development with .NET</option>
-                  <option value="Advanced C# Patterns">Advanced C# Patterns</option>
-                  <option value="ASP.NET Core Microservices">ASP.NET Core Microservices</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Referral ID (Optional)</label>
-                <input type="text" [(ngModel)]="enrollmentData.referralId" name="referralId" 
-                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-              </div>
-
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <textarea [(ngModel)]="enrollmentData.message" name="message" rows="3"
-                          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"></textarea>
-              </div>
-
-              <div class="pt-4">
-                <button type="submit" 
-                        class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-3 rounded-lg shadow-md hover:from-purple-700 hover:to-blue-700 transition-all">
-                  Submit Application
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      
     </div>
   `
 })
@@ -328,17 +262,8 @@ export class DotnetComponent implements OnInit {
   ];
 
   currentSection = 'overview';
-  showModal = false;
-  enrollmentData = {
-    name: '',
-    email: '',
-    phone: '',
-    course: '',
-    referralId: '',
-    message: ''
-  };
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private dialogService: DialogService) { }
 
   ngOnInit() {
     const observer = new IntersectionObserver(
@@ -366,29 +291,20 @@ export class DotnetComponent implements OnInit {
     }
   }
 
-  openEnrollmentModal(event: Event) {
-    event.preventDefault();
-    this.showModal = true;
-  }
-
-  submitEnrollment() {
-    // Here you would typically send the data to your backend
-    console.log('Enrollment submitted:', this.enrollmentData);
-    
-    // Reset form
-    this.enrollmentData = {
-      name: '',
-      email: '',
-      phone: '',
-      course: '',
-      referralId: '',
-      message: ''
-    };
-    
-    // Close modal
-    this.showModal = false;
-    
-    // Show success message
-    alert('Application submitted successfully! Our team will contact you shortly.');
+  openErollCourse() {
+    const ref: DynamicDialogRef = this.dialogService.open(CourseEnrollmentComponent, {
+      header: 'Enroll in .NET Program',
+      width: '35vw',
+      breakpoints: {
+        '960px': '65vw',
+        '640px': '90vw'
+      },
+      modal: true,
+      data: {
+        departmentType: DepartmentType.TechSchool,
+        courseInterest: CourseInterest.DotnetDevelopment
+      },
+      closable: true
+    });
   }
 }

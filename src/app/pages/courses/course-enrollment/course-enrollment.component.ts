@@ -1,12 +1,120 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApplicationInquiryService } from '../../../shared/services/application-inquiry.service';
+import { CourseInterest, DepartmentType, ICreateApplicationInquiry, ITServiceType } from '../../../shared/models/application-inquiry.model';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { finalize } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-course-enrollment',
-  standalone: true,
-  imports: [],
   templateUrl: './course-enrollment.component.html',
   styleUrl: './course-enrollment.component.css'
 })
-export class CourseEnrollmentComponent {
+export class CourseEnrollmentComponent implements OnInit {
 
+  private readonly _applicationInquiryService = inject(ApplicationInquiryService);
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly config = inject(DynamicDialogConfig); 
+  private readonly dialogRef = inject(DynamicDialogRef);
+  private readonly messageService = inject(MessageService);
+  
+  departmentType = signal<DepartmentType | undefined>(undefined);
+  courseInterest = signal<CourseInterest | undefined>(undefined);
+  serviceType = signal<ITServiceType | undefined>(undefined);
+  trainingTopic = signal<string | undefined>(undefined);
+
+  isLoading = signal(false);
+  showPricePlans = signal(false);
+  userEmail = signal<string | undefined>('');
+  applicationId = signal<string | undefined>('');
+  formGroup!: FormGroup;
+
+  ngOnInit(): void {
+    
+    const dialogData = this.config.data;
+    if (dialogData) {
+      this.departmentType.set(dialogData.departmentType);
+      this.courseInterest.set(dialogData.courseInterest);
+      this.serviceType.set(dialogData.serviceType);
+      this.trainingTopic.set(dialogData.trainingTopic);
+    }
+    this.initForm();
+  }
+
+  initForm() {
+    this.formGroup = this.formBuilder.group({
+      companyName: [
+        '', 
+        this.departmentType() === DepartmentType.CorporateTraining ? Validators.required : []
+      ],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern(/^\d+$/)]],
+      referralId: [''],
+      message: ['']
+    })
+  }
+
+  submitEnrollment() {
+    this.isLoading.set(true);
+
+    const { value } = this.formGroup;
+    const payload: ICreateApplicationInquiry = {
+      firstName: value.firstName,
+      lastName: value.lastName,
+      email: value.email,
+      phone: value.phoneNumber,
+      departmentType: this.departmentType() as DepartmentType,
+      referralId: value.referralId,
+      message: value.message
+    }
+
+    if(this.departmentType() === DepartmentType.TechSchool) {
+      payload.courseInterest = this.courseInterest() as CourseInterest;
+    }
+
+    if(this.departmentType() === DepartmentType.ITServices) {
+      payload.serviceType = this.serviceType() as ITServiceType;
+    }
+
+    if(this.departmentType() === DepartmentType.CorporateTraining) {
+      payload.companyName = value.companyName;
+      payload.trainingTopic = this.trainingTopic();
+    }
+
+    this._applicationInquiryService
+      .createApplicationInquiry(payload)
+      .pipe(finalize(() => this.isLoading.set(false)))
+      .subscribe({
+        next: (res) => {
+          if(this.departmentType() === DepartmentType.ITServices) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Successful',
+              detail: 'Application successful',
+              life: 5000,
+            });
+          } else {
+            this.userEmail.set(payload.email);
+            this.applicationId.set(res.id);
+            this.showPricePlans.set(true);
+            this.config.width = '60vw';
+          }
+        },
+        error: (error) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Enrollment error',
+            detail: error || 'Something went wrong',
+            life: 5000,
+          });
+        },
+      });
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }

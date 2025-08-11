@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CourseEnrollmentComponent } from '../course-enrollment/course-enrollment.component';
+import { CourseInterest, DepartmentType } from '../../../shared/models/application-inquiry.model';
 
 interface CourseSection {
   id: string;
@@ -8,7 +9,7 @@ interface CourseSection {
 }
 
 @Component({
-  selector: 'app-data-analysis-detail',
+  selector: 'app-data-analysis',
   template: `
     <div>
       <!-- Hero Section -->
@@ -64,10 +65,9 @@ interface CourseSection {
             </nav>
       
             <div class="w-full md:w-auto text-center">
-              <a 
-                href="https://paystack.com/pay/scalefort-data"
-                target="_blank"
-                class="inline-block bg-gradient-to-r from-green-600 to-teal-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:from-green-700 hover:to-teal-800 transform hover:scale-105 transition-all duration-300"
+              <a
+                class="inline-block bg-gradient-to-r from-green-600 to-teal-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:from-green-700 hover:to-teal-800 transform hover:scale-105 transition-all duration-300 cursor-pointer"
+                (click)="openErollCourse()"
               >
                 Start Analyzing Now
               </a>
@@ -331,7 +331,7 @@ export class DataAnalysisComponent implements OnInit {
 
   currentSection = 'overview';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private dialogService: DialogService) { }
 
   ngOnInit() {
     const observer = new IntersectionObserver(
@@ -357,5 +357,22 @@ export class DataAnalysisComponent implements OnInit {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  openErollCourse() {
+    const ref: DynamicDialogRef = this.dialogService.open(CourseEnrollmentComponent, {
+      header: 'Enroll in Data Analysis Program',
+      width: '35vw',
+      breakpoints: {
+        '960px': '65vw',
+        '640px': '90vw'
+      },
+      modal: true,
+      data: {
+        departmentType: DepartmentType.TechSchool,
+        courseInterest: CourseInterest.DataAnalysis
+      },
+      closable: true
+    });
   }
 }

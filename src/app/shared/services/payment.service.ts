@@ -3,6 +3,7 @@ import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import PaystackPop from '@paystack/inline-js';
+import { ICreatePayment } from "../models/payment.model";
 
 @Injectable({
   providedIn: "root",
@@ -11,40 +12,43 @@ export class PaymentService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = `${environment.scalefortBaseUrl}/api/payment`;
 
-  initializePaystackPayment(applicationId: string, payload: any): Observable<any> {
+  initializePaystackPayment(applicationId: string | undefined, payload: Partial<ICreatePayment>): Observable<any> {
+    let params = new HttpParams();
+    if (applicationId) {
+      params = params.set('applicationId', applicationId);
+    }
+
     return this.http.post<any>(
-      `${this.baseUrl}/initialize-paystack/${applicationId}`,
-      payload
+      `${this.baseUrl}/initialize-paystack`,
+      payload,
+      { params: params } // Pass the params object in the options
     );
   }
 
   verifyPaystackPayment(reference?: string): Observable<any> {
     let params = new HttpParams();
-
     if (reference) {
       params = params.set("reference", reference);
     }
 
     return this.http.get<any>(
-        `${this.baseUrl}/verify-paystack-payment`, 
-        { params }
+      `${this.baseUrl}/verify-paystack-payment`, 
+      { params }
     );
   }
 
-  payWithPaystack() {
-    console.log('Paystack payment initialized');
-    
+  payWithPaystack(accessCode: string) {
     const popup = new PaystackPop();
-    popup.newTransaction({
-      key: environment.paystackKey,
-      email: 'user@example.com',
-      amount: 200000,
-      onSuccess: (response: any) => {
-        console.log('Payment successful:', response);
-      },
-      onCancel: () => {
-        console.log('Transaction canceled');
-      }
-    });
+    popup.resumeTransaction(accessCode);
+    // onSuccess: (response: any) => { 
+    //   console.log('Payment successful:', response); 
+    //   this.verifyPaystackPayment(response.reference); 
+    // }, 
+    // onCancel: () => { 
+    //   console.log('Transaction canceled'); 
+    // },
+    // onError: (error: any) => {
+    //   console.error('Paystack transaction error:', error);
+    // }
   }
 }

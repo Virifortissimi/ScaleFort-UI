@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CourseEnrollmentComponent } from '../course-enrollment/course-enrollment.component';
+import { CourseInterest, DepartmentType } from '../../../shared/models/application-inquiry.model';
 
 interface CourseSection {
   id: string;
@@ -8,7 +9,7 @@ interface CourseSection {
 }
 
 @Component({
-  selector: 'app-cloud-detail',
+  selector: 'app-cloud',
   template: `
     <div>
       <!-- Hero Section -->
@@ -88,9 +89,8 @@ interface CourseSection {
       
             <div class="w-full md:w-auto text-center">
               <a 
-                href="https://paystack.com/pay/scalefort-cloud"
-                target="_blank"
-                class="inline-block bg-gradient-to-r from-orange-600 to-blue-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:from-orange-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300"
+                class="inline-block bg-gradient-to-r from-orange-600 to-blue-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:from-orange-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300 cursor-pointer"
+                (click)="openErollCourse()"
               >
                 Launch Cloud Career
               </a>
@@ -352,7 +352,7 @@ export class CloudComponent implements OnInit {
 
   currentSection = 'overview';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private dialogService: DialogService) { }
 
   ngOnInit() {
     const observer = new IntersectionObserver(
@@ -378,5 +378,22 @@ export class CloudComponent implements OnInit {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  openErollCourse() {
+    const ref: DynamicDialogRef = this.dialogService.open(CourseEnrollmentComponent, {
+      header: 'Enroll in Cloud Computing Program',
+      width: '35vw',
+      breakpoints: {
+        '960px': '65vw',
+        '640px': '90vw'
+      },
+      modal: true,
+      data: {
+        departmentType: DepartmentType.TechSchool,
+        courseInterest: CourseInterest.CloudComputing
+      },
+      closable: true
+    });
   }
 }

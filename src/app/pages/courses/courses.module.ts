@@ -5,10 +5,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoursesComponent } from './courses.component';
 import { PythonComponent } from './subpage/python.component';
 import { DotnetComponent } from './subpage/dotnet.component';
-import { DataAnalysisComponent } from './subpage/dataanalysis.component';
+import { DataAnalysisComponent } from './subpage/data-analysis.component';
 import { CloudComponent } from './subpage/cloud.component';
 import { FrontendComponent } from './subpage/frontend.component';
 import { DisplayCoursesComponent } from './display-courses.component';
+import { DialogService } from 'primeng/dynamicdialog';
+import { CourseEnrollmentComponent } from './course-enrollment/course-enrollment.component';
+import { PricePlanComponent } from './price-plan/price-plan.component';
+import { ButtonModule } from 'primeng/button';
+import { MessageModule } from 'primeng/message';
 
 const routes: Routes = [
   {
@@ -33,14 +38,21 @@ const routes: Routes = [
     DotnetComponent,
     DataAnalysisComponent,
     CloudComponent,
-    FrontendComponent
+    FrontendComponent,
+    CourseEnrollmentComponent,
+    PricePlanComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ButtonModule,
+    MessageModule
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    DialogService,
+  ]
 })
 export class CoursesModule { }

@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
-import { IApplicationInquiry } from "../models/application-inquiry.model";
+import { ICreateApplicationInquiry } from "../models/application-inquiry.model";
 
 @Injectable({
   providedIn: "root",
@@ -11,7 +11,7 @@ export class ApplicationInquiryService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = `${environment.scalefortBaseUrl}/api/applicationInquiry`;
 
-  createApplicationInquiry(payload: Partial<IApplicationInquiry>): Observable<any> {
+  createApplicationInquiry(payload: Partial<ICreateApplicationInquiry>): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}`, payload);
   }
 
