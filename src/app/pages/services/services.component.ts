@@ -282,71 +282,70 @@ import { DepartmentType, ITServiceType } from "../../shared/models/application-i
       </section>
 
       <!-- Tech Stack Section -->
-      <section class="py-32 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-          <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
-            <div
-              class="inline-block px-4 py-1 rounded-full bg-green-50 text-green-600 font-medium mb-4"
-            >
-              Our Technology Stack
-            </div>
-            <h2 class="text-4xl font-bold mb-6">
-              Modern Tools for Modern Solutions
-            </h2>
-            <p class="text-gray-600 text-lg">
-              We work with cutting-edge technologies to deliver robust and
-              scalable solutions
-            </p>
-          </div>
+<section class="py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+      <div class="inline-block px-4 py-1 rounded-full bg-green-50 text-green-600 font-medium mb-4">
+        Our Technology Stack
+      </div>
+      <h2 class="text-4xl font-bold mb-6">
+        Modern Tools for Modern Solutions
+      </h2>
+      <p class="text-gray-600 text-lg">
+        We work with cutting-edge technologies to deliver robust and
+        scalable solutions
+      </p>
+    </div>
 
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 animate-on-scroll">
-            <div
-              class="p-8 bg-gray-50 rounded-2xl text-center hover:shadow-lg transition-all"
-            >
-              <img
-                src="assets/react-logo.png"
-                alt="React"
-                class="h-16 mx-auto mb-4"
-              />
-              <h3 class="font-semibold mb-2">Frontend</h3>
-              <p class="text-gray-600">React, Angular, Vue.js</p>
-            </div>
-            <div
-              class="p-8 bg-gray-50 rounded-2xl text-center hover:shadow-lg transition-all"
-            >
-              <img
-                src="assets/nodejs-logo.png"
-                alt="Node.js"
-                class="h-16 mx-auto mb-4"
-              />
-              <h3 class="font-semibold mb-2">Backend</h3>
-              <p class="text-gray-600">Node.js, Python, .NET</p>
-            </div>
-            <div
-              class="p-8 bg-gray-50 rounded-2xl text-center hover:shadow-lg transition-all"
-            >
-              <img
-                src="assets/aws-logo.png"
-                alt="AWS"
-                class="h-16 mx-auto mb-4"
-              />
-              <h3 class="font-semibold mb-2">Cloud</h3>
-              <p class="text-gray-600">AWS, Azure, Google Cloud</p>
-            </div>
-            <div
-              class="p-8 bg-gray-50 rounded-2xl text-center hover:shadow-lg transition-all"
-            >
-              <img
-                src="assets/docker-logo.png"
-                alt="Docker"
-                class="h-16 mx-auto mb-4"
-              />
-              <h3 class="font-semibold mb-2">DevOps</h3>
-              <p class="text-gray-600">Docker, Kubernetes, Terraform</p>
-            </div>
-          </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 animate-on-scroll">
+      <!-- Frontend -->
+      <div class="p-8 bg-gray-50 rounded-2xl text-center hover:shadow-lg transition-all">
+        <div class="h-16 mx-auto mb-4 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" class="w-16 h-16">
+            <path fill="#61DAFB" d="M64.004 25.602c-17.067 0-27.73 8.53-32 25.597 6.398-8.531 13.867-11.73 22.398-9.597 4.871 1.214 8.352 4.746 12.207 8.66C72.883 56.629 80.145 64 96.004 64c17.066 0 27.73-8.531 32-25.602-6.399 8.536-13.867 11.735-22.399 9.602-4.87-1.215-8.347-4.746-12.207-8.66-6.27-6.367-13.53-13.738-29.394-13.738zM32.004 64c-17.066 0-27.73 8.531-32 25.602C6.402 81.066 13.87 77.867 22.402 80c4.871 1.215 8.352 4.746 12.207 8.66 6.274 6.367 13.536 13.738 29.395 13.738 17.066 0 27.73-8.53 32-25.597-6.399 8.531-13.867 11.73-22.398 9.597-4.87-1.214-8.347-4.746-12.207-8.66C55.128 71.371 47.868 64 32.004 64zm0 0"/>
+          </svg>
         </div>
-      </section>
+        <h3 class="font-semibold mb-2">Frontend</h3>
+        <p class="text-gray-600">React, Angular, Vue.js</p>
+      </div>
+      
+      <!-- Backend -->
+      <div class="p-8 bg-gray-50 rounded-2xl text-center hover:shadow-lg transition-all">
+        <div class="h-16 mx-auto mb-4 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" class="w-16 h-16">
+            <path fill="#83CD29" d="M112.895 30.662L67.895 3.35a7.292 7.292 0 00-7.29 0L15.105 30.66a7.29 7.29 0 00-3.645 6.32v54.03a7.29 7.29 0 003.645 6.32l45.01 27.31a7.29 7.29 0 007.29 0l45.01-27.31a7.29 7.29 0 003.645-6.32v-54.03a7.29 7.29 0 00-3.645-6.32zM64.25 11.352l34.96 21.22-15.25 9.28-34.96-21.22 15.25-9.28zm-45.01 21.22L54.2 11.35l15.25 9.28-34.96 21.22-15.25-9.28zm-3.65 7.29l17.6 10.7v21.45l-17.6-10.7v-21.45zm54.31 57.1l-17.6-10.7V56.56l17.6 10.7v21.45zm-20.91-33.4l-17.6-10.7 17.6-10.7 17.6 10.7-17.6 10.7zm6.26 3.81l17.6 10.7v21.45l-17.6-10.7V68.56zm23.16-10.7l17.6-10.7v21.45l-17.6 10.7V57.86zm0-31.15v21.45l17.6 10.7V36.86l-17.6-10.7zm20.91 76.15l-34.96 21.22-15.25-9.28 34.96-21.22 15.25 9.28zm34.96-21.22l-17.6-10.7V56.56l17.6 10.7v21.45zm0-31.15l-17.6-10.7V36.86l17.6-10.7v21.45z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold mb-2">Backend</h3>
+        <p class="text-gray-600">Node.js, Python, .NET</p>
+      </div>
+      
+      <!-- Cloud -->
+      <div class="p-8 bg-gray-50 rounded-2xl text-center hover:shadow-lg transition-all">
+        <div class="h-16 mx-auto mb-4 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" class="w-16 h-16">
+            <path fill="#F79400" d="M107.646 54.333c-.762-8.754-7.885-15.685-16.68-15.685-1.787 0-3.521.271-5.183.771a23.26 23.26 0 00-14.646-5.167c-6.958 0-13.104 3.521-16.719 8.896-2.521-1.521-5.604-2.417-8.896-2.417-9.271 0-16.792 7.521-16.792 16.792 0 .813.083 1.604.188 2.385C19.125 63.521 12 71.646 12 81.292c0 10.458 8.5 18.958 18.958 18.958h76.083c10.458 0 18.958-8.5 18.958-18.958.001-10.459-8.499-18.959-18.953-18.959z"/>
+            <path fill="#F79400" d="M75.792 53.521c3.521-6.25 10.125-10.458 17.521-10.458 1.229 0 2.417.146 3.583.375-3.813-9.813-13.25-16.708-24.375-16.708-8.25 0-15.583 4.229-19.875 10.646-1.083-.146-2.208-.229-3.354-.229-12.292 0-22.25 9.958-22.25 22.25 0 .771.042 1.521.104 2.271C14.5 63.292 4 74.333 4 87.375 4 101.771 15.729 113.5 30.125 113.5h76.083c14.396 0 26.125-11.729 26.125-26.125 0-13.042-9.583-23.813-22.083-25.896.042-.5.083-1 .083-1.521 0-12.291-9.958-22.25-22.25-22.25-4.938 0-9.521 1.625-13.292 4.354v.063z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold mb-2">Cloud</h3>
+        <p class="text-gray-600">AWS, Azure, Google Cloud</p>
+      </div>
+      
+      <!-- DevOps -->
+      <div class="p-8 bg-gray-50 rounded-2xl text-center hover:shadow-lg transition-all">
+        <div class="h-16 mx-auto mb-4 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" class="w-16 h-16">
+            <path fill="#2496ED" d="M106.255 38.345c-1.781-1.125-4.057-.97-5.693.386L65.477 68.37 34.428 38.731a4.813 4.813 0 00-6.161-.386 4.813 4.813 0 00-.386 7.371l34.693 32.312c.917.855 2.123 1.28 3.33 1.28 1.207 0 2.414-.425 3.33-1.28l37.693-35.077a4.813 4.813 0 00-.386-7.371z"/>
+            <path fill="#2496ED" d="M106.255 62.345c-1.781-1.125-4.057-.97-5.693.386L65.477 92.37 34.428 62.731a4.813 4.813 0 00-6.161-.386 4.813 4.813 0 00-.386 7.371l34.693 32.312c.917.855 2.123 1.28 3.33 1.28 1.207 0 2.414-.425 3.33-1.28l37.693-35.077a4.813 4.813 0 00-.386-7.371z"/>
+          </svg>
+        </div>
+        <h3 class="font-semibold mb-2">DevOps</h3>
+        <p class="text-gray-600">Docker, Kubernetes, Terraform</p>
+      </div>
+    </div>
+  </div>
+</section>
 
       <!-- Process Section -->
       <section class="py-32 bg-green-50 relative overflow-hidden">

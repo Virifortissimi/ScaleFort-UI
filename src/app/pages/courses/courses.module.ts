@@ -7,7 +7,9 @@ import { PythonComponent } from './subpage/python.component';
 import { DotnetComponent } from './subpage/dotnet.component';
 import { DataAnalysisComponent } from './subpage/data-analysis.component';
 import { CloudComponent } from './subpage/cloud.component';
+import { CybersecurityComponent } from './subpage/cybersecurity.component';
 import { FrontendComponent } from './subpage/frontend.component';
+import { UiUxComponent } from './subpage/ui-ux.component';
 import { DisplayCoursesComponent } from './display-courses.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { CourseEnrollmentComponent } from './course-enrollment/course-enrollment.component';
@@ -26,6 +28,8 @@ const routes: Routes = [
       { path: 'data-analyst', component: DataAnalysisComponent, title: "Scalefort - Data Analyst" },
       { path: 'cloud-computing', component: CloudComponent, title: "Scalefort - Cloud Computing" },
       { path: 'frontend', component: FrontendComponent, title: "Scalefort - Frontend" },
+      { path: 'cybersecurity', component: CybersecurityComponent, title: "Scalefort - Cybersecurity" },
+      { path: 'ui-ux-design', component: UiUxComponent, title: "Scalefort - UI/UX" }
     ],
   },
 ];
