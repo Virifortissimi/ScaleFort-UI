@@ -96,6 +96,7 @@ export class CourseEnrollmentComponent implements OnInit {
               detail: 'Application successful',
               life: 5000,
             });
+            this.closeDialog();
           } else {
             this.userEmail.set(payload.email);
             this.applicationId.set(res.id);
