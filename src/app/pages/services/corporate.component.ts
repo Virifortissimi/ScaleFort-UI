@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
-import { DepartmentType } from "../../shared/models/application-inquiry.model";
+import { DepartmentType, TopicType } from "../../shared/models/application-inquiry.model";
 import { CourseEnrollmentComponent } from "../courses/course-enrollment/course-enrollment.component";
 
 @Component({
@@ -263,7 +263,7 @@ import { CourseEnrollmentComponent } from "../courses/course-enrollment/course-e
                 </div>
                 <a
                   class="inline-flex items-center px-6 py-3 bg-purple-50 text-purple-600 rounded-full font-semibold group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 cursor-pointer"
-                  (click)="openErollCoperateTraining(program.title)"
+                  (click)="openErollCoperateTraining(program.title, program.trainingTopic)"
                 >
                   Customize Program
                   <svg
@@ -590,6 +590,7 @@ export class CorporateTrainingComponent implements OnInit {
         "Modern software development practices and cloud technologies",
       duration: "4-12 Weeks",
       groupSize: "5-50 Participants",
+      trainingTopic: TopicType.TechnicalUpskilling
     },
     {
       title: "Leadership in Tech",
@@ -600,6 +601,7 @@ export class CorporateTrainingComponent implements OnInit {
         "For tech leaders managing distributed teams and digital transformation",
       duration: "8 Weeks",
       groupSize: "5-20 Participants",
+      trainingTopic: TopicType.LeadershipInTech
     },
     {
       title: "Agile Transformation",
@@ -610,6 +612,7 @@ export class CorporateTrainingComponent implements OnInit {
         "Implement agile practices across engineering and business teams",
       duration: "6 Weeks",
       groupSize: "10-100 Participants",
+      trainingTopic: TopicType.AgileTransformation
     },
     {
       title: "Cloud Migration",
@@ -619,6 +622,7 @@ export class CorporateTrainingComponent implements OnInit {
       description: "Enterprise cloud strategy and migration training",
       duration: "10 Weeks",
       groupSize: "5-30 Participants",
+      trainingTopic: TopicType.CloudMigration
     },
     {
       title: "Data Literacy",
@@ -628,6 +632,7 @@ export class CorporateTrainingComponent implements OnInit {
       description: "Building data-driven decision making across departments",
       duration: "6 Weeks",
       groupSize: "10-100 Participants",
+      trainingTopic: TopicType.DataLiteracy
     },
     {
       title: "Cybersecurity",
@@ -637,6 +642,7 @@ export class CorporateTrainingComponent implements OnInit {
       description: "Enterprise security best practices and threat management",
       duration: "8 Weeks",
       groupSize: "5-50 Participants",
+      trainingTopic: TopicType.Cybersecurity
     },
   ];
 
@@ -661,7 +667,7 @@ export class CorporateTrainingComponent implements OnInit {
     }, 0);
   }
 
-  openErollCoperateTraining(topic: string) {
+  openErollCoperateTraining(topic: string, trainingTopic: TopicType) {
     const ref: DynamicDialogRef = this.dialogService.open(CourseEnrollmentComponent, {
       header: `${topic} program`,
       width: '35vw',
@@ -672,7 +678,7 @@ export class CorporateTrainingComponent implements OnInit {
       modal: true,
       data: {
         departmentType: DepartmentType.CorporateTraining,
-        trainingTopic: topic
+        trainingTopic: trainingTopic
       },
       closable: true
     });

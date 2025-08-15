@@ -26,6 +26,15 @@ export enum ITServiceType {
     ApplicationDevelopment = 8
 }
 
+export enum TopicType {
+    TechnicalUpskilling = 1,
+    LeadershipInTech = 2,
+    AgileTransformation = 3,
+    CloudMigration = 4,
+    DataLiteracy = 5,
+    Cybersecurity = 6
+}
+
 export interface ICreateApplicationInquiry {
     firstName?: string;
     lastName?: string;
@@ -35,7 +44,7 @@ export interface ICreateApplicationInquiry {
     departmentType?: DepartmentType;
     courseInterest?: CourseInterest;
     companyName?: string;
-    trainingTopic?: string;
+    trainingTopic?: TopicType;
     serviceType?: ITServiceType;
     submissionDate?: Date;
     referralId?: string;

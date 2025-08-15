@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApplicationInquiryService } from '../../../shared/services/application-inquiry.service';
-import { CourseInterest, DepartmentType, ICreateApplicationInquiry, ITServiceType } from '../../../shared/models/application-inquiry.model';
+import { CourseInterest, DepartmentType, ICreateApplicationInquiry, ITServiceType, TopicType } from '../../../shared/models/application-inquiry.model';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { finalize } from 'rxjs';
 import { MessageService } from 'primeng/api';
@@ -22,7 +22,7 @@ export class CourseEnrollmentComponent implements OnInit {
   departmentType = signal<DepartmentType | undefined>(undefined);
   courseInterest = signal<CourseInterest | undefined>(undefined);
   serviceType = signal<ITServiceType | undefined>(undefined);
-  trainingTopic = signal<string | undefined>(undefined);
+  trainingTopic = signal<TopicType | undefined>(undefined);
 
   isLoading = signal(false);
   showPricePlans = signal(false);
@@ -81,7 +81,7 @@ export class CourseEnrollmentComponent implements OnInit {
 
     if(this.departmentType() === DepartmentType.CorporateTraining) {
       payload.companyName = value.companyName;
-      payload.trainingTopic = this.trainingTopic();
+      payload.trainingTopic = this.trainingTopic() as TopicType;
     }
 
     this._applicationInquiryService
