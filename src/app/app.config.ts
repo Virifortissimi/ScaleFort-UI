@@ -21,8 +21,8 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: Lara,
         options: {
-          darkModeSelector: 'none',
-        },
+          darkModeSelector: 'none'
+        }
       }
     }),
     MessageService

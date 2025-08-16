@@ -21,7 +21,7 @@ export class PaymentService {
     return this.http.post<any>(
       `${this.baseUrl}/initialize-paystack`,
       payload,
-      { params: params } // Pass the params object in the options
+      { params: params }
     );
   }
 

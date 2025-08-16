@@ -2,8 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-// import { IAPIResponse } from '../../../../../../shared/interfaces/api-response.model';
-// import { ICreateBooking } from '../models/booking.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,22 +12,22 @@ export class AuthenticationService {
 
   register(payload: any): Observable<any> {
     return this.http.post<any>(
-        `${this.baseUrl}/register`, 
-        payload
+      `${this.baseUrl}/register`, 
+      payload
     );
   }
 
   login(payload: any): Observable<any> {
     return this.http.post<any>(
-        `${this.baseUrl}/login`, 
-        payload
+      `${this.baseUrl}/login`, 
+      payload
     );
   }
 
   refreshToken(payload: any): Observable<any> {
     return this.http.post<any>(
-        `${this.baseUrl}/refresh-token`, 
-        payload
+      `${this.baseUrl}/refresh-token`, 
+      payload
     );
   }
 

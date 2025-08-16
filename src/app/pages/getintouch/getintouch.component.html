@@ -1,37 +1,91 @@
 <section class="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-20">
-    <div class="max-w-2xl text-center">
+    <div class="max-w-4xl w-full text-center">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Get in Touch with Us</h1>
         <p class="text-lg text-gray-600 mb-8">
             We’d love to hear from you. Whether you have a question about our programs, services, partnership
             opportunities, or anything else—we’re here to help!
         </p>
 
-        <div class="text-left bg-white rounded-xl shadow-md p-8 space-y-4">
-            <div>
-                <h3 class="font-semibold text-gray-800">Email</h3>
-                <p class="text-gray-600">support&#64;scalefort.org</p>
+        <div class="flex flex-col md:flex-row gap-8">
+            <div class="flex-1 text-left bg-white rounded-xl shadow-md p-8">
+                <h3 class="font-semibold text-xl text-gray-800 mb-4">Send a Message</h3>
+                <form class="space-y-6" [formGroup]="formGroup">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name"
+                            formControlName="name"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all shadow-sm"
+                        >
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email"
+                            formControlName="email"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all shadow-sm"
+                        >
+                    </div>
+                    <div>
+                        <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                        <input 
+                            type="text" 
+                            id="title" 
+                            name="title"
+                            formControlName="title"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all shadow-sm"
+                        >
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            formControlName="message"
+                            rows="5"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all shadow-sm"
+                        ></textarea>
+                    </div>
+                    <div>
+                        <p-button 
+                            label="Send Message" 
+                            [loading]="loading()"
+                            [styleClass]="'select-button w-full !py-3 !px-6 !rounded-lg !border !border-blue-500 !bg-blue-600 text-white !hover:bg-blue-700 transition-all duration-200'"
+                            [disabled]="!formGroup.valid" 
+                            (click)="onSubmit()"
+                        />
+                    </div>
+                </form>
             </div>
 
-            <div>
-                <h3 class="font-semibold text-gray-800">Phone</h3>
-                <p class="text-gray-600">+234 815 840 6306</p>
-            </div>
-
-            <div>
-                <h3 class="font-semibold text-gray-800">Office</h3>
-                <p class="text-gray-600">Remote-first. Based in Lagos, Nigeria 🇳🇬</p>
-            </div>
-
-            <div>
-                <h3 class="font-semibold text-gray-800">Socials</h3>
-                <div class="flex gap-4 mt-2">
-                    <a href="https://x.com/scalefortHQ" target="_blank" class="text-blue-600 hover:underline">X</a>
-                    <a href="https://linkedin.com/company/scalefort" target="_blank"
-                        class="text-blue-600 hover:underline">LinkedIn</a>
-                    <a href="https://instagram.com/scalefort" target="_blank"
-                        class="text-blue-600 hover:underline">Instagram</a>
-                    <a href="https://facebook.com/scalefort" target="_blank"
-                        class="text-blue-600 hover:underline">Facebook</a>
+            <div class="flex-1 text-left bg-white rounded-xl shadow-md p-8 space-y-4">
+                <div>
+                    <h3 class="font-semibold text-gray-800">Email</h3>
+                    <p class="text-gray-600">support&#64;scalefort.org</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-800">Phone</h3>
+                    <p class="text-gray-600">+234 815 840 6306</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-800">Office</h3>
+                    <p class="text-gray-600">Remote-first. Based in Lagos, Nigeria 🇳🇬</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-800">Socials</h3>
+                    <div class="flex gap-4 mt-2">
+                        <a href="https://x.com/scalefortHQ" target="_blank" class="text-blue-600 hover:underline">X</a>
+                        <a href="https://linkedin.com/company/scalefort" target="_blank"
+                            class="text-blue-600 hover:underline">LinkedIn</a>
+                        <a href="https://instagram.com/scalefort" target="_blank"
+                            class="text-blue-600 hover:underline">Instagram</a>
+                        <a href="https://facebook.com/scalefort" target="_blank"
+                            class="text-blue-600 hover:underline">Facebook</a>
+                    </div>
                 </div>
             </div>
         </div>

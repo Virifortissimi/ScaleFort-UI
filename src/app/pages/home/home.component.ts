@@ -7,6 +7,8 @@ import { HomeServicesComponent } from './components/home-services.component';
 import { HomeVoucherComponent } from './components/home-voucher.component';
 import { HomeBlogComponent } from './components/home-blog.component';
 import { HealthService } from '../../shared/services/health.service';
+import { HomeNewsletterComponent } from './components/home-newsletter..component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +20,9 @@ import { HealthService } from '../../shared/services/health.service';
     HomeTestimonialsComponent,
     HomeCompaniesComponent,
     HomeBlogComponent,
-    HomeVoucherComponent
+    HomeVoucherComponent,
+    HomeNewsletterComponent,
+    FormsModule
   ],
   template: `
     <div>
@@ -29,6 +33,7 @@ import { HealthService } from '../../shared/services/health.service';
       <app-home-companies />
       <app-home-testimonials />
       <app-home-blog />
+      <app-home-newsletter />
     </div>
   `
 })

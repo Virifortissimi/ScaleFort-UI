@@ -16,6 +16,7 @@ import { CourseEnrollmentComponent } from './course-enrollment/course-enrollment
 import { PricePlanComponent } from './price-plan/price-plan.component';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
+import { DisplayBasicCoursesComponent } from './display-basic-courses.component';
 
 const routes: Routes = [
   {
@@ -29,8 +30,9 @@ const routes: Routes = [
       { path: 'cloud-computing', component: CloudComponent, title: "Scalefort - Cloud Computing" },
       { path: 'frontend', component: FrontendComponent, title: "Scalefort - Frontend" },
       { path: 'cybersecurity', component: CybersecurityComponent, title: "Scalefort - Cybersecurity" },
-      { path: 'ui-ux-design', component: UiUxComponent, title: "Scalefort - UI/UX" }
-    ],
+      { path: 'ui-ux-design', component: UiUxComponent, title: "Scalefort - UI/UX" },
+      { path: 'basic-courses', component: DisplayBasicCoursesComponent, title: "Scalefort - Basic Courses" },
+    ]
   },
 ];
 
@@ -44,7 +46,8 @@ const routes: Routes = [
     CloudComponent,
     FrontendComponent,
     CourseEnrollmentComponent,
-    PricePlanComponent
+    PricePlanComponent,
+    DisplayBasicCoursesComponent
   ],
   imports: [
     CommonModule,
