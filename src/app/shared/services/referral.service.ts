@@ -10,38 +10,25 @@ export class ReferralService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = `${environment.scalefortBaseUrl}/api/referral`;
 
-  createReferral(payload: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}`, payload);
+  getReferralEarn(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/earn`);
   }
 
-  deactivateReferralInquiry(referralInquiryId: string): Observable<any> {
-    return this.http.put<any>(
-      `${this.baseUrl}/${referralInquiryId}/deactivate`,
-      {}
-    );
-  }
+  // filterReferralInquiry(filters: {
+  //   isActive?: boolean;
+  //   startDate?: string;
+  //   endDate?: string;
+  //   pageIndex?: number;
+  //   [key: string]: any; // allow any other optional filter
+  // }): Observable<any> {
+  //   let params = new HttpParams();
 
-  getReferralInquiryByReferralInquiryId(
-    referralInquiryId: string
-  ): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/${referralInquiryId}`);
-  }
+  //   Object.entries(filters).forEach(([key, value]) => {
+  //     if (value !== undefined && value !== null) {
+  //       params = params.set(key, String(value));
+  //     }
+  //   });
 
-  filterReferralInquiry(filters: {
-    isActive?: boolean;
-    startDate?: string;
-    endDate?: string;
-    pageIndex?: number;
-    [key: string]: any; // allow any other optional filter
-  }): Observable<any> {
-    let params = new HttpParams();
-
-    Object.entries(filters).forEach(([key, value]) => {
-      if (value !== undefined && value !== null) {
-        params = params.set(key, String(value));
-      }
-    });
-
-    return this.http.get<any>(`${this.baseUrl}/filter`, { params });
-  }
+  //   return this.http.get<any>(`${this.baseUrl}/filter`, { params });
+  // }
 }

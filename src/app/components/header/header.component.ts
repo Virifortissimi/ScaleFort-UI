@@ -61,7 +61,7 @@ import { CommonModule } from '@angular/common';
           </div>
           <div class="hidden md:flex items-center space-x-4 animate-slide-up" style="animation-delay: 600ms">
             <!-- Earn button (secondary) -->
-            <a routerLink="/earn" target="_blank"
+            <a routerLink="/earn"
               class="inline-flex items-center px-5 py-2 rounded-md border border-blue-500 text-blue-600 bg-white hover:bg-blue-50 hover:text-blue-700 transition-all duration-200">
               Earn
             </a>

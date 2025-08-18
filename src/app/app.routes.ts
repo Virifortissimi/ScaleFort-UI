@@ -15,16 +15,18 @@ import { RegisterComponent } from './pages/auth/Register/register.component';
 import { LoginComponent } from './pages/auth/Login/login.component';
 import { CookiePolicyComponent } from './pages/resources/cookiepolicy.component';
 import { TermsOfServiceComponent } from './pages/resources/termsofservice.component';
+import { authGuard } from './pages/auth/guards/auth.guard';
+import { authRedirectGuard } from './pages/auth/guards/auth-redirect.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: "Scalefort - Empowering Tech Careers" },
   { path: 'about', component: AboutComponent, title: "Scalefort - About" },
-  { path: 'register', component: RegisterComponent, title: "Scalefort - Register" },
-  { path: 'login', component: LoginComponent, title: "Scalefort - Login" },
+  { path: 'register', component: RegisterComponent, title: "Scalefort - Register", canActivate: [authRedirectGuard] },
+  { path: 'login', component: LoginComponent, title: "Scalefort - Login", canActivate: [authRedirectGuard] },
   { path: 'mentorship', component: MentorshipComponent, title: "Scalefort - Mentorship" },
   { path: 'privacy-policy', component: PrivacyPolicyComponent, title: "Scalefort - Privacy Policy" },
   { path: 'cookie-policy', component: CookiePolicyComponent, title: "Scalefort - Cookie Policy" },
-  { path: 'earn', component: EarnComponent, title: "Scalefort - Earn" },
+  { path: 'earn', component: EarnComponent, title: "Scalefort - Earn", canActivate: [authGuard] },
   { path: 'contact', component: GetInTouchComponent, title: "Scalefort - Contact Us" },
   { path: 'corporate-training', component: CorporateTrainingComponent, title: "Scalefort - Corporate Training" },
   { path: 'terms', component: TermsOfServiceComponent, title: "Scalefort - Terms of Service" },
