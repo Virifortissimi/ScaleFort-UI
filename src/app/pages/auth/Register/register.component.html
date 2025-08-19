@@ -32,6 +32,44 @@
                     </span>
                 </div>
 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                        <input
+                            type="text"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                            placeholder="John"
+                            formControlName="firstName"
+                        >
+                        <span
+                            *ngIf="formGroup.get('firstName')?.invalid && (formGroup.get('firstName')?.dirty || formGroup.get('firstName')?.touched)"
+                            class="block mt-1 text-sm text-red-600"
+                        >
+                            <span *ngIf="formGroup.get('firstName')?.errors?.['required']">
+                                First name is required.
+                            </span>
+                        </span>
+                    </div>
+
+                    <div>
+                        <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                        <input
+                            type="text"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                            placeholder="Doe"
+                            formControlName="lastName"
+                        >
+                        <span
+                            *ngIf="formGroup.get('lastName')?.invalid && (formGroup.get('lastName')?.dirty || formGroup.get('lastName')?.touched)"
+                            class="block mt-1 text-sm text-red-600"
+                        >
+                            <span *ngIf="formGroup.get('lastName')?.errors?.['required']">
+                                Last name is required.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                     <input
@@ -179,3 +217,5 @@
         </form>
     </div>
 </section>
+
+

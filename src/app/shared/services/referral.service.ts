@@ -14,6 +14,10 @@ export class ReferralService {
     return this.http.get<any>(`${this.baseUrl}/earn`);
   }
 
+  referralIdExists(referralId: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${referralId}/exists`);
+  }
+
   // filterReferralInquiry(filters: {
   //   isActive?: boolean;
   //   startDate?: string;

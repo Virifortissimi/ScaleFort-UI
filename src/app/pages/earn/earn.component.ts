@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { ReferralService } from "../../shared/services/referral.service";
 import { MessageService } from "primeng/api";
+import { IReferral } from "../../shared/models/referral.model";
 
 @Component({
   selector: "app-earn",
@@ -16,7 +17,7 @@ export class EarnComponent implements OnInit {
   private readonly _referralService = inject(ReferralService);
   private readonly messageService = inject(MessageService);
   
-  referralDetails = signal({});
+  referralDetails = signal<IReferral>({});
 
   activeIndex: number | null = null;
 
@@ -75,18 +76,22 @@ export class EarnComponent implements OnInit {
     .pipe()
     .subscribe({
       next: (res) => {
+        this.referralDetails.set(res);
       },
     });
   }
 
-  copyReferralCode(link: string): void {
-    navigator.clipboard.writeText(link).then(() => {
-      this.messageService.add({
-        severity: 'success',
-        detail: 'Referral Code Copied!',
-        life: 5000,
+  copyReferralCode(): void {
+    let referralId = this.referralDetails().referralId;
+    if(referralId) {
+      navigator.clipboard.writeText(referralId).then(() => {
+        this.messageService.add({
+          severity: 'success',
+          detail: 'Referral Code Copied!',
+          life: 5000,
+        });
       });
-    });
+    }
   }
 
   toggleFaq(index: number) {

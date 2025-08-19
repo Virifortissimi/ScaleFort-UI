@@ -14,8 +14,23 @@
             <div class="flex-grow">
                 <h2 class="text-xl font-bold text-gray-900 mb-2">{{ item.title }}</h2>
                 <p class="text-gray-500 mb-4">{{ item.description }}</p>
-                <div class="flex items-end mb-6">
-                    <span class="text-2xl md:text-3xl font-extrabold text-blue-600">₦{{ item.amount | number }}</span>
+                <div class="mb-6">
+                    <!-- Check if a referral ID exists to show the discounted price -->
+                    <ng-container *ngIf="referralId(); else noReferralId">
+                        <div class="text-xl text-gray-400 font-extrabold line-through">
+                            ₦{{ item.mainAmount | number }}
+                        </div>
+                        <div class="text-2xl md:text-3xl font-extrabold text-blue-600">
+                            ₦{{ item.discountedAmount | number }}
+                        </div>
+                    </ng-container>
+
+                    <!-- If no referral ID, just show the main price -->
+                    <ng-template #noReferralId>
+                        <span class="text-2xl md:text-3xl font-extrabold text-blue-600">
+                            ₦{{ item.mainAmount | number }}
+                        </span>
+                    </ng-template>
                 </div>
             </div>
 
@@ -23,7 +38,7 @@
                 label="Select Plan" 
                 [loading]="isLoading()"
                 [styleClass]="'select-button w-full !py-3 !px-6 !rounded-lg !border !border-blue-500 !bg-blue-600 text-white !hover:bg-blue-700 transition-all duration-200'"
-                (click)="selectPlan(item.amount)"
+                (click)="selectPlan(referralId() ? item.discountedAmount : item.mainAmount)"
             />
         </div>
     </div>

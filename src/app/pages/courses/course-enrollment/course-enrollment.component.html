@@ -13,26 +13,36 @@
             </span>
         </div>
 
-        <!-- First Name -->
         <div class="mb-4">
             <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">
                 First Name <span class="text-red-500">*</span>
             </label>
-            <input type="text" name="firstName" formControlName="firstName"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all shadow-sm">
+            <input 
+                type="text" 
+                name="firstName" 
+                formControlName="firstName"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all shadow-sm"
+                [ngClass]="{'bg-[var(--p-form-field-disabled-background)]': userDetails()}"
+                [readOnly]="userDetails()"
+            >
             <span *ngIf="formGroup.get('firstName')?.invalid && (formGroup.get('firstName')?.dirty || formGroup.get('firstName')?.touched)"
                 class="block mt-1 text-sm text-red-600">
                 First name is required.
             </span>
         </div>
 
-        <!-- Last Name -->
         <div class="mb-4">
             <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">
                 Last Name <span class="text-red-500">*</span>
             </label>
-            <input type="text" name="lastName" formControlName="lastName"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all shadow-sm">
+            <input 
+                type="text" 
+                name="lastName" 
+                formControlName="lastName"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all shadow-sm"
+                [ngClass]="{'bg-[var(--p-form-field-disabled-background)]': userDetails()}"
+                [readOnly]="userDetails()"
+            >
             <span *ngIf="formGroup.get('lastName')?.invalid && (formGroup.get('lastName')?.dirty || formGroup.get('lastName')?.touched)"
                 class="block mt-1 text-sm text-red-600">
                 Last name is required.
@@ -44,8 +54,15 @@
             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
                 Email <span class="text-red-500">*</span>
             </label>
-            <input type="email" name="email" formControlName="email"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all shadow-sm">
+            <input 
+                type="email" 
+                name="email" 
+                formControlName="email"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all shadow-sm"
+                [ngClass]="{'bg-[var(--p-form-field-disabled-background)]': userDetails()}"
+                [readOnly]="userDetails()"
+            >
+            <!-- e2e8f0 -->
             <span *ngIf="formGroup.get('email')?.invalid && (formGroup.get('email')?.dirty || formGroup.get('email')?.touched)"
                 class="block mt-1 text-sm text-red-600">
                 <span *ngIf="formGroup.get('email')?.errors?.['required']">
@@ -80,8 +97,29 @@
             <label for="referralId" class="block text-sm font-medium text-gray-700 mb-2">
                 Referral ID <span class="text-gray-400">(Optional)</span>
             </label>
-            <input type="text" name="referralId" formControlName="referralId"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all shadow-sm">
+            <input 
+                type="text" 
+                name="referralId" 
+                formControlName="referralId"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all shadow-sm"
+            >
+
+            <span
+                *ngIf="formGroup.get('referralId')?.pending"
+                class="block mt-1 text-sm text-gray-500"
+            >
+                Checking referral ID...
+            </span>
+            <span 
+                *ngIf="
+                    formGroup.get('referralId')?.invalid &&
+                    formGroup.get('referralId')?.errors?.['referralIdNotFound'] &&
+                    (formGroup.get('referralId')?.dirty || formGroup.get('referralId')?.touched)
+                "
+                class="block mt-1 text-sm text-red-600"
+            >
+                The referral ID you entered does not exist.
+            </span>
         </div>
 
         <!-- Message -->
@@ -107,5 +145,6 @@
     *ngIf="showPricePlans()" 
     [userEmail]="userEmail()" 
     [applicationId]="applicationId()"
+    [referralId]="referralId()"
     (closeDialog)="closeDialog()"
 ></app-price-plan>

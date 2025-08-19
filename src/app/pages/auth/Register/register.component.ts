@@ -4,7 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ICreateUser } from '../../../shared/models/authentication.model';
 import { AuthenticationService } from '../../../shared/services/authentication.service';
-import { finalize } from 'rxjs';
+import { finalize, first } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { SpinnerIconComponent } from '../../../shared/components/spinner-icon.component';
 
@@ -33,6 +33,8 @@ export class RegisterComponent implements OnInit {
   initForm() {
     this.formGroup = this.formBuilder.group({
       username: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_]+$')]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [
         Validators.required,
@@ -67,6 +69,8 @@ export class RegisterComponent implements OnInit {
     const { value } = this.formGroup;
     const payload: ICreateUser = {
       username: value.username.trim(),
+      firstName: value.firstName.trim(),
+      lastName: value.lastName.trim(),
       email: value.email.trim(),
       password: value.password,
       confirmPassword: value.confirmPassword
