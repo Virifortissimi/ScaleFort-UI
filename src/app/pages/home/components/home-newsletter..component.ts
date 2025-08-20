@@ -83,6 +83,7 @@ export class HomeNewsletterComponent {
             detail: 'You have successfully subscribed to our newsletter.',
             life: 5000,
           });
+          this.email.set('');
         },
         error: (error) => {
           this.messageService.add({
