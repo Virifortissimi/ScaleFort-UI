@@ -39,5 +39,9 @@ export const routes: Routes = [
     path: 'courses',
     loadChildren: () => import('./pages/courses/courses.module').then(m => m.CoursesModule),
   },
+  {
+    path: 'verify-payment',
+    loadComponent: () => import('./pages/payments/verify-payment/verify-payment.component').then(m => m.VerifyPaymentComponent),
+  },
   { path: '**', redirectTo: '' }
 ];

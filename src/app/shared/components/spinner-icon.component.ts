@@ -12,6 +12,7 @@ import { Component, input } from '@angular/core';
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"
                 class="p-button-icon p-button-icon-left p-button-loading-icon p-icon p-icon-spin pi-spin"
+                [class]="svgStyleClasses()"
             >
                 <g clip-path="url(#pui_id_1)">
                     <path
@@ -29,4 +30,5 @@ import { Component, input } from '@angular/core';
 })
 export class SpinnerIconComponent {
     styleClasses = input<string>('');
+    svgStyleClasses = input<string>('');
 }

@@ -61,8 +61,8 @@ export class LoginComponent implements OnInit {
             this.messageService.add({
               severity: 'error',
               summary: 'Login error',
-              detail: error.errors || 'Something went wrong',
-              life: 5000,
+              detail: error?.error?.error || 'Something went wrong',
+              life: 5000
             });
           },
         });
