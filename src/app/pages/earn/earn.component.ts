@@ -8,7 +8,7 @@ import { IReferral } from "../../shared/models/referral.model";
 @Component({
   selector: "app-earn",
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: "./earn.component.html",
   styleUrls: ["./earn.component.css"],
 })

@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-footer-newsletter',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   template: `
     <div class="text-sm text-gray-400 space-y-8">
       <div>

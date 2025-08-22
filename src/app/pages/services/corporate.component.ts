@@ -8,7 +8,7 @@ import { CourseEnrollmentComponent } from "../courses/course-enrollment/course-e
 @Component({
   selector: "app-corporate-training",
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [CommonModule],
   providers: [DialogService],
   template: `
     <div>

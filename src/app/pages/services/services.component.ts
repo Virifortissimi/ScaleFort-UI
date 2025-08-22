@@ -8,7 +8,7 @@ import { DepartmentType, ITServiceType } from "../../shared/models/application-i
 @Component({
   selector: "app-services",
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [CommonModule],
   providers: [DialogService],
   template: `
     <div>
