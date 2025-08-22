@@ -29,7 +29,7 @@ export class EarnComponent implements OnInit {
     {
       title: "Share Link",
       description:
-        "Share your referral link through social media, email, or messaging",
+        "Share your referral code and link to application through social media, email, or messaging",
     },
     {
       title: "Friends Enroll",
@@ -59,7 +59,7 @@ export class EarnComponent implements OnInit {
     },
     {
       question: "When can I withdraw earnings?",
-      answer: "Withdraw anytime once you reach the minimum ₦5,000 threshold",
+      answer: "Withdraw anytime once you reach the minimum ₦50,000 threshold",
     },
     {
       question: "Is there a program fee?",

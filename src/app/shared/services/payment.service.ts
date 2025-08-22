@@ -46,7 +46,7 @@ export class PaymentService {
         const url = this.router.createUrlTree(["/verify-payment"], {
           queryParams: { reference: response.reference },
         });
-        window.open(url.toString(), "_blank");
+        window.open(url.toString(), "_self");
       },
     });
   }

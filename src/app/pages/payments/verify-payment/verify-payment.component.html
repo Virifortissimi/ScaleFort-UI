@@ -1,33 +1,62 @@
-<div class="w-full h-[100vh] grid place-content-center text-center">
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full mx-4 transform transition-all duration-300 scale-95 hover:scale-100">
     @if(loading) {
-    <div>
-        <app-spinner-icon [svgStyleClasses]="'!w-[2rem] !h-[2rem]'"></app-spinner-icon>
-        <p class="font-semibold text-[1.2rem]">Please wait, verifying your payment...</p>
+    <div class="flex flex-col items-center justify-center py-8">
+      <!-- Improved spinner with animation -->
+      <div class="relative">
+        <div class="w-16 h-16 border-4 border-blue-100 rounded-full"></div>
+        <div class="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full absolute top-0 left-0 animate-spin"></div>
+      </div>
+      <p class="mt-6 text-lg font-semibold text-gray-800">Please wait, verifying your payment...</p>
+      <p class="mt-2 text-sm text-gray-500">This may take a few moments</p>
     </div>
     } @else {
-    <div class="grid place-items-center">
-        @if(paymentSuccess) {
-            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor" class="text-green-500 mb-3"
-                viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                <path
-                    d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05" />
+    <div class="flex flex-col items-center justify-center py-4">
+      @if(paymentSuccess) {
+        <!-- Animated success checkmark -->
+        <div class="relative mb-5">
+          <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center">
+            <svg class="w-12 h-12 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
-            <p class="font-semibold text-[1.2rem] mb-6">Payment successful!</p>
-        } @else {
-            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor" class="text-red-500 mb-3"
-                viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                <path
-                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+          </div>
+          <!-- Circular animation -->
+          <div class="absolute -inset-2 border-4 border-green-100 rounded-full animate-ping opacity-75"></div>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Payment Successful!</h2>
+        <p class="text-gray-600 text-center mb-6">Thank you for your purchase. Your transaction was completed successfully.</p>
+      } @else {
+        <!-- Animated failure icon -->
+        <div class="relative mb-5">
+          <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center">
+            <svg class="w-12 h-12 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
-            <p class="font-semibold text-[1.2rem] mb-6">Payment failed!</p>
-        }
+          </div>
+          <!-- Circular animation -->
+          <div class="absolute -inset-2 border-4 border-red-100 rounded-full animate-ping opacity-75"></div>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Payment Failed!</h2>
+        <p class="text-gray-600 text-center mb-6">We encountered an issue processing your payment. Please try again.</p>
+      }
+      <button 
+        type="button"
+        class="w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+        routerLink="/"
+      >
+        Go back to Home
+      </button>
+      @if(paymentSuccess) {
+        <p class="mt-4 text-sm text-gray-500">A receipt has been sent to your email</p>
+      } @else {
         <button 
-            type="button"
-            class="w-full py-3 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg"
-            routerLink="/"
-        >Go back to Home</button>
+          type="button"
+          class="mt-4 text-blue-600 font-medium hover:text-blue-800 transition-colors duration-300"
+        >
+          Try Again
+        </button>
+      }
     </div>
     }
+  </div>
 </div>

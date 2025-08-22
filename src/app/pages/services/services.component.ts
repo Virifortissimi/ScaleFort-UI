@@ -50,8 +50,7 @@ import { DepartmentType, ITServiceType } from "../../shared/models/application-i
               that drive growth and innovation.
             </p>
             <div class="animate-slide-up" style="animation-delay: 600ms">
-              <a
-                routerLink="/contact"
+              <a href="/services#our-services"
                 class="inline-flex items-center px-8 py-3 rounded-full bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
               >
                 <span class="mr-2">Start Your Project</span>
@@ -175,7 +174,7 @@ import { DepartmentType, ITServiceType } from "../../shared/models/application-i
       </section>
 
       <!-- Service Offerings Section -->
-      <section class="py-32 bg-gray-50 relative overflow-hidden">
+      <section id="our-services" class="py-32 bg-gray-50 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 relative">
           <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
             <div
@@ -428,7 +427,7 @@ import { DepartmentType, ITServiceType } from "../../shared/models/application-i
             Let's discuss how we can help you achieve your digital goals
           </p>
           <a
-            href="/contact"
+            href="https://calendly.com/egab/new-meeting"
             class="inline-flex items-center px-8 py-4 bg-white text-green-600 rounded-full font-semibold hover:bg-green-50 transition-all transform hover:scale-105 shadow-lg"
           >
             Schedule Consultation

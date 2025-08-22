@@ -50,8 +50,7 @@ import { CourseEnrollmentComponent } from "../courses/course-enrollment/course-e
               solutions aligned with your business objectives.
             </p>
             <div class="animate-slide-up" style="animation-delay: 600ms">
-              <a
-                routerLink="/contact"
+              <a href="https://calendly.com/egab/new-meeting"
                 class="inline-flex items-center px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
               >
                 <span class="mr-2">Schedule Consultation</span>
@@ -181,7 +180,7 @@ import { CourseEnrollmentComponent } from "../courses/course-enrollment/course-e
       </section>
 
       <!-- Program Offerings Section -->
-      <section class="py-32 bg-gray-50 relative overflow-hidden">
+      <section id="apply" class="py-32 bg-gray-50 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 relative">
           <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
             <div
@@ -428,10 +427,10 @@ import { CourseEnrollmentComponent } from "../courses/course-enrollment/course-e
             business results
           </p>
           <a
-            href="/contact"
+            href="/corporate-training#apply"
             class="inline-flex items-center px-8 py-4 bg-white text-purple-600 rounded-full font-semibold hover:bg-purple-50 transition-all transform hover:scale-105 shadow-lg"
           >
-            Get Custom Proposal
+            Apply For Training
             <svg
               class="w-5 h-5 ml-2 animate-bounce-x"
               fill="none"
@@ -450,7 +449,7 @@ import { CourseEnrollmentComponent } from "../courses/course-enrollment/course-e
       </section>
 
       <!-- Client Success Section -->
-      <section class="py-32 bg-gray-50">
+      <!-- <section class="py-32 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4">
           <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
             <div
@@ -525,7 +524,7 @@ import { CourseEnrollmentComponent } from "../courses/course-enrollment/course-e
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
     </div>
   `,
   styles: [
