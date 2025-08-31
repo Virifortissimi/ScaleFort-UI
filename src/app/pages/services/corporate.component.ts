@@ -50,7 +50,7 @@ import { CourseEnrollmentComponent } from "../courses/course-enrollment/course-e
               solutions aligned with your business objectives.
             </p>
             <div class="animate-slide-up" style="animation-delay: 600ms">
-              <a href="https://calendly.com/egab/new-meeting"
+              <a href="https://calendly.com/egab/future-proof-your-workforce-customized-upskilling"
                 class="inline-flex items-center px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
               >
                 <span class="mr-2">Schedule Consultation</span>
@@ -264,7 +264,7 @@ import { CourseEnrollmentComponent } from "../courses/course-enrollment/course-e
                   class="inline-flex items-center px-6 py-3 bg-purple-50 text-purple-600 rounded-full font-semibold group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 cursor-pointer"
                   (click)="openErollCoperateTraining(program.title, program.trainingTopic)"
                 >
-                  Customize Program
+                  Get Started
                   <svg
                     class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform"
                     fill="none"
@@ -587,7 +587,7 @@ export class CorporateTrainingComponent implements OnInit {
         "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3",
       description:
         "Modern software development practices and cloud technologies",
-      duration: "4-12 Weeks",
+      duration: "3 Weekends",
       groupSize: "5-50 Participants",
       trainingTopic: TopicType.TechnicalUpskilling
     },
@@ -598,7 +598,7 @@ export class CorporateTrainingComponent implements OnInit {
         "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3",
       description:
         "For tech leaders managing distributed teams and digital transformation",
-      duration: "8 Weeks",
+      duration: "8 hours",
       groupSize: "5-20 Participants",
       trainingTopic: TopicType.LeadershipInTech
     },
@@ -609,7 +609,7 @@ export class CorporateTrainingComponent implements OnInit {
         "https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3",
       description:
         "Implement agile practices across engineering and business teams",
-      duration: "6 Weeks",
+      duration: "6 hours",
       groupSize: "10-100 Participants",
       trainingTopic: TopicType.AgileTransformation
     },
@@ -619,7 +619,7 @@ export class CorporateTrainingComponent implements OnInit {
       image:
         "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3",
       description: "Enterprise cloud strategy and migration training",
-      duration: "10 Weeks",
+      duration: "6 hours",
       groupSize: "5-30 Participants",
       trainingTopic: TopicType.CloudMigration
     },
@@ -629,7 +629,7 @@ export class CorporateTrainingComponent implements OnInit {
       image:
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3",
       description: "Building data-driven decision making across departments",
-      duration: "6 Weeks",
+      duration: "6 hours",
       groupSize: "10-100 Participants",
       trainingTopic: TopicType.DataLiteracy
     },
@@ -639,7 +639,7 @@ export class CorporateTrainingComponent implements OnInit {
       image:
         "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3",
       description: "Enterprise security best practices and threat management",
-      duration: "8 Weeks",
+      duration: "8 hours",
       groupSize: "5-50 Participants",
       trainingTopic: TopicType.Cybersecurity
     },

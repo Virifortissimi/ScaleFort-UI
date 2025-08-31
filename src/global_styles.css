@@ -16,6 +16,10 @@
   --secondary-color: #1e40af;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 /* html {
   scroll-behavior: smooth;
 } */

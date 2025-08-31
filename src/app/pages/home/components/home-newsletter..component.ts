@@ -83,7 +83,23 @@ export class HomeNewsletterComponent {
   
   email = signal<string>('');
 
+  //Check if this.email is an actual email before calling api
+  isValidEmail(email: string): boolean {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  }
+
   handleFormSubmit() {
+    if (!this.isValidEmail(this.email())) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Invalid email',
+        detail: 'Please enter a valid email address.',
+        life: 5000,
+      });
+      return;
+    }
+
     this._newsletterService
       .subscribeNewsletter(this.email())
       .pipe()

@@ -51,7 +51,7 @@ import { Component } from '@angular/core';
             </div>
             <div class="text-left">
               <p class="text-sm font-medium text-blue-200">Quick Assistance</p>
-              <p class="text-xs text-blue-300">Can't find what you're looking for? <a href="#contact" class="text-cyan-300 hover:text-cyan-200 underline">Contact our team</a></p>
+              <p class="text-xs text-blue-300">Can't find what you're looking for? <a href="contact" class="text-cyan-300 hover:text-cyan-200 underline">Contact our team</a></p>
             </div>
           </div>
         </div>
