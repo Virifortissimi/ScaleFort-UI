@@ -72,7 +72,7 @@ import { DepartmentType, ITServiceType } from "../../shared/models/application-i
                   </svg>
                 </a>
                 
-                <a href="https://calendly.com/egab/full-cycle-it-solutions-for-modern-businesses-meeting"
+                <a href="https://calendly.com/egab/future-proof-your-workforce-customized-upskilling"
                   class="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 font-semibold text-center">
                   <span class="mr-2">Schedule Consultation</span>
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -489,7 +489,7 @@ import { DepartmentType, ITServiceType } from "../../shared/models/application-i
             Let's discuss how we can help you achieve your digital goals
           </p>
           <a
-            href="https://calendly.com/egab/full-cycle-it-solutions-for-modern-businesses-meeting"
+            href="https://calendly.com/egab/future-proof-your-workforce-customized-upskilling"
             class="inline-flex items-center px-8 py-4 bg-white text-green-600 rounded-full font-semibold hover:bg-green-50 transition-all transform hover:scale-105 shadow-lg"
           >
             Schedule Consultation
