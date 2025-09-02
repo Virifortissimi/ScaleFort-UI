@@ -8,61 +8,73 @@ import { NewsletterService } from '../../../shared/services/newsletter.service';
   standalone: true,
   imports: [FormsModule],
   template: `
-    <section class="py-10 md:py-16 bg-blue-50/30">
-      <div
-        class="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden md:flex md:flex-row-reverse"
-      >
-        <div
-          class="p-8 md:p-12 md:basis-2/3 flex flex-col justify-center text-center md:text-left"
+    <section class="py-12 md:py-20 bg-gradient-to-br from-blue-50/40 to-indigo-50/40">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="bg-white shadow-2xl rounded-3xl overflow-hidden md:flex md:flex-row-reverse transition-all duration-300 hover:shadow-2xl">
+      <!-- Text Content Section -->
+      <div class="p-8 md:p-12 md:basis-2/3 flex flex-col justify-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+          Join Our <span class="text-blue-600">Exclusive</span> Newsletter
+        </h2>
+  
+        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+          Stay ahead with our latest insights, course launches, and special offers. Join our community of over <span class="font-semibold text-blue-600">10,000+</span> subscribers who receive valuable content directly.
+        </p>
+  
+        <form
+          class="w-full flex flex-col sm:flex-row items-stretch gap-3 max-w-md"
+          (ngSubmit)="handleFormSubmit()"
         >
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">
-            Join Our Newsletter
-          </h2>
-  
-          <p class="text-gray-600 mb-6">
-            Stay up to date with our latest insights, course launches, and
-            special offers. Join our community of over 10,000 subscribers.
-          </p>
-  
-          <form
-            class="w-full flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4"
-            (ngSubmit)="handleFormSubmit()"
-          >
+          <div class="flex-1 relative">
             <input
               type="email"
               placeholder="Enter your email"
-              class="flex-1 w-full sm:w-auto p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              class="w-full p-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-3 focus:ring-blue-400/50 focus:border-blue-400 transition-all duration-300 shadow-sm hover:shadow-md"
               name="email"
               [(ngModel)]="email"
+              required
             />
-            <button
-              type="submit"
-              class="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors shadow-md"
-              [disabled]="!email()"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
-  
-        <div class="md:basis-1/3 hidden md:block">
-          <div
-            class="w-full h-full flex items-center justify-center bg-blue-500 p-8 rounded-2xl"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-24 h-24 text-white"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-5H8l4-5v5h3l-4 5z"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
+          <button
+            type="submit"
+            class="px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:hover:shadow-md flex items-center justify-center gap-2"
+            [disabled]="!email()"
+          >
+            <span>Subscribe</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </form>
+        
+        <p class="text-sm text-gray-500 mt-4">
+          We respect your privacy. Unsubscribe at any time.
+        </p>
+      </div>
+  
+      <!-- Visual Section -->
+      <div class="md:basis-1/3 hidden md:flex relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-95"></div>
+        <div class="relative z-10 w-full h-full flex flex-col items-center justify-center p-8 text-white">
+          <div class="bg-white/20 p-5 rounded-2xl mb-6 transform rotate-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-5H8l4-5v5h3l-4 5z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-center">Weekly Insights</h3>
+          <p class="text-sm text-white/90 text-center">Curated content delivered to your inbox every Wednesday</p>
+          
+          <!-- Decorative elements -->
+          <div class="absolute top-4 left-4 w-12 h-12 rounded-full bg-white/10"></div>
+          <div class="absolute bottom-6 right-6 w-8 h-8 rounded-full bg-white/10"></div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
   `,
 })
 export class HomeNewsletterComponent {
@@ -71,7 +83,23 @@ export class HomeNewsletterComponent {
   
   email = signal<string>('');
 
+  //Check if this.email is an actual email before calling api
+  isValidEmail(email: string): boolean {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  }
+
   handleFormSubmit() {
+    if (!this.isValidEmail(this.email())) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Invalid email',
+        detail: 'Please enter a valid email address.',
+        life: 5000,
+      });
+      return;
+    }
+
     this._newsletterService
       .subscribeNewsletter(this.email())
       .pipe()

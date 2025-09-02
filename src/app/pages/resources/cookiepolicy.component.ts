@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <div class="max-w-4xl mx-auto p-6 text-gray-800">
       <h1 class="text-3xl font-bold mb-4">Cookie Policy</h1>
-      <p class="text-sm text-gray-500 mb-6">Effective Date: 11 October 2024 | Last Updated: 11/10/2024</p>
+      <p class="text-sm text-gray-500 mb-6">Effective Date: 11 May 2025 | Last Updated: 11/05/2025</p>
 
       <section class="mb-8">
         <h2 class="text-2xl font-semibold mb-2">1. What Are Cookies</h2>

@@ -17,6 +17,7 @@ import { CookiePolicyComponent } from './pages/resources/cookiepolicy.component'
 import { TermsOfServiceComponent } from './pages/resources/termsofservice.component';
 import { authGuard } from './pages/auth/guards/auth.guard';
 import { authRedirectGuard } from './pages/auth/guards/auth-redirect.guard';
+import { AffiliatePolicyComponent } from './pages/resources/affiliatepolicy.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: "Scalefort - Empowering Tech Careers" },
@@ -25,6 +26,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent, title: "Scalefort - Login", canActivate: [authRedirectGuard] },
   { path: 'mentorship', component: MentorshipComponent, title: "Scalefort - Mentorship" },
   { path: 'privacy-policy', component: PrivacyPolicyComponent, title: "Scalefort - Privacy Policy" },
+  { path: 'affiliate-policy', component: AffiliatePolicyComponent, title: "Scalefort - Affiliate Policy" },
   { path: 'cookie-policy', component: CookiePolicyComponent, title: "Scalefort - Cookie Policy" },
   { path: 'earn', component: EarnComponent, title: "Scalefort - Earn", canActivate: [authGuard] },
   { path: 'contact', component: GetInTouchComponent, title: "Scalefort - Contact Us" },

@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Swiper } from 'swiper';
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+
+// Configure Swiper to use modules
+Swiper.use([Navigation, Pagination, Autoplay, EffectFade]);
+
 
 @Component({
   selector: 'app-vouchers',
@@ -65,6 +71,7 @@ export class VouchersComponent {
       title: 'Growth Team',
       description: 'Ideal for medium-sized teams',
       price: '₦2,500,000',
+      recommended: true,
       features: [
         '15 Training Vouchers',
         'Priority Support',
@@ -91,10 +98,40 @@ export class VouchersComponent {
 
   testimonials = [
     {
-      initials: '',
-      name: '',
-      position: '',
-      quote: ''
+      initials: 'ZE',
+      name: 'Zena Amiegheme',
+      position: 'Operations',
+      quote: 'Scalefort\'s training transformed our team\'s skills and productivity.',
+      company: 'Stem-mets'
+    },
+    {
+      initials: 'AE',
+      name: 'Asiegbu Ejike',
+      position: 'Facilitator Manager',
+      quote: 'The training provided by Scalefort was top-notch and highly relevant to our needs.',
+      company: 'Stem-mets'
     }
   ];
+
+   ngOnInit() {
+    const swiper = new Swiper('.swiper-container', {
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+    });
+  }
 }

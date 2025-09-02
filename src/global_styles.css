@@ -1,18 +1,40 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap');
 
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/effect-fade';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 :root {
   --primary-color: #2563eb;
   --secondary-color: #1e40af;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 /* html {
   scroll-behavior: smooth;
 } */
+/* Add to your component's CSS or global styles */
+html {
+  scroll-behavior: smooth;
+}
+
+footer a {
+  transition: all 0.3s ease;
+}
+
+footer a:hover {
+  transform: translateY(-1px);
+}
 
 body {
   margin: 0;

@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
           Privacy Policy
         </h1>
         <div class="inline-block bg-blue-50 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
-          Effective Date: 11 October 2024 | Last Updated: 11/10/2024
+          Effective Date: 11 May 2025 | Last Updated: 11/05/2025
         </div>
       </div>
 
@@ -22,7 +22,7 @@ import { Component } from '@angular/core';
         <h2 class="text-lg font-semibold text-gray-900 mb-3">Quick Links</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <a *ngFor="let section of sections" 
-             [href]="'#' + section.id" 
+             [href]="'/privacy-policy#' + section.id" 
              class="text-blue-600 hover:text-blue-800 text-sm transition-colors">
             {{ section.title }}
           </a>
