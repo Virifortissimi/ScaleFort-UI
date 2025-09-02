@@ -2,9 +2,11 @@ import { HttpErrorResponse, HttpInterceptorFn } from "@angular/common/http";
 import { catchError, throwError } from "rxjs";
 import { AuthService } from "../../pages/auth/services/auth.service";
 import { inject } from "@angular/core";
+import { MessageService } from "primeng/api";
 
 export const httpConfigInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
+  const messageService = inject(MessageService);
   const token = authService.getToken();
   
   let modifiedRequest = req;
@@ -31,6 +33,15 @@ export const httpConfigInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(modifiedRequest).pipe(
     catchError((error: HttpErrorResponse) => {
+      if (error.status === 400) {
+        authService.logout('/login');
+        messageService.add({
+          severity: 'error',
+          summary: 'Session expired',
+          detail: 'Please login again.',
+          life: 5000
+        });
+      }
       return throwError(() => error);
     })
   );

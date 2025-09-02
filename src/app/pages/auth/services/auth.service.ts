@@ -89,9 +89,9 @@ export class AuthService {
         });
     }
 
-    logout() {
+    logout(routePath?: string) {
         localStorage.removeItem('token');
         this.updateUser(null);
-        this.router.navigate(['/']);
+        this.router.navigate(routePath ? [routePath] : ['/']);
     }
 }
