@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { CommonModule, NgClass, NgFor } from "@angular/common";
 import { RouterLink } from "@angular/router";
+import { IUserDetails } from "../../../shared/models/authentication.model";
 
 @Component({
   selector: "app-slide-menu",
@@ -91,7 +92,7 @@ import { RouterLink } from "@angular/router";
           </ul>
         </nav>
 
-        <div class="grid gap-[16px]" *ngIf="!isAuthenticated">
+        <div class="grid gap-[16px]" *ngIf="!userDetails">
           <a
             routerLink="/earn"
             class="inline-flex items-center px-5 py-2 rounded-md border border-blue-500 text-blue-600 bg-white hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 justify-center"
@@ -134,7 +135,7 @@ import { RouterLink } from "@angular/router";
 })
 export class SlideMenuComponent {
   @Input() isOpen = false;
-  @Input() isAuthenticated!: boolean;
+  @Input() userDetails!: IUserDetails | null;
   @Output() close = new EventEmitter<void>();
 
   showDropdown = false; // State to toggle the dropdown visibility

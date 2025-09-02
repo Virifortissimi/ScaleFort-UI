@@ -33,7 +33,7 @@ export const httpConfigInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(modifiedRequest).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 400) {
+      if (error.status === 401) {
         authService.logout('/login');
         messageService.add({
           severity: 'error',

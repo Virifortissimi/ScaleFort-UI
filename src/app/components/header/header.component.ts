@@ -113,11 +113,11 @@ import { Subscription } from "rxjs";
         </div>
 
         <div
-          class="flex items-center space-x-4 animate-slide-up"
+          class="flex items-center"
           style="animation-delay: 600ms"
         >
           <!-- User is logged in -->
-          <ng-container *ngIf="isAuthenticated; else loggedOut">
+          <ng-container *ngIf="userDetails(); else loggedOut">
             <div class="relative" #userDropdownContainer>
               <span
                 (click)="toggleUserDropdown()"
@@ -216,7 +216,7 @@ import { Subscription } from "rxjs";
 
       <app-slide-menu
         [isOpen]="isMenuOpen"
-        [isAuthenticated]="isAuthenticated"
+        [userDetails]="userDetails()"
         (close)="closeMenu()"
       ></app-slide-menu>
     </header>
@@ -239,7 +239,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userDetails = signal<IUserDetails | null>(null);
   userSubscription!: Subscription;
   showUserDropdown = signal<boolean>(false);
-  isAuthenticated = this.authService.isLoggedIn();
 
   serviceLinks = [
     {
