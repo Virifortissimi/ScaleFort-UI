@@ -1,0 +1,10 @@
+# Settings for the build process
+[build]
+  publish = "dist/demo" 
+  command = "npm run build"
+
+# Redirects for SPAs like Angular Router
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
