@@ -10,7 +10,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center h-16">
           <div class="flex-shrink-0">
-            <a routerLink="/" class="text-2xl font-bold text-blue-600"><img src='https://res.cloudinary.com/virifortissimi/image/upload/v1736430718/Goals/unkxyhoxbt2mgqikwe8y.png' alt='logo' width='200px'/></a>
+            <a routerLink="/" class="text-2xl font-bold text-blue-600">
+              <img src='https://res.cloudinary.com/virifortissimi/image/upload/v1736430718/Goals/unkxyhoxbt2mgqikwe8y.png' alt='logo' width='200px'/>
+            </a>
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-center space-x-4">
@@ -18,15 +20,21 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
                  class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
               <a routerLink="/about" routerLinkActive="text-blue-600"
                  class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
-              <a routerLink="/services" routerLinkActive="text-blue-600"
-                 class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Services</a>
-              <a routerLink="/bulk-vouchers" routerLinkActive="text-blue-600"
-                 class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Corporate</a>
-              <a routerLink="/mentorship" routerLinkActive="text-blue-600"
-                 class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Mentorship</a>
-              <!-- <a routerLink="/resources" routerLinkActive="text-blue-600" class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Resources</a> -->
-              <a routerLink="/courses" routerLinkActive="text-blue-600"
-                 class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Courses</a>
+              
+              <div class="relative group">
+                <button class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium focus:outline-none">
+                  Services
+                </button>
+                <div class="absolute hidden group-hover:block bg-white shadow-md rounded-md mt-2 py-2 w-48 z-50">
+                  <a routerLink="/tech-school" routerLinkActive="text-blue-600"
+                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tech School</a>
+                  <a routerLink="/it-services" routerLinkActive="text-blue-600"
+                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">IT Services</a>
+                  <a routerLink="/corporate-training" routerLinkActive="text-blue-600"
+                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Corporate Training</a>
+                </div>
+              </div>
+
               <a routerLink="/faq" routerLinkActive="text-blue-600"
                  class="hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">FAQ</a>
             </div>

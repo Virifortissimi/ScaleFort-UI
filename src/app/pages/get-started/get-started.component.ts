@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-get-started',
-  imports: [RouterLink],
   standalone: true,
   template: `
-    <div class="pt-16">
+    <div>
 
       <!-- Hero Section -->
       <section class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16">

@@ -14,7 +14,12 @@
     "@angular/forms": "^18.1.0",
     "@angular/platform-browser": "^18.1.0",
     "@angular/router": "^18.1.0",
+    "@emailjs/browser": "^4.4.1",
+    "@paystack/inline-js": "^2.22.7",
+    "@primeng/themes": "^18.0.2",
+    "primeng": "^18.0.2",
     "rxjs": "^7.8.1",
+    "swiper": "^11.2.10",
     "tslib": "^2.5.0",
     "zone.js": "~0.14.0"
   },
