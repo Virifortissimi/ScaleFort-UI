@@ -720,15 +720,15 @@ export class DisplayCoursesComponent implements OnInit {
       level: 'Intermediate',
       classes: "Online"
     },
-    {
-      id: 'python',
-      title: 'Python Development',
-      description: 'Learn server-side programming, databases, and API development with Python.',
-      image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3',
-      duration: '24 weekends',
-      level: 'Intermediate',
-      classes: "Online"
-    },
+    // {
+    //   id: 'python',
+    //   title: 'Python Development',
+    //   description: 'Learn server-side programming, databases, and API development with Python.',
+    //   image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3',
+    //   duration: '24 weekends',
+    //   level: 'Intermediate',
+    //   classes: "Online"
+    // },
     {
       id: 'dotnet',
       title: 'Dotnet Development',
@@ -756,24 +756,24 @@ export class DisplayCoursesComponent implements OnInit {
       level: 'Basics',
       classes: "Online"
     },
-    {
-      id: 'cybersecurity',
-      title: 'Cybersecurity',
-      description: 'Learn to protect systems, networks, and data from cyber threats.',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3',
-      duration: '24 weekends',
-      level: 'Basics',
-      classes: "Online"
-    },
-    {
-      id: 'ui-ux-design',
-      title: 'UI/UX Design',
-      description: 'Create beautiful, user-friendly interfaces and experiences.',
-      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3',
-      duration: '24 weekends',
-      level: 'Beginner to Intermediate',
-      classes: "Online"
-    }
+    // {
+    //   id: 'cybersecurity',
+    //   title: 'Cybersecurity',
+    //   description: 'Learn to protect systems, networks, and data from cyber threats.',
+    //   image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3',
+    //   duration: '24 weekends',
+    //   level: 'Basics',
+    //   classes: "Online"
+    // },
+    // {
+    //   id: 'ui-ux-design',
+    //   title: 'UI/UX Design',
+    //   description: 'Create beautiful, user-friendly interfaces and experiences.',
+    //   image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3',
+    //   duration: '24 weekends',
+    //   level: 'Beginner to Intermediate',
+    //   classes: "Online"
+    // }
   ];
 
   successStories = [
