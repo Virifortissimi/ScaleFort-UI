@@ -94,7 +94,7 @@ interface CourseSection {
                     </svg>
                   </div>
                   <h3 class="text-sm text-gray-500 font-medium mb-1">Start Date</h3>
-                  <p class="text-lg font-semibold text-gray-900">October 25, 2025</p>
+                  <p class="text-lg font-semibold text-gray-900">January 17, 2026</p>
                 </div>
                 
                 <!-- Skill Level -->
