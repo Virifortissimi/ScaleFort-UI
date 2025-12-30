@@ -146,7 +146,7 @@ export class SlideMenuComponent {
     { 
       text: "Services", 
       children: [
-        { path: "/tech-school", text: "Tech School" },
+        { path: "/courses", text: "Tech School" },
         { path: "/corporate-training", text: "Corporate Training" },
         { path: "/it-services", text: "IT Services" }
       ]

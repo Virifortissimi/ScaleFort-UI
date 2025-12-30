@@ -33,14 +33,14 @@ import { CommonModule } from '@angular/common';
             </p>
             <div class="space-x-4 animate-slide-up" style="animation-delay: 600ms">
               <a routerLink="/courses" 
-                 class="inline-flex items-center px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                 class="inline-flex items-center px-8 py-3 journey rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
                 <span class="mr-2">Start Your Journey</span>
                 <svg class="w-5 h-5 animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </a>
-              <a routerLink="/services" 
-                 class="inline-flex items-center px-8 py-3 rounded-full border-2 border-white/50 hover:bg-white/10 transform hover:scale-105 transition-all duration-300">
+              <a routerLink="/services"  
+                 class="inline-flex items-center px-8 py-3 solution rounded-full border-2 border-white/50 hover:bg-white/10 transform hover:scale-105 transition-all duration-300">
                 Explore Solutions
               </a>
             </div>

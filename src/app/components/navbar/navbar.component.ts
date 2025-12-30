@@ -26,7 +26,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
                   Services
                 </button>
                 <div class="absolute hidden group-hover:block bg-white shadow-md rounded-md mt-2 py-2 w-48 z-50">
-                  <a routerLink="/tech-school" routerLinkActive="text-blue-600"
+                  <a routerLink="/courses" routerLinkActive="text-blue-600"
                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tech School</a>
                   <a routerLink="/it-services" routerLinkActive="text-blue-600"
                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">IT Services</a>
