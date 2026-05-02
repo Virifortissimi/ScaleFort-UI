@@ -1,84 +1,165 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { AnimateOnScrollDirective } from '../../../shared/directives/animate-on-scroll.directive';
+
+interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+  context: string;
+}
 
 @Component({
   selector: 'app-home-testimonials',
   standalone: true,
+  imports: [AnimateOnScrollDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="py-24 bg-blue-50/30">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">Success Stories from Our Community</h2>
-          <p class="text-lg text-gray-600">Hear from those who've transformed their careers</p>
+    <section appAnimateOnScroll class="section bg-bg-white relative z-[1]">
+      <div class="container-base">
+        <div appAnimateOnScroll [animateDelay]="80" class="text-center max-w-2xl mx-auto mb-16">
+          <p class="overline mb-3">What Our Graduates Say</p>
+          <h2 class="type-h2 text-text-primary">Real People. Real Results.</h2>
         </div>
-        <!-- TrustBox widget - Review Collector -->
-        <div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="680f88dca5275ca094b5be85" data-style-height="52px" data-style-width="100%">
-          <a href="https://www.trustpilot.com/review/scalefort.org" target="_blank" rel="noopener">Trustpilot</a>
-        </div>
-        
-        <!-- End TrustBox widget -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-8">
-          <!-- Testimonial Card 1 -->
-          <div class="bg-white group p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-out">
-            <div class="relative mb-6">
-              <svg class="absolute -top-2 left-0 w-8 h-8 text-blue-100" fill="currentColor" viewBox="0 0 32 32">
-                <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/>
-              </svg>
-              <p class="text-lg text-gray-600 leading-relaxed relative z-10">Scalefort was a game-changer for me. The structured learning, practical projects, and supportive mentors provided all I needed to transition into tech confidently.</p>
-            </div>
-            <div class="flex items-center">
-              <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600">SA</div>
-              </div>
-              <div class="ml-4">
-                <div class="font-bold text-gray-900">Samuel A.</div>
-                <div class="text-blue-600 text-sm">Dotnet Developer</div>
-                <div class="text-gray-500 text-sm">Kaybill Technologies</div>
-              </div>
-            </div>
+
+        <div
+          appAnimateOnScroll
+          [animateDelay]="120"
+          class="max-w-5xl mx-auto rounded-[28px] border border-accent-school/20 bg-bg-white p-6 sm:p-10 md:p-12 relative overflow-hidden group shadow-[0_18px_60px_rgba(10,10,10,0.05)] hover:border-accent-school/35 hover:shadow-[0_24px_80px_rgba(10,10,10,0.08)] transition-all duration-700"
+          (mouseenter)="pause()"
+          (mouseleave)="resume()"
+          (focusin)="pause()"
+          (focusout)="resume()"
+        >
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent-school via-green-300 to-transparent opacity-70"></div>
+          <div class="absolute top-0 right-0 p-6 sm:p-8 opacity-10 pointer-events-none group-hover:opacity-20 transition-opacity">
+            <svg class="w-12 h-12 sm:w-16 sm:h-16 text-accent-school" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017V14H17.017C15.9124 14 15.017 13.1046 15.017 12V10C15.017 8.89543 15.9124 8 17.017 8H19.017V6H14.017V3H21.017V21H14.017ZM3.01691 21L3.01691 18C3.01691 16.8954 3.91234 16 5.01691 16H8.01691V14H6.01691C4.91234 14 4.01691 13.1046 4.01691 12V10C4.01691 8.89543 4.91234 8 6.01691 8H8.01691V6H3.01691V3H10.0169V21H3.01691Z"/></svg>
           </div>
 
-          <!-- Testimonial Card 2 -->
-          <div class="bg-white group p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-out">
-            <div class="relative mb-6">
-              <svg class="absolute -top-2 left-0 w-8 h-8 text-blue-100" fill="currentColor" viewBox="0 0 32 32">
-                <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/>
-              </svg>
-              <p class="text-lg text-gray-600 leading-relaxed relative z-10">Scalefort gave me the skills and confidence to excel in tech. The hands-on projects, expert mentorship, and real-world focus made all the difference.</p>
-            </div>
-            <div class="flex items-center">
-              <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600">HB</div>
-              </div>
-              <div class="ml-4">
-                <div class="font-bold text-gray-900">Halimat B.</div>
-                <div class="text-blue-600 text-sm">Software Intern</div>
-                <div class="text-gray-500 text-sm">Wema Bank</div>
+          <article class="min-h-[14rem] relative z-10">
+            <span class="inline-flex rounded-pill border border-accent-school/20 bg-accent-school/5 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-accent-school mb-8">
+              {{ testimonials[activeIndex()].context }}
+            </span>
+            <p class="max-w-4xl type-body-l text-text-primary italic leading-relaxed mb-10">"{{ testimonials[activeIndex()].quote }}"</p>
+            <div class="flex items-center gap-5">
+              <div class="h-14 w-1.5 rounded-full bg-accent-school"></div>
+              <div class="text-left">
+                <p class="type-h3 text-text-primary">{{ testimonials[activeIndex()].name }}</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-text-tertiary mt-1">{{ testimonials[activeIndex()].role }}</p>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Testimonial Card 3 -->
-          <div class="bg-white group p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-out">
-            <div class="relative mb-6">
-              <svg class="absolute -top-2 left-0 w-8 h-8 text-blue-100" fill="currentColor" viewBox="0 0 32 32">
-                <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/>
-              </svg>
-              <p class="text-lg text-gray-600 leading-relaxed relative z-10">Scalefort provided me with a solid foundation in programming, equipping me with the technical skills and knowledge I needed to thrive in the tech industry.</p>
+          <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+              @for (item of testimonials; track item.name; let i = $index) {
+                <button
+                  type="button"
+                  (click)="select(i)"
+                  [attr.aria-label]="'Show testimonial ' + (i + 1)"
+                  [class]="activeIndex() === i
+                    ? 'h-2.5 w-8 rounded-full bg-text-primary'
+                    : 'h-2.5 w-2.5 rounded-full bg-border-base hover:bg-text-muted'"
+                ></button>
+              }
             </div>
-            <div class="flex items-center">
-              <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600">MO</div>
-              </div>
-              <div class="ml-4">
-                <div class="font-bold text-gray-900">Maureen O.</div>
-                <div class="text-blue-600 text-sm">Software Engineer</div>
-                <div class="text-gray-500 text-sm">Sterling Bank</div>
-              </div>
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                (click)="previous()"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-base bg-bg-white text-text-primary hover:bg-bg-subtle"
+                aria-label="Previous testimonial"
+              >
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </button>
+              <button
+                type="button"
+                (click)="next()"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-base bg-bg-white text-text-primary hover:bg-bg-subtle"
+                aria-label="Next testimonial"
+              >
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
       </div>
     </section>
-  `
+  `,
 })
-export class HomeTestimonialsComponent {}
+export class HomeTestimonialsComponent implements OnInit, OnDestroy {
+  readonly activeIndex = signal(0);
+  readonly isPaused = signal(false);
+
+  readonly testimonials: ReadonlyArray<Testimonial> = [
+    {
+      quote:
+        'Scalefort provided me with a solid foundation in programming, equipping me with the technical skills I needed to thrive in the tech industry. The hands-on learning approach, coupled with expert mentorship, helped me build confidence in my abilities.',
+      name: 'Maureen O.',
+      role: 'Software Engineer, Cohort 2',
+      context: 'Career Switcher',
+    },
+    {
+      quote:
+        'Scalefort gave me the skills and confidence to excel in tech. The hands-on projects, expert mentorship, and real-world focus made all the difference.',
+      name: 'Bakare Halimat',
+      role: 'Tech School Graduate',
+      context: 'Bootcamp Graduate',
+    },
+    {
+      quote:
+        'Scalefort was a game-changer for me. The structured learning, practical projects, and supportive mentors provided all I needed to transition into tech confidently.',
+      name: 'Samuel Akinwole',
+      role: 'Tech School Graduate',
+      context: 'Backend Learner',
+    },
+    {
+      quote: "I've been thoroughly impressed with the exceptional level of service and creativity they bring to the table.",
+      name: 'Okechukwu Ebube',
+      role: 'Client / IT Services',
+      context: 'Business Client',
+    },
+  ];
+
+  private intervalId: ReturnType<typeof setInterval> | null = null;
+
+  ngOnInit(): void {
+    this.intervalId = setInterval(() => {
+      if (!this.isPaused()) {
+        this.next();
+      }
+    }, 5500);
+  }
+
+  ngOnDestroy(): void {
+    if (this.intervalId !== null) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
+
+  select(index: number): void {
+    this.activeIndex.set(index);
+  }
+
+  previous(): void {
+    const total = this.testimonials.length;
+    this.activeIndex.set((this.activeIndex() - 1 + total) % total);
+  }
+
+  next(): void {
+    const total = this.testimonials.length;
+    this.activeIndex.set((this.activeIndex() + 1) % total);
+  }
+
+  pause(): void {
+    this.isPaused.set(true);
+  }
+
+  resume(): void {
+    this.isPaused.set(false);
+  }
+}

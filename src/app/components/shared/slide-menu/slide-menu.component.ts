@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
   <!-- Close Button -->
   <button 
     (click)="close.emit()"
-    class="absolute top-6 right-6 p-2 text-gray-600 hover:text-blue-600 transition-colors"
+    class="absolute top-6 right-6 p-2 text-gray-600 hover:text-accent-school transition-colors"
     aria-label="Close menu"
   >
     <svg 
@@ -39,7 +39,7 @@ import { RouterLink } from '@angular/router';
       *ngFor="let link of links" 
       [routerLink]="link.path"
       (click)="close.emit()"
-      class="text-3xl font-bold text-gray-900 hover:text-blue-600 transition-colors"
+      class="text-3xl font-bold text-gray-900 hover:text-accent-school transition-colors"
     >
       {{link.text}}
     </a>
@@ -47,7 +47,7 @@ import { RouterLink } from '@angular/router';
     <!-- Services Dropdown -->
     <div class="relative">
       <button 
-        class="text-3xl font-bold text-gray-900 hover:text-blue-600 transition-colors"
+        class="text-3xl font-bold text-gray-900 hover:text-accent-school transition-colors"
         (click)="toggleDropdown()"
         aria-haspopup="true"
         [attr.aria-expanded]="showDropdown ? 'true' : 'false'"
@@ -63,7 +63,7 @@ import { RouterLink } from '@angular/router';
       <!-- Dropdown Menu -->
       <div 
         *ngIf="showDropdown"
-        class="absolute left-0 mt-2 py-2 w-48 bg-white shadow-lg rounded-lg border border-gray-100 z-50 transition-all duration-300 ease-in-out"
+        class="absolute left-0 mt-2 py-2 w-48 bg-white rounded-lg border border-gray-100 z-50 transition-all duration-300 ease-in-out"
         [ngClass]="{ 'opacity-0': !showDropdown, 'opacity-100': showDropdown }"
       >
         <a 
@@ -107,3 +107,4 @@ export class SlideMenuComponent {
     this.showDropdown = !this.showDropdown;
   }
 }
+

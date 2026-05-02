@@ -2,63 +2,311 @@
 <html lang="en">
 
 <head>
-  <title>Scalefort - Empowering Tech Careers</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="/" />
+  <meta name="theme-color" content="#0e8a3e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-  <meta name="description" content="Join Scalefort and kickstart your tech career. Learn foundational and advanced skills in web development, cloud computing, .NET, and 
-          customer support with expert-led sessions. Join Scalefort, a leading tech school in Lagos, Nigeria, offering hands-on bootcamps in coding, cloud computing, and 
-          software development. Start your tech journey today!" />
-
-  <meta name="keywords"
-    content="Scalefort, tech careers, web development, cloud computing, Go programming, .NET backend development, customer support, tech training, career growth" />
-  <meta name="author" content="Scalefort" />
-  <link rel="canonical" href="https://www.scalefort.org/" />
-  <meta property="og:title" content="Scalefort - Empowering Tech Careers, Bootcamp for Future Innovator" />
-  <meta property="og:description"
-    content="Learn tech skills and gain real-world experience at Scalefort. Start your journey with expert guidance and internship opportunities." />
-  <meta property="og:url" content="https://www.scalefort.org/" />
+  <meta name="description" content="Africa's complete tech company. Train your career, build your product, upskill your team. Lagos-based, serving Africa." />
   <meta property="og:type" content="website" />
-  <meta property="og:image"
-    content="https://res.cloudinary.com/virifortissimi/image/upload/v1736430718/Goals/unkxyhoxbt2mgqikwe8y.png" />
+  <meta property="og:site_name" content="Scalefort" />
+  <meta property="og:image" content="https://www.scalefort.org/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Scalefort - Empowering Tech Careers, Bootcamp for Future Innovator" />
-  <meta name="twitter:description"
-    content="Learn foundational and advanced tech skills with Scalefort. Kickstart your career with real-world projects and mentorship." />
-  <meta name="twitter:image"
-    content="https://res.cloudinary.com/virifortissimi/image/upload/v1736430718/Goals/unkxyhoxbt2mgqikwe8y.png" />
-  <link rel="icon"
-    href="https://res.cloudinary.com/virifortissimi/image/upload/v1736635690/Goals/h4eczijgsgmfoci0ax4j.png"
-    type="image/x-icon" />
+  <meta name="twitter:site" content="@scalefort" />
 
-  <!-- Other head tags -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXHLLEKVJW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-JXHLLEKVJW'); // Replace with your GA4 tracking ID
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied' });
   </script>
-  <link rel="stylesheet" href="styles.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXHLLEKVJW"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-JXHLLEKVJW');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.3.1/dist/fonts/geist-mono/style.css" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="/assets/pwa/icon.svg" />
+  <link rel="apple-touch-icon" href="/assets/pwa/icon-192.svg" />
+
+  <title>Scalefort | Africa's Complete Tech Company</title>
+
+  <style>
+    #app-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(22, 198, 90, 0.24), transparent 28%),
+        radial-gradient(circle at 82% 22%, rgba(245, 158, 11, 0.18), transparent 22%),
+        linear-gradient(135deg, #03140a 0%, #0a2a17 45%, #0b1110 100%);
+      transition: opacity 420ms ease, visibility 420ms ease;
+    }
+
+    #app-loader::before,
+    #app-loader::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(2px);
+      animation: loaderFloat 4.8s ease-in-out infinite;
+    }
+
+    #app-loader::before {
+      width: 22rem;
+      height: 22rem;
+      background: rgba(22, 198, 90, 0.1);
+      top: -6rem;
+      right: -4rem;
+    }
+
+    #app-loader::after {
+      width: 18rem;
+      height: 18rem;
+      background: rgba(245, 158, 11, 0.08);
+      bottom: -5rem;
+      left: -4rem;
+      animation-delay: -2.2s;
+    }
+
+    .app-loader__panel {
+      position: relative;
+      width: min(92vw, 30rem);
+      padding: 2rem 1.75rem;
+      border-radius: 1.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(18px);
+      text-align: center;
+      color: #f7faf7;
+    }
+
+    .app-loader__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(240, 255, 244, 0.8);
+      font: 600 0.72rem/1 "DM Sans", system-ui, sans-serif;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .app-loader__eyebrow::before {
+      content: "";
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #7bf0ac, #16c65a);
+      box-shadow: 0 0 0 0 rgba(22, 198, 90, 0.55);
+      animation: loaderPulse 1.8s ease-out infinite;
+    }
+
+    .app-loader__orbital {
+      position: relative;
+      width: 10rem;
+      height: 10rem;
+      margin: 1.35rem auto 1.15rem;
+    }
+
+    .app-loader__ring,
+    .app-loader__ring--inner {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .app-loader__ring {
+      animation: loaderSpin 10s linear infinite;
+    }
+
+    .app-loader__ring::before,
+    .app-loader__ring::after,
+    .app-loader__ring--inner::before {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+    }
+
+    .app-loader__ring::before {
+      width: 0.9rem;
+      height: 0.9rem;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      top: 0.7rem;
+      left: 1.55rem;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.45);
+    }
+
+    .app-loader__ring::after {
+      width: 0.6rem;
+      height: 0.6rem;
+      background: linear-gradient(135deg, #a7f3d0, #16c65a);
+      right: 1.1rem;
+      bottom: 1.6rem;
+      box-shadow: 0 0 16px rgba(22, 198, 90, 0.35);
+    }
+
+    .app-loader__ring--inner {
+      inset: 1.05rem;
+      border-color: rgba(255, 255, 255, 0.18);
+      animation: loaderSpinReverse 7s linear infinite;
+    }
+
+    .app-loader__ring--inner::before {
+      width: 0.5rem;
+      height: 0.5rem;
+      background: #ffffff;
+      left: 0.95rem;
+      bottom: 0.95rem;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
+    }
+
+    .app-loader__core {
+      position: absolute;
+      inset: 2.2rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 35%),
+        linear-gradient(145deg, rgba(22, 198, 90, 0.95), rgba(14, 138, 62, 0.88));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        0 18px 36px rgba(10, 42, 23, 0.3);
+    }
+
+    .app-loader__mark {
+      font: 800 1.65rem/1 "Bricolage Grotesque", "DM Sans", system-ui, sans-serif;
+      letter-spacing: -0.05em;
+      color: #ffffff;
+    }
+
+    .app-loader__title {
+      margin: 0;
+      font: 800 clamp(2rem, 4vw, 2.8rem)/1 "Bricolage Grotesque", "DM Sans", system-ui, sans-serif;
+      letter-spacing: -0.06em;
+      color: #ffffff;
+    }
+
+    .app-loader__subline {
+      margin: 0.65rem auto 1rem;
+      max-width: 22rem;
+      color: rgba(240, 255, 244, 0.8);
+      font: 500 0.98rem/1.55 "DM Sans", system-ui, sans-serif;
+      text-transform: lowercase;
+    }
+
+    .app-loader__progress {
+      position: relative;
+      height: 0.4rem;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .app-loader__progress::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-100%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(255,255,255,0), #7bf0ac 22%, #fbbf24 55%, rgba(255,255,255,0));
+      animation: loaderSweep 1.55s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+
+    .app-loader__caption {
+      margin-top: 0.9rem;
+      color: rgba(240, 255, 244, 0.62);
+      font: 500 0.8rem/1.5 "DM Sans", system-ui, sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .app-loader--exit {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    @keyframes loaderSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes loaderSpinReverse {
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes loaderSweep {
+      100% { transform: translateX(100%); }
+    }
+
+    @keyframes loaderPulse {
+      0% { box-shadow: 0 0 0 0 rgba(22, 198, 90, 0.55); }
+      100% { box-shadow: 0 0 0 12px rgba(22, 198, 90, 0); }
+    }
+
+    @keyframes loaderFloat {
+      50% { transform: translateY(1.5rem); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #app-loader,
+      #app-loader::before,
+      #app-loader::after,
+      .app-loader__ring,
+      .app-loader__ring--inner,
+      .app-loader__progress::before,
+      .app-loader__eyebrow::before {
+        animation: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <app-root>
-    <div class="initial-loader">
-      <div class="loader-content">
-        <div class="loader-logo"></div>
-        <div class="loader-spinner"></div>
+  <div id="app-loader" aria-live="polite" aria-busy="true">
+    <div class="app-loader__panel">
+      <span class="app-loader__eyebrow">booting scalefort</span>
+      <div class="app-loader__orbital" aria-hidden="true">
+        <div class="app-loader__ring"></div>
+        <div class="app-loader__ring--inner"></div>
+        <div class="app-loader__core">
+          <span class="app-loader__mark">sf</span>
+        </div>
       </div>
+      <h1 class="app-loader__title">Scalefort</h1>
+      <p class="app-loader__subline">building your learning, products, and team momentum.</p>
+      <div class="app-loader__progress"></div>
+      <div class="app-loader__caption">launch sequence in progress</div>
     </div>
-  </app-root>
+  </div>
+  <app-root></app-root>
 
-  <!-- Start of HubSpot Embed Code -->
-  <script type="text/javascript" id="hs-script-loader" async defer src="//js-na1.hs-scripts.com/49474958.js"></script>
-  <!-- End of HubSpot Embed Code -->
-  <!-- TrustBox script -->
+  <!-- <script type="text/javascript" id="hs-script-loader" async defer src="//js-na1.hs-scripts.com/49474958.js"></script> -->
   <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
-  <!-- End TrustBox script -->
 </body>
 
 </html>

@@ -8,9 +8,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   template: `
     <a 
       [routerLink]="to" 
-      routerLinkActive="text-blue-600" 
+      routerLinkActive="text-accent-school" 
       [routerLinkActiveOptions]="exact ? { exact: true } : { exact: false }"
-      class="text-gray-600 hover:text-blue-600 transition-colors duration-300 text-sm uppercase tracking-wider"
+      class="text-gray-600 hover:text-accent-school transition-colors duration-300 text-sm uppercase tracking-wider"
     >
       {{ text }}
     </a>

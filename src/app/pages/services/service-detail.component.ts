@@ -1,112 +1,103 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { services, Service } from './services.data';
+import { AnimateOnScrollDirective } from '../../shared/directives/animate-on-scroll.directive';
 
 @Component({
   selector: 'app-service-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, AnimateOnScrollDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="pt-16" *ngIf="service">
-      <!-- Hero Section -->
-      <section class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-black opacity-10"></div>
-        <div class="max-w-7xl mx-auto px-4 relative">
-          <div class="text-center">
-            <span class="text-7xl mb-8 block transform hover:scale-110 transition-transform">{{ service.icon }}</span>
-            <h1 class="text-5xl font-bold mb-6">{{ service.title }}</h1>
-            <p class="text-xl max-w-3xl mx-auto leading-relaxed">{{ service.description }}</p>
+      <section appAnimateOnScroll class="section bg-bg-white relative z-[1]">
+        <div class="container-base max-w-4xl text-center">
+          <p class="overline overline-amber mb-2">IT Service Detail</p>
+          <span class="text-5xl mb-5 block" aria-hidden="true">{{ service.icon }}</span>
+          <h1 class="text-h1 font-bold text-text-primary mb-4">{{ service.title }}</h1>
+          <p class="text-text-body max-w-3xl mx-auto">{{ service.description }}</p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <a routerLink="/it-services/quote" class="btn-primary no-underline">Start a Project Discussion</a>
+            <a routerLink="/contact" class="btn-secondary no-underline">Contact Us</a>
           </div>
         </div>
       </section>
 
-      <!-- Benefits Section -->
-      <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4">
-          <div class="text-center mb-16">
-            <span class="text-4xl mb-4 block">✨</span>
-            <h2 class="text-3xl font-bold">Key Benefits</h2>
+      <section appAnimateOnScroll class="section-compact bg-bg-subtle">
+        <div class="container-base">
+          <div class="text-center mb-10">
+            <p class="overline mb-2">Key Benefits</p>
+            <h2 class="text-h2 font-bold text-text-primary">Why teams choose this service</h2>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div *ngFor="let benefit of service.benefits" 
-                 class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <div class="flex items-start space-x-4">
-                <span class="text-blue-600 text-xl">✓</span>
-                <p class="text-gray-700 leading-relaxed">{{ benefit }}</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <article *ngFor="let benefit of service.benefits" class="card-base bg-bg-white">
+              <div class="flex items-start gap-3">
+                <span class="inline-flex w-8 h-8 items-center justify-center rounded-full bg-green-50 text-accent-school font-bold">+</span>
+                <p class="text-text-body">{{ benefit }}</p>
               </div>
-            </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- Process Section -->
-      <section class="py-20">
-        <div class="max-w-7xl mx-auto px-4">
-          <div class="text-center mb-16">
-            <span class="text-4xl mb-4 block">🔄</span>
-            <h2 class="text-3xl font-bold">Our Process</h2>
+      <section appAnimateOnScroll class="section bg-bg-white">
+        <div class="container-base">
+          <div class="text-center mb-10">
+            <p class="overline overline-amber mb-2">Delivery Process</p>
+            <h2 class="text-h2 font-bold text-text-primary">How we execute</h2>
           </div>
-          <div class="relative">
-            <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-blue-100 -translate-y-1/2 hidden md:block"></div>
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
-              <div *ngFor="let step of service.process; let i = index" 
-                   class="relative bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-                <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 mx-auto">
-                  {{ i + 1 }}
-                </div>
-                <h3 class="text-xl font-semibold mb-3 text-center">{{ step.title }}</h3>
-                <p class="text-gray-600 text-center">{{ step.description }}</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+            <article *ngFor="let step of service.process; let i = index" class="card-base text-center">
+              <div class="w-12 h-12 mx-auto rounded-full bg-accent-school text-white flex items-center justify-center text-lg font-bold mb-4">
+                {{ i + 1 }}
               </div>
-            </div>
+              <h3 class="text-h3 font-semibold text-text-primary mb-3">{{ step.title }}</h3>
+              <p class="text-text-body text-sm">{{ step.description }}</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- Why Choose Us Section -->
-      <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4">
-          <div class="text-center mb-16">
-            <span class="text-4xl mb-4 block">🎯</span>
-            <h2 class="text-3xl font-bold">Why Choose Us</h2>
+      <section appAnimateOnScroll class="section-compact bg-bg-subtle">
+        <div class="container-base">
+          <div class="text-center mb-10">
+            <p class="overline mb-2">Competitive Edge</p>
+            <h2 class="text-h2 font-bold text-text-primary">Why partner with Scalefort</h2>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div *ngFor="let reason of service.whyUs" 
-                 class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-              <div class="flex items-start space-x-4">
-                <span class="text-blue-600 text-2xl">⭐</span>
-                <p class="text-gray-700 leading-relaxed">{{ reason }}</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <article *ngFor="let reason of service.whyUs" class="card-base bg-bg-white">
+              <div class="flex items-start gap-3">
+                <span class="inline-flex w-8 h-8 items-center justify-center rounded-full bg-amber-100 text-amber-700 font-semibold">*</span>
+                <p class="text-text-body">{{ reason }}</p>
               </div>
-            </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- CTA Section -->
-      <section class="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-          <span class="text-5xl mb-6 block">🚀</span>
-          <h2 class="text-4xl font-bold mb-6">Ready to Get Started?</h2>
-          <p class="text-xl mb-8 opacity-90">
-            Let's discuss how we can help your business with {{ service.title.toLowerCase() }}.
+      <section appAnimateOnScroll class="section bg-bg-white border-t border-border-base">
+        <div class="container-base max-w-4xl text-center">
+          <h2 class="text-h2 font-bold text-text-primary mb-4">Ready to move forward?</h2>
+          <p class="text-text-body mb-8">
+            Let us discuss how {{ service.title.toLowerCase() }} can accelerate your business outcomes.
           </p>
-          <a href="mailto:sales@scalefort.org" 
-             class="bg-white text-blue-600 px-10 py-4 rounded-full font-semibold inline-block
-                    hover:bg-blue-50 transform hover:scale-105 transition-all shadow-lg">
-            Contact Us
-          </a>
+          <a href="mailto:sales@scalefort.org" class="btn-primary no-underline">Contact Sales</a>
         </div>
       </section>
     </div>
-  `
+  `,
 })
 export class ServiceDetailComponent implements OnInit {
   service: Service | undefined;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private readonly route: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.service = services.find(s => s.id === id);
+    this.service = services.find((s) => s.id === id);
   }
 }

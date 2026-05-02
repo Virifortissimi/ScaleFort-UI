@@ -1,95 +1,53 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AnimateOnScrollDirective } from '../../shared/directives/animate-on-scroll.directive';
 
 @Component({
   selector: 'app-terms-of-service',
   standalone: true,
-  imports: [CommonModule],
+  imports: [AnimateOnScrollDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-      <!-- Header Section -->
-      <div class="text-center mb-16 mt-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-          Terms of Service
-        </h1>
-        <div class="inline-block bg-blue-50 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
-          Effective Date: 11 October 2024 | Last Updated: 11/10/2024
+    <section appAnimateOnScroll class="section bg-bg-white">
+      <div class="container-base max-w-4xl">
+        <header appAnimateOnScroll [animateDelay]="80" class="text-center mb-10">
+          <p class="overline mb-2">Legal</p>
+          <h1 class="text-h1 font-bold text-text-primary mb-3">Terms of Service</h1>
+          <p class="text-text-muted">Effective Date: October 11, 2024 | Last Updated: October 11, 2024</p>
+        </header>
+
+        <div appAnimateOnScroll [animateDelay]="120" class="card-base mb-8">
+          <h2 class="text-h3 font-semibold text-text-primary mb-3">Quick Links</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            @for (section of sections; track section.id) {
+              <a [href]="'#' + section.id" class="text-sm text-text-body no-underline hover:underline">{{ section.title }}</a>
+            }
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          @for (section of sections; track section.id; let i = $index) {
+            <article appAnimateOnScroll [animateDelay]="160 + (i * 40)" [id]="section.id" class="card-base">
+              <h2 class="text-h3 font-semibold text-text-primary mb-3">{{ section.number }}. {{ section.title }}</h2>
+              <ul class="space-y-2 list-disc pl-5 text-text-body leading-relaxed">
+                @for (item of section.items; track item) {
+                  <li [innerHTML]="item"></li>
+                }
+              </ul>
+            </article>
+          }
+        </div>
+
+        <div appAnimateOnScroll [animateDelay]="240" class="card-base mt-8 text-center">
+          <h2 class="text-h3 font-semibold text-text-primary mb-2">Need Help?</h2>
+          <p class="text-text-muted mb-5">Contact our legal team.</p>
+          <a href="mailto:legal@scalefort.org" class="btn-primary no-underline">legal&#64;scalefort.org</a>
         </div>
       </div>
-
-      <!-- Table of Contents -->
-      <div class="mb-16 p-6 bg-gray-50 rounded-xl shadow-sm">
-        <h2 class="text-lg font-semibold text-gray-900 mb-3">Quick Links</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <a *ngFor="let section of sections" 
-             [href]="'#' + section.id" 
-             class="text-blue-600 hover:text-blue-800 text-sm transition-colors">
-            {{ section.title }}
-          </a>
-        </div>
-      </div>
-
-      <!-- Policy Sections -->
-      <div class="space-y-12">
-        <section *ngFor="let section of sections" 
-                 [id]="section.id" 
-                 class="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-              <span class="text-blue-600 font-semibold">{{ section.number }}</span>
-            </div>
-            <h2 class="text-2xl font-semibold text-gray-900">{{ section.title }}</h2>
-          </div>
-          <div class="space-y-4 text-gray-600 leading-relaxed">
-            <ng-container [ngSwitch]="section.id">
-              <div *ngSwitchCase="'user-responsibilities'">
-                <ul class="space-y-3">
-                  <li *ngFor="let item of section.items" class="flex items-start gap-2">
-                    <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <span [innerHTML]="item"></span>
-                  </li>
-                </ul>
-              </div>
-
-              <div *ngSwitchCase="'prohibited-activities'">
-                <ul class="space-y-3">
-                  <li *ngFor="let item of section.items" class="flex items-start gap-2">
-                    <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <span [innerHTML]="item"></span>
-                  </li>
-                </ul>
-              </div>
-
-              <div *ngSwitchDefault>
-                <div *ngFor="let item of section.items" [innerHTML]="item" class="space-y-3"></div>
-              </div>
-            </ng-container>
-          </div>
-        </section>
-      </div>
-
-      <!-- Contact Section -->
-      <div class="mt-16 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl text-center">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Need Help?</h2>
-        <p class="text-gray-600 mb-6">Contact our Legal Team</p>
-        <a href="mailto:legal@scalefort.org" 
-           class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-          </svg>
-          legal&#64;scalefort.org
-        </a>
-      </div>
-    </div>
+    </section>
   `,
-  styles: []
 })
 export class TermsOfServiceComponent {
-  sections = [
+  readonly sections = [
     {
       id: 'introduction',
       number: '1',
@@ -171,7 +129,9 @@ export class TermsOfServiceComponent {
       id: 'contact',
       number: '12',
       title: 'Contact Us',
-      items: ['For questions about these terms: <a href="mailto:legal@scalefort.org" class="text-blue-600 underline">legal@scalefort.org</a>']
+      items: ['For questions about these terms: <a href="mailto:legal@scalefort.org" class="text-accent-school underline">legal@scalefort.org</a>']
     }
   ];
 }
+
+

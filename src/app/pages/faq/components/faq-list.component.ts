@@ -8,7 +8,7 @@ import { FaqService } from '../services/faq.service';
   standalone: true,
   imports: [NgFor, FaqItemComponent],
   template: `
-    <section class="py-16">
+    <section class="section-compact">
       <div class="max-w-4xl mx-auto px-4">
         <div class="space-y-6">
           <app-faq-item

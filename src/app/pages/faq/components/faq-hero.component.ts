@@ -4,20 +4,21 @@ import { Component } from '@angular/core';
   selector: 'app-faq-hero',
   standalone: true,
   template: `
-    <section class="relative bg-gradient-to-br from-indigo-600 to-blue-800 text-white overflow-hidden py-16 md:py-24">
+    <section class="relative bg-bg-white overflow-hidden section">
       <!-- Background pattern -->
-      <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+')]"></div>
+      <div class="absolute inset-0 opacity-30 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMTA3LDExNiwyMzIsMC4xMikiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==')]"></div>
       
       <!-- Floating circles -->
-      <div class="absolute top-0 left-20 w-64 h-64 bg-indigo-500/20 rounded-full mix-blend-screen filter blur-3xl animate-float"></div>
-      <div class="absolute bottom-0 right-20 w-64 h-64 bg-blue-500/20 rounded-full mix-blend-screen filter blur-3xl animate-float animation-delay-2000"></div>
+      <div class="absolute top-0 left-20 w-64 h-64 bg-amber-100 rounded-full opacity-50 mix-blend-multiply filter blur-3xl animate-float"></div>
+      <div class="absolute bottom-0 right-20 w-64 h-64 bg-green-100 rounded-full opacity-50 mix-blend-multiply filter blur-3xl animate-float animation-delay-2000"></div>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="container-base relative">
         <div class="text-center space-y-6 max-w-3xl mx-auto">
-          <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fade-in-up">
+          <p class="overline mb-3 animate-fade-in-up">Help Center</p>
+          <h1 class="type-h1 text-text-primary mb-4 animate-fade-in-up">
             Let's Answer Your Questions
           </h1>
-          <p class="text-xl md:text-2xl text-blue-100/90 leading-relaxed animate-fade-in-up [animation-delay:200ms]">
+          <p class="type-body-l text-text-muted leading-relaxed animate-fade-in-up [animation-delay:200ms]">
             Everything you need to know about ScaleFort's programs, admissions, and success strategies
           </p>
         </div>

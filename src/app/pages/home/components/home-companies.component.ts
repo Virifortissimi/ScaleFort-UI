@@ -11,10 +11,10 @@ interface CompanyLogo {
   imports: [CommonModule],
   standalone: true,
   template: `
-    <section class="py-16 md:py-24 bg-white">
+    <section class="section bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10 md:mb-16">
-          <h4 class="text-lg md:text-xl font-semibold text-blue-600 mb-4 tracking-wide">
+          <h4 class="text-lg md:text-xl font-semibold text-accent-school mb-4 tracking-wide">
             LIFE-AFTER TRAINING
           </h4>
           <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
@@ -66,9 +66,9 @@ interface CompanyLogo {
 })
 export class HomeCompaniesComponent {
   companyLogos: CompanyLogo[] = [
-    { name: 'EBango', imageUrl: 'https://www.ebanqo.com/new-ebanqo-logo.svg' },
+    { name: 'Ebanqo', imageUrl: 'https://www.ebanqo.com/new-ebanqo-logo.svg' },
     { name: 'Wellahealth', imageUrl: 'https://res.cloudinary.com/virifortissimi/image/upload/v1736432053/Goals/cnbdfl53ndtqpowcadtq.svg' },
-    { name: 'Sterling Bank', imageUrl: 'https://sterling.ng/wp-content/uploads/2019/02/cropped-cropped-Sterling_favicon.png'},
+    { name: 'Sterling Bank', imageUrl: 'https://sterling.ng/wp-content/uploads/2021/05/logo.png'},
     { name: 'Prunedge', imageUrl: 'https://prunedge.com/wp-content/uploads/2022/03/logo.svg' },
     { name: 'Kaybills Technologies', imageUrl: 'https://res.cloudinary.com/virifortissimi/image/upload/v1736432185/Goals/i74od5zidd4j0jxonxvw.svg' }
   ];
