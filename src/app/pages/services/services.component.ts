@@ -1,773 +1,410 @@
-import { Component, OnInit } from "@angular/core";
-import { RouterLink } from "@angular/router";
-import { CommonModule } from "@angular/common";
-import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
-import { CourseEnrollmentComponent } from "../courses/course-enrollment/course-enrollment.component";
-import { DepartmentType, ITServiceType } from "../../shared/models/application-inquiry.model";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { SchemaService } from '../../core/services/schema.service';
+import { AnimateOnScrollDirective } from '../../shared/directives/animate-on-scroll.directive';
+
+interface ServiceItem {
+  title: string;
+  body: string;
+  tags: readonly string[];
+  image: string;
+  imageAlt: string;
+}
+
+interface ServiceProofStat {
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+interface CaseStudySnapshot {
+  title: string;
+  sector: string;
+  result: string;
+  image: string;
+  imageAlt: string;
+}
+
+interface ProcessStep {
+  title: string;
+  body: string;
+  image: string;
+  imageAlt: string;
+}
 
 @Component({
-  selector: "app-services",
+  selector: 'app-service-proof-item',
   standalone: true,
-  imports: [CommonModule],
-  providers: [DialogService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div>
-      <!-- Hero Section -->
-       <section class="relative min-h-screen bg-gradient-to-br from-green-900 via-green-800 to-emerald-900 text-white overflow-hidden flex items-center">
-        <!-- Animated background elements -->
-        <div class="absolute inset-0">
-          <div class="absolute w-96 h-96 bg-green-500/20 rounded-full blur-3xl animate-float animation-delay-0 top-20 left-20"></div>
-          <div class="absolute w-96 h-96 bg-teal-500/20 rounded-full blur-3xl animate-float animation-delay-2000 bottom-20 right-20"></div>
-          <div class="absolute w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl animate-float animation-delay-4000 top-1/2 left-1/3"></div>
-        </div>
-        
-        <!-- Grid pattern overlay -->
-        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0); background-size: 40px 40px;"></div>
-        
-        <!-- Floating particles -->
-        <div class="absolute inset-0 overflow-hidden">
-          <div class="absolute w-2 h-2 bg-white/30 rounded-full animate-float-particle" style="top:20%; left:10%; animation-delay: 0s"></div>
-          <div class="absolute w-1 h-1 bg-white/40 rounded-full animate-float-particle" style="top:60%; left:80%; animation-delay: 2s"></div>
-          <div class="absolute w-1.5 h-1.5 bg-white/20 rounded-full animate-float-particle" style="top:40%; left:30%; animation-delay: 4s"></div>
-          <div class="absolute w-1 h-1 bg-white/30 rounded-full animate-float-particle" style="top:70%; left:50%; animation-delay: 1s"></div>
-          <div class="absolute w-1.5 h-1.5 bg-white/25 rounded-full animate-float-particle" style="top:30%; left:70%; animation-delay: 3s"></div>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 md:py-24 w-full">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Content -->
-            <div class="animate-fade-in">
-              <div class="inline-flex items-center px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm mb-8 animate-slide-up">
-                <div class="w-5 h-5 mr-2">🚀</div>
-                <span class="text-sm font-medium">Transform Your Digital Presence</span>
-              </div>
-              
-              <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight animate-slide-up" style="animation-delay: 200ms">
-                Full-Cycle <span class="text-emerald-300">IT Solutions</span><br />
-                for <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 to-teal-300">Modern Businesses</span>
-              </h1>
-              
-              <p class="text-xl md:text-2xl mb-8 text-green-100/90 leading-relaxed animate-slide-up" style="animation-delay: 400ms">
-                From concept to deployment - we deliver cutting-edge web solutions that drive growth, innovation, and digital transformation for businesses of all sizes.
-              </p>
-
-              <!-- Stats -->
-              <div class="grid grid-cols-2 gap-6 mb-8 animate-slide-up" style="animation-delay: 600ms">
-                <div class="flex items-center">
-                  <div class="text-3xl md:text-4xl font-bold text-emerald-300 mr-3">50+</div>
-                  <div class="text-sm text-green-100/80">Projects<br>Completed</div>
-                </div>
-                <div class="flex items-center">
-                  <div class="text-3xl md:text-4xl font-bold text-emerald-300 mr-3">98%</div>
-                  <div class="text-sm text-green-100/80">Client<br>Satisfaction</div>
-                </div>
-              </div>
-              
-              <div class="flex flex-col sm:flex-row gap-4 animate-slide-up" style="animation-delay: 800ms">
-                <a href="/services#our-services"
-                  class="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold text-center">
-                  <span class="mr-2">Start Your Project</span>
-                  <svg class="w-5 h-5 animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </a>
-                
-                <a href="https://calendly.com/egab/future-proof-your-workforce-customized-upskilling"
-                  class="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 font-semibold text-center">
-                  <span class="mr-2">Schedule Consultation</span>
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 15.5v-11a2 2 0 012-2h16a2 2 0 012 2v11a2 2 0 01-2 2H4a2 2 0 01-2-2z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Visual Element -->
-            <div class="relative animate-fade-in [animation-delay:400ms]">
-              <div class="relative aspect-square max-w-md mx-auto">
-                <!-- Main graphic -->
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 rounded-3xl rotate-45 backdrop-blur-sm border border-white/10 animate-pulse-slow"></div>
-                </div>
-                
-                <!-- Floating elements -->
-                <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/10 animate-float animation-delay-1000"></div>
-                <div class="absolute bottom-10 right-10 w-16 h-16 bg-teal-400/20 rounded-2xl backdrop-blur-sm border border-white/10 animate-float animation-delay-1500"></div>
-                <div class="absolute top-1/2 right-4 w-12 h-12 bg-emerald-400/15 rounded-xl backdrop-blur-sm border border-white/10 animate-float animation-delay-2000"></div>
-                
-                <!-- Central icon -->
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-32 h-32 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl flex items-center justify-center shadow-2xl transform rotate-0 hover:rotate-45 transition-transform duration-700">
-                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div class="w-1 h-3 bg-white/50 rounded-full mt-2"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Our Services Section -->
-       <section class="py-24 md:py-36 bg-gradient-to-br from-white to-gray-50/30 relative overflow-hidden">
-  <!-- Background elements -->
-  <div class="absolute top-0 left-0 w-72 h-72 bg-green-100/20 rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
-  <div class="absolute bottom-0 right-0 w-96 h-96 bg-teal-100/20 rounded-full mix-blend-multiply filter blur-xl animate-float animation-delay-2000"></div>
-  
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-      <!-- Content -->
-      <div class="space-y-8 animate-fade-in">
-        <div class="inline-flex items-center px-4 py-2 rounded-full bg-green-50 text-green-700 font-medium text-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          Our Expertise
-        </div>
-        
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-          Comprehensive <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-teal-600">Web Development</span> Services
-        </h2>
-        
-        <p class="text-xl text-gray-600 leading-relaxed">
-          We combine technical excellence with creative vision to deliver digital solutions that drive growth, innovation, and measurable business impact.
-        </p>
-        
-        <!-- Features List -->
-        <ul class="space-y-6">
-          <li class="flex items-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 group">
-            <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center mr-6 group-hover:bg-green-100 transition-colors">
-              <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-gray-900 text-lg mb-2">Full-Stack Development</h3>
-              <p class="text-gray-600">End-to-end solutions with modern frameworks and technologies</p>
-            </div>
-          </li>
-          
-          <li class="flex items-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 group">
-            <div class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center mr-6 group-hover:bg-teal-100 transition-colors">
-              <svg class="w-7 h-7 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-gray-900 text-lg mb-2">Cloud Integration & DevOps</h3>
-              <p class="text-gray-600">Scalable infrastructure and automated deployment pipelines</p>
-            </div>
-          </li>
-          
-          <li class="flex items-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 group">
-            <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center mr-6 group-hover:bg-green-100 transition-colors">
-              <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-gray-900 text-lg mb-2">Custom API Development</h3>
-              <p class="text-gray-600">Robust and secure APIs for seamless integration</p>
-            </div>
-          </li>
-        </ul>
-        
-        <!-- Additional Info -->
-        <!-- <div class="bg-green-50/50 p-6 rounded-2xl border border-green-100 mt-8">
-          <div class="flex items-start">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600 mt-1 mr-3 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            <p class="text-green-700 text-sm">
-              All projects include ongoing support, documentation, and performance optimization to ensure long-term success.
-            </p>
-          </div>
-        </div> -->
-      </div>
-      
-      <!-- Visual Element -->
-      <div class="relative animate-fade-in [animation-delay:400ms]">
-        <div class="aspect-video group relative">
-          <!-- Main image with gradient overlay -->
-          <div class="absolute inset-0 bg-gradient-to-r from-green-600/10 to-teal-600/10 rounded-2xl transform group-hover:scale-95 transition-all duration-500 z-0"></div>
-          
-          <!-- Image container -->
-          <div class="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl transform group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-500 border-4 border-white">
-            <!-- Placeholder for image - you can replace with your actual image -->
-            <!-- <div class="w-full h-full bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
-              <div class="text-center text-white p-8">
-                <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
-                  <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Web Development Process</h3>
-                <p class="text-green-100">Strategy • Design • Development • Deployment</p>
-              </div>
-            </div> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/02i3-ZghppE?si=40PATDqp1B39z6Nb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-          
-          <!-- Decorative elements -->
-          <div class="absolute -z-10 -inset-3 bg-gradient-to-r from-green-600 to-teal-600 rounded-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-          <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-green-500/10 rounded-full"></div>
-          <div class="absolute -top-4 -left-4 w-16 h-16 bg-teal-500/10 rounded-full"></div>
-          
-          <!-- Floating badge -->
-          <div class="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg p-3 animate-bounce-slow">
-            <div class="flex items-center">
-              <div class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-              <span class="text-sm font-medium text-gray-700">50+ Projects</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="card-base text-center">
+      <span class="block text-[clamp(2rem,5vw,3rem)] font-extrabold text-text-primary tracking-tighter leading-none">
+        {{ count() }}{{ stat.suffix }}
+      </span>
+      <span class="mt-1 block text-sm text-text-muted">{{ stat.label }}</span>
     </div>
-  </div>
-</section>
+  `,
+})
+export class ServiceProofItemComponent implements OnInit, OnDestroy {
+  @Input({ required: true }) stat!: ServiceProofStat;
 
-      <!-- Service Offerings Section -->
-      <section id="our-services" class="py-32 bg-gray-50 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 relative">
-          <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
-            <div
-              class="inline-block px-4 py-1 rounded-full bg-green-50 text-green-600 font-medium mb-4"
-            >
-              Our Services
-            </div>
-            <h2 class="text-4xl font-bold mb-6">
-              End-to-End Digital Solutions
-            </h2>
-            <p class="text-gray-600 text-lg">
-              Comprehensive services covering all aspects of modern web
-              development and digital transformation
-            </p>
-          </div>
+  readonly count = signal(0);
 
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              *ngFor="let service of services; let i = index"
-              class="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl animate-on-scroll"
-              [style.animation-delay]="i * 100 + 'ms'"
-            >
-              <div class="relative overflow-hidden">
-                <img
-                  [src]="service.image"
-                  [alt]="service.title"
-                  class="w-full h-48 object-cover transform group-hover:scale-110 transition-all duration-700"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
-                ></div>
-                <div class="absolute bottom-4 left-4 text-white">
-                  <span
-                    class="px-3 py-1 bg-green-600 rounded-full text-sm font-medium"
-                  >
-                    {{ service.category }}
-                  </span>
-                </div>
-              </div>
-              <div class="p-8">
-                <h3
-                  class="text-2xl font-bold mb-3 group-hover:text-green-600 transition-colors"
-                >
-                  {{ service.title }}
-                </h3>
-                <p class="text-gray-600 mb-6">{{ service.description }}</p>
-                <div class="space-y-3 mb-8">
-                  <p class="flex items-center text-gray-600">
-                    <svg
-                      class="w-5 h-5 text-green-600 mr-3"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    {{ service.features[0] }}
-                  </p>
-                  <p class="flex items-center text-gray-600">
-                    <svg
-                      class="w-5 h-5 text-green-600 mr-3"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    {{ service.features[1] }}
-                  </p>
-                </div>
-                <a
-                  class="inline-flex items-center px-6 py-3 bg-green-50 text-green-600 rounded-full font-semibold group-hover:bg-green-600 group-hover:text-white transition-all duration-300 cursor-pointer"
-                  (click)="openErollService(service.title, service.serviceType)"
-                >
-                  Get Started
-                  <svg
-                    class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+  private readonly el = inject(ElementRef<HTMLElement>);
+  private observer?: IntersectionObserver;
 
-      <!-- Tech Stack Section -->
-      <section class="py-32 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-          <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
-            <div class="inline-block px-4 py-1 rounded-full bg-green-50 text-green-600 font-medium mb-4">
-              Our Technology Stack
-            </div>
-            <h2 class="text-4xl font-bold mb-6">
-              Modern Tools for Modern Solutions
-            </h2>
-            <p class="text-gray-600 text-lg">
-              We work with cutting-edge technologies to deliver robust and
-              scalable solutions
-            </p>
-          </div>
+  ngOnInit(): void {
+    this.observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
 
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 animate-on-scroll">
-            <!-- Frontend -->
-            <div class="p-8 bg-gray-50 rounded-2xl text-center hover:shadow-lg transition-all">
-              <div class="h-16 mx-auto mb-4 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" class="w-16 h-16">
-                  <path fill="#61DAFB" d="M64.004 25.602c-17.067 0-27.73 8.53-32 25.597 6.398-8.531 13.867-11.73 22.398-9.597 4.871 1.214 8.352 4.746 12.207 8.66C72.883 56.629 80.145 64 96.004 64c17.066 0 27.73-8.531 32-25.602-6.399 8.536-13.867 11.735-22.399 9.602-4.87-1.215-8.347-4.746-12.207-8.66-6.27-6.367-13.53-13.738-29.394-13.738zM32.004 64c-17.066 0-27.73 8.531-32 25.602C6.402 81.066 13.87 77.867 22.402 80c4.871 1.215 8.352 4.746 12.207 8.66 6.274 6.367 13.536 13.738 29.395 13.738 17.066 0 27.73-8.53 32-25.597-6.399 8.531-13.867 11.73-22.398 9.597-4.87-1.214-8.347-4.746-12.207-8.66C55.128 71.371 47.868 64 32.004 64zm0 0"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold mb-2">Frontend</h3>
-              <p class="text-gray-600">React, Angular, Vue.js</p>
-            </div>
-            
-            <!-- Backend -->
-            <div class="p-8 bg-gray-50 rounded-2xl text-center hover:shadow-lg transition-all">
-              <div class="h-16 mx-auto mb-4 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" class="w-16 h-16">
-                  <path fill="#83CD29" d="M112.895 30.662L67.895 3.35a7.292 7.292 0 00-7.29 0L15.105 30.66a7.29 7.29 0 00-3.645 6.32v54.03a7.29 7.29 0 003.645 6.32l45.01 27.31a7.29 7.29 0 007.29 0l45.01-27.31a7.29 7.29 0 003.645-6.32v-54.03a7.29 7.29 0 00-3.645-6.32zM64.25 11.352l34.96 21.22-15.25 9.28-34.96-21.22 15.25-9.28zm-45.01 21.22L54.2 11.35l15.25 9.28-34.96 21.22-15.25-9.28zm-3.65 7.29l17.6 10.7v21.45l-17.6-10.7v-21.45zm54.31 57.1l-17.6-10.7V56.56l17.6 10.7v21.45zm-20.91-33.4l-17.6-10.7 17.6-10.7 17.6 10.7-17.6 10.7zm6.26 3.81l17.6 10.7v21.45l-17.6-10.7V68.56zm23.16-10.7l17.6-10.7v21.45l-17.6 10.7V57.86zm0-31.15v21.45l17.6 10.7V36.86l-17.6-10.7zm20.91 76.15l-34.96 21.22-15.25-9.28 34.96-21.22 15.25 9.28zm34.96-21.22l-17.6-10.7V56.56l17.6 10.7v21.45zm0-31.15l-17.6-10.7V36.86l17.6-10.7v21.45z"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold mb-2">Backend</h3>
-              <p class="text-gray-600">Node.js, Python, .NET</p>
-            </div>
-            
-            <!-- Cloud -->
-            <div class="p-8 bg-gray-50 rounded-2xl text-center hover:shadow-lg transition-all">
-              <div class="h-16 mx-auto mb-4 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" class="w-16 h-16">
-                  <path fill="#F79400" d="M107.646 54.333c-.762-8.754-7.885-15.685-16.68-15.685-1.787 0-3.521.271-5.183.771a23.26 23.26 0 00-14.646-5.167c-6.958 0-13.104 3.521-16.719 8.896-2.521-1.521-5.604-2.417-8.896-2.417-9.271 0-16.792 7.521-16.792 16.792 0 .813.083 1.604.188 2.385C19.125 63.521 12 71.646 12 81.292c0 10.458 8.5 18.958 18.958 18.958h76.083c10.458 0 18.958-8.5 18.958-18.958.001-10.459-8.499-18.959-18.953-18.959z"/>
-                  <path fill="#F79400" d="M75.792 53.521c3.521-6.25 10.125-10.458 17.521-10.458 1.229 0 2.417.146 3.583.375-3.813-9.813-13.25-16.708-24.375-16.708-8.25 0-15.583 4.229-19.875 10.646-1.083-.146-2.208-.229-3.354-.229-12.292 0-22.25 9.958-22.25 22.25 0 .771.042 1.521.104 2.271C14.5 63.292 4 74.333 4 87.375 4 101.771 15.729 113.5 30.125 113.5h76.083c14.396 0 26.125-11.729 26.125-26.125 0-13.042-9.583-23.813-22.083-25.896.042-.5.083-1 .083-1.521 0-12.291-9.958-22.25-22.25-22.25-4.938 0-9.521 1.625-13.292 4.354v.063z"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold mb-2">Cloud</h3>
-              <p class="text-gray-600">AWS, Azure, Google Cloud</p>
-            </div>
-            
-            <!-- DevOps -->
-            <div class="p-8 bg-gray-50 rounded-2xl text-center hover:shadow-lg transition-all">
-              <div class="h-16 mx-auto mb-4 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" class="w-16 h-16">
-                  <path fill="#2496ED" d="M106.255 38.345c-1.781-1.125-4.057-.97-5.693.386L65.477 68.37 34.428 38.731a4.813 4.813 0 00-6.161-.386 4.813 4.813 0 00-.386 7.371l34.693 32.312c.917.855 2.123 1.28 3.33 1.28 1.207 0 2.414-.425 3.33-1.28l37.693-35.077a4.813 4.813 0 00-.386-7.371z"/>
-                  <path fill="#2496ED" d="M106.255 62.345c-1.781-1.125-4.057-.97-5.693.386L65.477 92.37 34.428 62.731a4.813 4.813 0 00-6.161-.386 4.813 4.813 0 00-.386 7.371l34.693 32.312c.917.855 2.123 1.28 3.33 1.28 1.207 0 2.414-.425 3.33-1.28l37.693-35.077a4.813 4.813 0 00-.386-7.371z"/>
-                </svg>
-              </div>
-              <h3 class="font-semibold mb-2">DevOps</h3>
-              <p class="text-gray-600">Docker, Kubernetes, Terraform</p>
-            </div>
-          </div>
-        </div>
-      </section>
+        this.runCount();
+        this.observer?.disconnect();
+      },
+      { threshold: 0.45 }
+    );
 
-      <!-- Process Section -->
-      <section class="py-32 bg-green-50 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4">
-          <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
-            <div
-              class="inline-block px-4 py-1 rounded-full bg-white text-green-600 font-medium mb-4"
-            >
-              Our Process
-            </div>
-            <h2 class="text-4xl font-bold mb-6">
-              Transparent Development Workflow
-            </h2>
-          </div>
+    this.observer.observe(this.el.nativeElement);
+  }
 
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 animate-on-scroll">
-            <div class="p-6 text-center">
-              <div
-                class="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4"
-              >
-                1
-              </div>
-              <h3 class="font-semibold mb-2">Discovery & Planning</h3>
-              <p class="text-gray-600">
-                Requirement analysis and project scoping
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
+  }
+
+  private runCount(): void {
+    const duration = 1400;
+    const start = performance.now();
+
+    const animate = (now: number): void => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      this.count.set(Math.round(eased * this.stat.value));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }
+}
+
+@Component({
+  selector: 'app-services',
+  standalone: true,
+  imports: [RouterLink, AnimateOnScrollDirective, ServiceProofItemComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div class="relative overflow-hidden">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-[1] overflow-hidden">
+        <div class="absolute -top-24 -right-20 h-72 w-72 rounded-full bg-accent-it/10 blur-3xl"></div>
+        <div class="absolute top-[34rem] -left-24 h-80 w-80 rounded-full bg-particle/10 blur-3xl"></div>
+        <div class="absolute bottom-20 right-1/4 h-64 w-64 rounded-full bg-accent-corporate/10 blur-3xl"></div>
+      </div>
+
+      <section appAnimateOnScroll class="section bg-bg-white relative z-[1]">
+        <div class="container-base">
+          <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+            <div class="max-w-2xl">
+              <p appAnimateOnScroll [animateDelay]="70" class="overline mb-3">
+                50+ Projects Delivered | 98% Client Satisfaction
               </p>
-            </div>
-            <div class="p-6 text-center">
-              <div
-                class="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4"
-              >
-                2
-              </div>
-              <h3 class="font-semibold mb-2">Design & Prototyping</h3>
-              <p class="text-gray-600">
-                UI/UX design and architecture planning
+              <h1 appAnimateOnScroll [animateDelay]="120" class="text-h1 font-bold text-text-primary mb-4">
+                Full-Cycle IT Solutions for Modern Businesses
+              </h1>
+              <p appAnimateOnScroll [animateDelay]="180" class="text-text-muted mb-8">
+                From concept to deployment, we deliver cutting-edge digital solutions that drive growth, innovation, and transformation for businesses of all sizes.
               </p>
-            </div>
-            <div class="p-6 text-center">
-              <div
-                class="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4"
-              >
-                3
+              <div appAnimateOnScroll [animateDelay]="230" class="flex flex-col sm:flex-row gap-4">
+                <a routerLink="/it-services/quote" class="btn-primary no-underline">Start Your Project</a>
+                <a routerLink="/contact" class="btn-secondary no-underline">Schedule a Free Consultation</a>
               </div>
-              <h3 class="font-semibold mb-2">Development</h3>
-              <p class="text-gray-600">Agile development with weekly demos</p>
             </div>
-            <div class="p-6 text-center">
-              <div
-                class="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4"
-              >
-                4
-              </div>
-              <h3 class="font-semibold mb-2">Deployment & Support</h3>
-              <p class="text-gray-600">CI/CD implementation and maintenance</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA Section -->
-      <section
-        class="py-32 bg-gradient-to-r from-green-600 to-teal-600 text-white relative overflow-hidden"
-      >
-        <div class="absolute inset-0">
-          <div
-            class="absolute w-96 h-96 bg-white/10 rounded-full blur-3xl animate-blob1"
-          ></div>
-          <div
-            class="absolute w-96 h-96 bg-white/10 rounded-full blur-3xl animate-blob2"
-          ></div>
-        </div>
-        <div
-          class="max-w-4xl mx-auto px-4 text-center relative z-10 animate-on-scroll"
-        >
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Transform Your Business?
-          </h2>
-          <p class="text-lg md:text-xl mb-6">
-            Let's discuss how we can help you achieve your digital goals
-          </p>
-          <a
-            href="https://calendly.com/egab/future-proof-your-workforce-customized-upskilling"
-            class="inline-flex items-center px-8 py-4 bg-white text-green-600 rounded-full font-semibold hover:bg-green-50 transition-all transform hover:scale-105 shadow-lg"
-          >
-            Schedule Consultation
-            <svg
-              class="w-5 h-5 ml-2 animate-bounce-x"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
+            <div appAnimateOnScroll [animateDelay]="180" class="overflow-hidden rounded-[2rem] border border-border-base bg-white p-3 shadow-[0_30px_80px_rgba(15,23,42,0.08)]">
+              <img
+                [src]="heroImage"
+                alt="IT services planning board showing delivery, cloud, and product systems"
+                class="w-full rounded-[1.4rem] object-cover"
+                loading="eager"
+                decoding="async"
               />
-            </svg>
-          </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-8 sm:py-10 bg-bg-subtle border-y border-border-base relative z-[1]" aria-label="IT services proof points">
+        <div class="container-base">
+          <div appAnimateOnScroll class="text-center mb-8">
+            <p class="text-xs sm:text-sm font-semibold uppercase tracking-wide text-text-muted">Delivery Confidence</p>
+            <h2 class="text-h3 font-semibold text-text-primary mt-2">Measured impact from architecture to launch</h2>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            @for (stat of proofStats; track stat.label) {
+              <app-service-proof-item [stat]="stat" />
+            }
+          </div>
+          <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 list-none p-0">
+            @for (chip of trustChips; track chip; let i = $index) {
+              <li appAnimateOnScroll [animateDelay]="100 + (i * 60)" class="rounded-pill border border-border-base bg-bg-white px-4 py-2.5 text-sm text-text-body text-center">
+                {{ chip }}
+              </li>
+            }
+          </ul>
+        </div>
+      </section>
+
+      <section class="bg-bg-white py-4 border-b border-border-base sticky top-[72px] z-10">
+        <div class="container-base flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p class="text-sm text-text-body text-center sm:text-left">Need architecture guidance before committing to build?</p>
+          <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <a routerLink="/it-services/quote" class="btn-primary no-underline w-full sm:w-auto">Get Project Estimate</a>
+            <a routerLink="/contact" class="btn-secondary no-underline w-full sm:w-auto">Book 30-Min Call</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section bg-bg-subtle relative z-[1]">
+        <div class="container-base">
+          <h2 appAnimateOnScroll class="text-h2 font-bold text-text-primary mb-10 text-center">Our Services</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @for (item of services; track item.title; let i = $index) {
+              <article appAnimateOnScroll [animateDelay]="100 + (i * 70)" class="card-base flex flex-col gap-4 overflow-hidden">
+                <img
+                  [src]="item.image"
+                  [alt]="item.imageAlt"
+                  class="w-full h-40 object-cover rounded-xl"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <h3 class="text-h3 font-semibold text-text-primary">{{ item.title }}</h3>
+                <p class="text-text-body flex-1">{{ item.body }}</p>
+                <p class="text-sm text-text-muted">{{ item.tags.join(' | ') }}</p>
+              </article>
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section bg-bg-white relative z-[1]">
+        <div class="container-base max-w-6xl">
+          <div appAnimateOnScroll class="text-center mb-10">
+            <p class="overline mb-2">Our Development Process</p>
+            <h2 class="text-h2 font-bold text-text-primary mb-3">A clear delivery path from idea to launch</h2>
+          </div>
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+            @for (step of processSteps; track step.title; let i = $index) {
+              <article appAnimateOnScroll [animateDelay]="100 + (i * 70)" class="card-base overflow-hidden">
+                <img
+                  [src]="step.image"
+                  [alt]="step.imageAlt"
+                  class="mb-4 h-36 w-full rounded-xl object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <h3 class="text-h3 font-semibold text-text-primary mb-3">{{ step.title }}</h3>
+                <p class="text-sm leading-7 text-text-muted">{{ step.body }}</p>
+              </article>
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section bg-bg-white relative z-[1]">
+        <div class="container-base max-w-6xl">
+          <div appAnimateOnScroll class="text-center mb-10">
+            <p class="overline mb-2">Technology Stack</p>
+            <h2 class="text-h2 font-bold text-text-primary mb-3">Technologies we work with</h2>
+            <p class="text-text-muted max-w-3xl mx-auto">
+              We select technologies based on reliability, speed to value, and long-term maintainability.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            @for (stack of stackGroups; track stack.label; let i = $index) {
+              <article appAnimateOnScroll [animateDelay]="100 + (i * 70)" class="card-base">
+                <p class="text-xs font-semibold uppercase tracking-wide text-text-muted mb-3">{{ stack.label }}</p>
+                <div class="flex flex-wrap gap-2">
+                  @for (item of stack.items; track item) {
+                    <span class="rounded-pill border border-border-base bg-bg-subtle px-3 py-1 text-xs text-text-body">{{ item }}</span>
+                  }
+                </div>
+              </article>
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section bg-bg-subtle relative z-[1]">
+        <div class="container-base">
+          <div appAnimateOnScroll class="text-center mb-10">
+            <p class="text-sm font-semibold text-accent-it mb-2">Portfolio Snapshot</p>
+            <h2 class="text-h2 font-bold text-text-primary mb-3">Recent delivery outcomes</h2>
+            <p class="text-text-muted max-w-3xl mx-auto">A sample of projects where we moved teams from idea to production outcomes.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            @for (caseStudy of caseStudies; track caseStudy.title; let i = $index) {
+              <article appAnimateOnScroll [animateDelay]="120 + (i * 70)" class="card-base overflow-hidden">
+                <img [src]="caseStudy.image" [alt]="caseStudy.imageAlt" class="w-full h-44 object-cover rounded-xl mb-4" loading="lazy" decoding="async" />
+                <p class="text-xs font-semibold uppercase tracking-wide text-text-muted mb-2">{{ caseStudy.sector }}</p>
+                <h3 class="text-h3 font-semibold text-text-primary mb-3">{{ caseStudy.title }}</h3>
+                <p class="text-sm text-text-body">{{ caseStudy.result }}</p>
+              </article>
+            }
+          </div>
+          <div class="mt-8 text-center">
+            <a routerLink="/it-services/portfolio" class="btn-primary no-underline w-full sm:w-auto">View Full Portfolio</a>
+          </div>
         </div>
       </section>
     </div>
   `,
-  styles: [
-    `
-      /* Keep existing animation styles from courses component */
-      @keyframes blob1 {
-        0% {
-          transform: translate(0, 0) scale(1);
-        }
-        33% {
-          transform: translate(30%, -20%) scale(1.1);
-        }
-        66% {
-          transform: translate(-20%, 20%) scale(0.9);
-        }
-        100% {
-          transform: translate(0, 0) scale(1);
-        }
-      }
-      @keyframes blob2 {
-        0% {
-          transform: translate(0, 0) scale(1);
-        }
-        33% {
-          transform: translate(-30%, 30%) scale(1.1);
-        }
-        66% {
-          transform: translate(20%, -20%) scale(0.9);
-        }
-        100% {
-          transform: translate(0, 0) scale(1);
-        }
-      }
-      .animate-blob1 {
-        animation: blob1 12s infinite linear;
-      }
-      .animate-blob2 {
-        animation: blob2 12s infinite linear;
-      }
-
-      @keyframes bounce-x {
-        0%,
-        100% {
-          transform: translateX(0);
-        }
-        50% {
-          transform: translateX(5px);
-        }
-      }
-      .animate-bounce-x {
-        animation: bounce-x 1s infinite;
-      }
-
-      .animate-on-scroll {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 1s;
-      }
-
-      .animate-on-scroll.active {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .animate-fade-in {
-    opacity: 0;
-    animation: fadeIn 1s ease-out forwards;
-  }
-  
-  .animate-slide-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: slideUp 0.8s ease-out forwards;
-  }
-  
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .animate-float-particle {
-    animation: floatParticle 8s ease-in-out infinite;
-  }
-  
-  .animate-bounce-x {
-    animation: bounceX 2s ease-in-out infinite;
-  }
-  
-  .animate-pulse-slow {
-    animation: pulseSlow 4s ease-in-out infinite;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0) rotate(0deg);
-    }
-    50% {
-      transform: translateY(-20px) rotate(5deg);
-    }
-  }
-  
-  @keyframes floatParticle {
-    0%, 100% {
-      transform: translateY(0) translateX(0);
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    25% {
-      transform: translateY(-30px) translateX(10px);
-    }
-    75% {
-      transform: translateY(20px) translateX(-15px);
-    }
-  }
-  
-  @keyframes bounceX {
-    0%, 100% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(5px);
-    }
-  }
-  
-  @keyframes pulseSlow {
-    0%, 100% {
-      opacity: 0.7;
-    }
-    50% {
-      opacity: 0.9;
-    }
-  }
-  
-  .animation-delay-0 {
-    animation-delay: 0s;
-  }
-  
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-  
-  .animation-delay-4000 {
-    animation-delay: 4s;
-  }
-    `,
-  ],
 })
 export class ServicesComponent implements OnInit {
-  services = [
+  private readonly schema = inject(SchemaService);
+  readonly heroImage = 'assets/images/services/hero-it-systems-board.svg';
+
+  readonly proofStats: ReadonlyArray<ServiceProofStat> = [
+    { value: 50, suffix: '+', label: 'Projects Delivered' },
+    { value: 98, suffix: '%', label: 'Client Satisfaction' },
+    { value: 10, suffix: '+', label: 'Business Clients' },
+    { value: 3, suffix: '+', label: 'Years Building for Africa' },
+  ];
+
+  readonly trustChips: ReadonlyArray<string> = [
+    'Security-first architecture',
+    'Cloud and DevOps enabled',
+    'Product + engineering partnership',
+    'Transparent sprint reporting',
+  ];
+
+  readonly services: ReadonlyArray<ServiceItem> = [
     {
-      title: "Custom Web Development",
-      category: "Development",
-      image:
-        "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3",
-      description:
-        "Tailored web applications built with modern frameworks and scalable architectures",
-      features: ["Responsive & SEO-friendly", "User-centric design"],
-      serviceType: ITServiceType.CustomWebDevelopment
+      title: 'Custom Web Development',
+      body: 'Tailored web applications built with modern frameworks and scalable architectures. Responsive, fast, and SEO-friendly.',
+      tags: ['Angular', 'Node.js', '.NET', 'TypeScript'],
+      image: 'assets/images/services/service-web-development.svg',
+      imageAlt: 'Custom web development illustration with interface panels and code views',
     },
     {
-      title: "E-Commerce Solutions",
-      category: "E-Commerce",
-      image:
-        "https://images.unsplash.com/photo-1486401899868-0e435ed85128?ixlib=rb-4.0.3",
-      description:
-        "Complete online store development with secure payment integration",
-      features: ["Shopping cart systems", "Inventory management"],
-      serviceType: ITServiceType.ECommerceSolutions
+      title: 'E-Commerce Solutions',
+      body: 'Complete online store development with secure payment integration, inventory management, and shopping cart systems.',
+      tags: ['WooCommerce', 'Shopify', 'Paystack', 'Flutterwave'],
+      image: 'assets/images/services/service-ecommerce.svg',
+      imageAlt: 'E-commerce illustration with storefront, payments, and cart workflow',
     },
     {
-      title: "Cloud Integration",
-      category: "DevOps",
-      image:
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3",
-      description: "Cloud infrastructure setup and migration services",
-      features: ["AWS/Azure/GCP experts", "Cost optimization"],
-      serviceType: ITServiceType.CloudIntegration
+      title: 'Cloud Integration & DevOps',
+      body: 'Cloud infrastructure setup, migration services, and automated deployment pipelines. AWS, Azure, and GCP experts.',
+      tags: ['AWS', 'Azure', 'Docker', 'Kubernetes', 'Terraform'],
+      image: 'assets/images/services/service-cloud-devops.svg',
+      imageAlt: 'Cloud integration and DevOps illustration with connected services and pipelines',
     },
     {
-      title: "API Development",
-      category: "Integration",
-      image:
-        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3",
-      description: "Custom API development and third-party integrations",
-      features: ["REST & GraphQL APIs", "Microservices architecture"],
-      serviceType: ITServiceType.APIDevelopment
+      title: 'API Development',
+      body: 'Custom REST and GraphQL API development with third-party integrations and microservices architecture.',
+      tags: ['REST', 'GraphQL', 'Node.js', '.NET', 'Python'],
+      image: 'assets/images/services/service-api-development.svg',
+      imageAlt: 'API development illustration with service nodes and integration mapping',
     },
     {
-      title: "Maintenance & Support",
-      category: "Support",
-      image:
-        "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3",
-      description: "Ongoing support and performance optimization",
-      features: ["24/7 monitoring", "Security updates"],
-      serviceType: ITServiceType.MaintenanceAndSupport
+      title: 'Maintenance & Support',
+      body: 'Ongoing performance optimisation, security updates, and 24/7 monitoring to keep your systems running at peak performance.',
+      tags: ['24/7 Monitoring', 'Security Updates', 'Performance Optimisation'],
+      image: 'assets/images/services/service-support.svg',
+      imageAlt: 'Maintenance and support illustration with uptime monitoring and response tracking',
     },
     {
-      title: "UI/UX Design",
-      category: "Design",
-      image:
-        "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3",
-      description: "User-centered interface design and prototyping",
-      features: ["Interactive prototypes", "User testing"],
-      serviceType: ITServiceType.UIUXDevelopment
+      title: 'UI/UX Design',
+      body: 'User-centred interface design and prototyping. From wireframes to interactive prototypes validated through user testing.',
+      tags: ['Figma', 'User Testing', 'Design Systems', 'Prototyping'],
+      image: 'assets/images/services/service-uiux.svg',
+      imageAlt: 'UI and UX design illustration with wireframes, layouts, and design system cards',
     },
   ];
 
-  constructor(private dialogService: DialogService) { }
+  readonly stackGroups: ReadonlyArray<{ label: string; items: readonly string[] }> = [
+    { label: 'Frontend', items: ['Angular', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS'] },
+    { label: 'Backend', items: ['Node.js', 'Python', '.NET', 'Django', 'FastAPI'] },
+    { label: 'Cloud', items: ['AWS', 'Azure', 'Google Cloud'] },
+    { label: 'DevOps', items: ['Docker', 'Kubernetes', 'Terraform', 'GitHub Actions'] },
+    { label: 'Database', items: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis'] },
+    { label: 'Design', items: ['Figma', 'Adobe XD'] },
+  ];
 
-  ngOnInit() {
-    setTimeout(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("active");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+  readonly processSteps: ReadonlyArray<ProcessStep> = [
+    {
+      title: 'Discovery & Planning',
+      body: 'Requirement analysis, project scoping, and technical architecture planning.',
+      image: 'assets/images/services/process-discovery-planning.svg',
+      imageAlt: 'Discovery and planning illustration with planning cards and architecture mapping',
+    },
+    {
+      title: 'Design & Prototyping',
+      body: 'UI/UX design and interactive prototyping validated with stakeholders.',
+      image: 'assets/images/services/process-design-prototyping.svg',
+      imageAlt: 'Design and prototyping illustration with wireframes and interface panels',
+    },
+    {
+      title: 'Development',
+      body: 'Agile sprints with weekly demos, transparent progress, and iterative delivery.',
+      image: 'assets/images/services/process-development.svg',
+      imageAlt: 'Development illustration with code panels and sprint progress chart',
+    },
+    {
+      title: 'Deployment & Support',
+      body: 'CI/CD implementation, production launch, and ongoing maintenance.',
+      image: 'assets/images/services/process-deployment-support.svg',
+      imageAlt: 'Deployment and support illustration with release tracking and monitoring bars',
+    },
+  ];
 
-      document
-        .querySelectorAll(".animate-on-scroll")
-        .forEach((el) => observer.observe(el));
-    }, 0);
-  }
+  readonly caseStudies: ReadonlyArray<CaseStudySnapshot> = [
+    {
+      title: 'SME E-Commerce Platform Upgrade',
+      sector: 'Retail',
+      result: 'Built a faster checkout flow and integrated secure payment, reducing cart drop-offs and improving purchase completion.',
+      image: 'assets/images/services/service-ecommerce.svg',
+      imageAlt: 'E-commerce project case study illustration',
+    },
+    {
+      title: 'Operations Dashboard for Service Team',
+      sector: 'Logistics',
+      result: 'Designed and deployed a real-time dashboard for task monitoring, improving decision speed and cross-team visibility.',
+      image: 'assets/images/services/service-web-development.svg',
+      imageAlt: 'Operations dashboard project case study illustration',
+    },
+    {
+      title: 'Cloud Migration and API Consolidation',
+      sector: 'Financial Services',
+      result: 'Migrated legacy services to cloud infrastructure and streamlined API architecture for better reliability and maintainability.',
+      image: 'assets/images/services/service-cloud-devops.svg',
+      imageAlt: 'Cloud migration and API case study illustration',
+    },
+  ];
 
-  openErollService(title: string, serviceType: ITServiceType) {
-    const ref: DynamicDialogRef = this.dialogService.open(CourseEnrollmentComponent, {
-      header: title,
-      width: '35vw',
-      breakpoints: {
-        '960px': '65vw',
-        '640px': '90vw'
+  ngOnInit(): void {
+    this.schema.inject(
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'Scalefort IT Services',
+        areaServed: 'Nigeria',
+        provider: { '@type': 'Organization', name: 'Scalefort' },
       },
-      modal: true,
-      data: {
-        departmentType: DepartmentType.ITServices,
-        serviceType: serviceType
-      },
-      closable: true
-    });
+      'schema-it-services'
+    );
   }
 }
+
+

@@ -1,685 +1,408 @@
-import { Component, OnInit } from "@angular/core";
-import { RouterLink } from "@angular/router";
-import { CommonModule } from "@angular/common";
-import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
-import { DepartmentType, TopicType } from "../../shared/models/application-inquiry.model";
-import { CourseEnrollmentComponent } from "../courses/course-enrollment/course-enrollment.component";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { SchemaService } from '../../core/services/schema.service';
+import { AnimateOnScrollDirective } from '../../shared/directives/animate-on-scroll.directive';
+
+interface TrainingProgram {
+  title: string;
+  description: string;
+  duration: string;
+  size: string;
+  image: string;
+  imageAlt: string;
+}
+
+interface CorporateProofStat {
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+interface ApproachPoint {
+  title: string;
+  body: string;
+}
 
 @Component({
-  selector: "app-corporate-training",
+  selector: 'app-corporate-proof-item',
   standalone: true,
-  imports: [CommonModule],
-  providers: [DialogService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div>
-      <!-- Hero Section -->
-      <section
-        class="relative min-h-[80vh] bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 text-white overflow-hidden flex items-center"
-      >
-        <div class="absolute inset-0">
-          <div
-            class="absolute w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-blob1"
-          ></div>
-          <div
-            class="absolute w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-blob2"
-          ></div>
-        </div>
-        <div
-          class="absolute inset-0"
-          style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 40px 40px;"
-        ></div>
-
-        <div class="max-w-7xl mx-auto px-4 relative z-10 py-24">
-          <div class="max-w-3xl animate-fade-in">
-            <div
-              class="inline-block px-4 py-1 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm mb-6 animate-slide-up"
-            >
-              🎯 Future-Proof Your Workforce
-            </div>
-            <h1
-              class="text-6xl font-bold mb-6 leading-tight animate-slide-up"
-              style="animation-delay: 200ms"
-            >
-              Customized Upskilling Programs<br />for Enterprise Teams
-            </h1>
-            <p
-              class="text-xl mb-8 text-purple-100 animate-slide-up"
-              style="animation-delay: 400ms"
-            >
-              Transform your organization's capabilities with tailored training
-              solutions aligned with your business objectives.
-            </p>
-            <div class="animate-slide-up" style="animation-delay: 600ms">
-              <a href="https://calendly.com/egab/future-proof-your-workforce-customized-upskilling"
-                class="inline-flex items-center px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
-              >
-                <span class="mr-2">Schedule Consultation</span>
-                <svg
-                  class="w-5 h-5 animate-bounce-x"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Value Proposition Section -->
-      <section class="py-32 bg-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 relative">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-8 animate-on-scroll">
-              <div
-                class="inline-block px-4 py-1 rounded-full bg-purple-50 text-purple-600 font-medium"
-              >
-                Our Approach
-              </div>
-              <h2 class="text-4xl font-bold leading-tight">
-                Aligning Learning Outcomes with Business Goals
-              </h2>
-              <p class="text-gray-600 text-lg leading-relaxed">
-                We design training programs that directly contribute to your
-                organizational KPIs through:
-              </p>
-              <ul class="space-y-4">
-                <li
-                  class="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1"
-                >
-                  <div
-                    class="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mr-4"
-                  >
-                    <svg
-                      class="w-6 h-6 text-purple-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                      />
-                    </svg>
-                  </div>
-                  <span class="text-gray-700"
-                    >Skills gap analysis & needs assessment</span
-                  >
-                </li>
-                <li
-                  class="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1"
-                >
-                  <div
-                    class="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mr-4"
-                  >
-                    <svg
-                      class="w-6 h-6 text-purple-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M13 10V3L4 14h7v7l9-11h-7z"
-                      />
-                    </svg>
-                  </div>
-                  <span class="text-gray-700"
-                    >Custom curriculum development</span
-                  >
-                </li>
-                <li
-                  class="flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1"
-                >
-                  <div
-                    class="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mr-4"
-                  >
-                    <svg
-                      class="w-6 h-6 text-purple-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                      />
-                    </svg>
-                  </div>
-                  <span class="text-gray-700"
-                    >ROI-focused learning outcomes</span
-                  >
-                </li>
-              </ul>
-            </div>
-            <div class="relative aspect-video group animate-on-scroll">
-              <div
-                class="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl transform group-hover:scale-95 transition-all duration-500"
-              ></div>
-              <img
-                src="assets/corporate-training-process.jpg"
-                class="relative w-full h-full rounded-xl shadow-2xl transform group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-500"
-                alt="Corporate training process"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Program Offerings Section -->
-      <section id="apply" class="py-32 bg-gray-50 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 relative">
-          <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
-            <div
-              class="inline-block px-4 py-1 rounded-full bg-purple-50 text-purple-600 font-medium mb-4"
-            >
-              Training Programs
-            </div>
-            <h2 class="text-4xl font-bold mb-6">
-              Comprehensive Learning Solutions
-            </h2>
-            <p class="text-gray-600 text-lg">
-              Customizable programs across key digital transformation domains
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              *ngFor="let program of programs; let i = index"
-              class="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl animate-on-scroll"
-              [style.animation-delay]="i * 100 + 'ms'"
-            >
-              <div class="relative overflow-hidden">
-                <img
-                  [src]="program.image"
-                  [alt]="program.title"
-                  class="w-full h-48 object-cover transform group-hover:scale-110 transition-all duration-700"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
-                ></div>
-                <div class="absolute bottom-4 left-4 text-white">
-                  <span
-                    class="px-3 py-1 bg-purple-600 rounded-full text-sm font-medium"
-                  >
-                    {{ program.category }}
-                  </span>
-                </div>
-              </div>
-              <div class="p-8">
-                <h3
-                  class="text-2xl font-bold mb-3 group-hover:text-purple-600 transition-colors"
-                >
-                  {{ program.title }}
-                </h3>
-                <p class="text-gray-600 mb-6">{{ program.description }}</p>
-                <div class="space-y-3 mb-8">
-                  <p class="flex items-center text-gray-600">
-                    <svg
-                      class="w-5 h-5 text-purple-600 mr-3"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    Duration: {{ program.duration }}
-                  </p>
-                  <p class="flex items-center text-gray-600">
-                    <svg
-                      class="w-5 h-5 text-purple-600 mr-3"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                      />
-                    </svg>
-                    Group Size: {{ program.groupSize }}
-                  </p>
-                </div>
-                <a
-                  class="inline-flex items-center px-6 py-3 bg-purple-50 text-purple-600 rounded-full font-semibold group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 cursor-pointer"
-                  (click)="openErollCoperateTraining(program.title, program.trainingTopic)"
-                >
-                  Get Started
-                  <svg
-                    class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Methodology Section -->
-      <section class="py-32 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-          <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
-            <div
-              class="inline-block px-4 py-1 rounded-full bg-purple-50 text-purple-600 font-medium mb-4"
-            >
-              Our Methodology
-            </div>
-            <h2 class="text-4xl font-bold mb-6">Proven Training Framework</h2>
-          </div>
-
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 animate-on-scroll"
-          >
-            <div
-              class="p-6 text-center bg-gray-50 rounded-2xl hover:shadow-lg transition-all"
-            >
-              <div
-                class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4"
-              >
-                <svg
-                  class="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                  />
-                </svg>
-              </div>
-              <h3 class="font-semibold mb-2">Needs Assessment</h3>
-              <p class="text-gray-600">
-                Comprehensive skills gap analysis and competency mapping
-              </p>
-            </div>
-            <div
-              class="p-6 text-center bg-gray-50 rounded-2xl hover:shadow-lg transition-all"
-            >
-              <div
-                class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4"
-              >
-                <svg
-                  class="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                  />
-                </svg>
-              </div>
-              <h3 class="font-semibold mb-2">Custom Curriculum</h3>
-              <p class="text-gray-600">
-                Tailored learning paths aligned with business objectives
-              </p>
-            </div>
-            <div
-              class="p-6 text-center bg-gray-50 rounded-2xl hover:shadow-lg transition-all"
-            >
-              <div
-                class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4"
-              >
-                <svg
-                  class="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-              </div>
-              <h3 class="font-semibold mb-2">Blended Learning</h3>
-              <p class="text-gray-600">
-                Mix of workshops, e-learning, and hands-on projects
-              </p>
-            </div>
-            <div
-              class="p-6 text-center bg-gray-50 rounded-2xl hover:shadow-lg transition-all"
-            >
-              <div
-                class="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4"
-              >
-                <svg
-                  class="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  />
-                </svg>
-              </div>
-              <h3 class="font-semibold mb-2">Impact Measurement</h3>
-              <p class="text-gray-600">
-                ROI tracking and competency-based assessments
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA Section -->
-      <section
-        class="py-32 bg-gradient-to-r from-purple-600 to-indigo-600 text-white relative overflow-hidden"
-      >
-        <div class="absolute inset-0">
-          <div
-            class="absolute w-96 h-96 bg-white/10 rounded-full blur-3xl animate-blob1"
-          ></div>
-          <div
-            class="absolute w-96 h-96 bg-white/10 rounded-full blur-3xl animate-blob2"
-          ></div>
-        </div>
-        <div
-          class="max-w-4xl mx-auto px-4 text-center relative z-10 animate-on-scroll"
-        >
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Upskill Your Team?
-          </h2>
-          <p class="text-lg md:text-xl mb-6">
-            Let's create a custom learning program that drives measurable
-            business results
-          </p>
-          <a
-            href="/corporate-training#apply"
-            class="inline-flex items-center px-8 py-4 bg-white text-purple-600 rounded-full font-semibold hover:bg-purple-50 transition-all transform hover:scale-105 shadow-lg"
-          >
-            Apply For Training
-            <svg
-              class="w-5 h-5 ml-2 animate-bounce-x"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
-          </a>
-        </div>
-      </section>
-
-      <!-- Client Success Section -->
-      <!-- <section class="py-32 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4">
-          <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
-            <div
-              class="inline-block px-4 py-1 rounded-full bg-purple-50 text-purple-600 font-medium mb-4"
-            >
-              Success Stories
-            </div>
-            <h2 class="text-4xl font-bold mb-6">Transforming Organizations</h2>
-          </div>
-
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-on-scroll"
-          >
-            <div
-              class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-            >
-              <div class="flex items-center mb-6">
-                <div
-                  class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mr-4"
-                >
-                  <span class="text-2xl font-bold text-purple-600">75%</span>
-                </div>
-                <div>
-                  <h3 class="font-semibold">Productivity Increase</h3>
-                  <p class="text-gray-600">Financial Services Firm</p>
-                </div>
-              </div>
-              <p class="text-gray-600 italic">
-                "The customized cloud training program reduced our deployment
-                errors by 60%"
-              </p>
-            </div>
-
-            <div
-              class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-            >
-              <div class="flex items-center mb-6">
-                <div
-                  class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mr-4"
-                >
-                  <span class="text-2xl font-bold text-purple-600">2x</span>
-                </div>
-                <div>
-                  <h3 class="font-semibold">Faster Time-to-Market</h3>
-                  <p class="text-gray-600">E-Commerce Company</p>
-                </div>
-              </div>
-              <p class="text-gray-600 italic">
-                "Our development team's efficiency doubled after the agile
-                training"
-              </p>
-            </div>
-
-            <div
-              class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-            >
-              <div class="flex items-center mb-6">
-                <div
-                  class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mr-4"
-                >
-                  <span class="text-2xl font-bold text-purple-600">90%</span>
-                </div>
-                <div>
-                  <h3 class="font-semibold">Certification Success</h3>
-                  <p class="text-gray-600">Tech Startup</p>
-                </div>
-              </div>
-              <p class="text-gray-600 italic">
-                "90% of our engineers achieved AWS certification after the
-                training program"
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> -->
+    <div class="card-base text-center">
+      <span class="block text-[clamp(2rem,5vw,3rem)] font-extrabold text-text-primary tracking-tighter leading-none">
+        {{ count() }}{{ stat.suffix }}
+      </span>
+      <span class="mt-1 block text-sm text-text-muted">{{ stat.label }}</span>
     </div>
   `,
-  styles: [
-    `
-      /* Maintain existing animation styles */
-      @keyframes blob1 {
-        0% {
-          transform: translate(0, 0) scale(1);
-        }
-        33% {
-          transform: translate(30%, -20%) scale(1.1);
-        }
-        66% {
-          transform: translate(-20%, 20%) scale(0.9);
-        }
-        100% {
-          transform: translate(0, 0) scale(1);
-        }
-      }
-      @keyframes blob2 {
-        0% {
-          transform: translate(0, 0) scale(1);
-        }
-        33% {
-          transform: translate(-30%, 30%) scale(1.1);
-        }
-        66% {
-          transform: translate(20%, -20%) scale(0.9);
-        }
-        100% {
-          transform: translate(0, 0) scale(1);
-        }
-      }
-      .animate-blob1 {
-        animation: blob1 12s infinite linear;
-      }
-      .animate-blob2 {
-        animation: blob2 12s infinite linear;
-      }
+})
+export class CorporateProofItemComponent implements OnInit, OnDestroy {
+  @Input({ required: true }) stat!: CorporateProofStat;
 
-      .animate-on-scroll {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 1s;
-      }
+  readonly count = signal(0);
 
-      .animate-on-scroll.active {
-        opacity: 1;
-        transform: translateY(0);
+  private readonly el = inject(ElementRef<HTMLElement>);
+  private observer?: IntersectionObserver;
+
+  ngOnInit(): void {
+    this.observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        this.runCount();
+        this.observer?.disconnect();
+      },
+      { threshold: 0.45 }
+    );
+
+    this.observer.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
+  }
+
+  private runCount(): void {
+    const duration = 1400;
+    const start = performance.now();
+
+    const animate = (now: number): void => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      this.count.set(Math.round(eased * this.stat.value));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
       }
-    `,
-  ],
+    };
+
+    requestAnimationFrame(animate);
+  }
+}
+
+@Component({
+  selector: 'app-corporate-training',
+  standalone: true,
+  imports: [RouterLink, AnimateOnScrollDirective, CorporateProofItemComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div class="relative overflow-hidden">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-[1] overflow-hidden">
+        <div class="absolute -top-24 left-0 h-72 w-72 rounded-full bg-accent-corporate/10 blur-3xl"></div>
+        <div class="absolute top-[28rem] -right-28 h-[24rem] w-[24rem] rounded-full bg-particle/10 blur-3xl"></div>
+        <div class="absolute bottom-16 left-1/3 h-64 w-64 rounded-full bg-accent-school/10 blur-3xl"></div>
+      </div>
+
+      <section class="section bg-bg-white relative z-[1]">
+        <div class="container-base">
+          <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div class="max-w-2xl">
+              <div appAnimateOnScroll class="inline-flex items-center gap-2 rounded-full border border-border-base bg-bg-subtle px-4 py-2 text-sm font-semibold text-accent-corporate">
+                <span class="inline-block h-2.5 w-2.5 rounded-full bg-accent-corporate"></span>
+                Custom programs for teams of 5 to 100+
+              </div>
+              <h1 appAnimateOnScroll [animateDelay]="100" class="mt-5 text-h1 font-bold text-text-primary">
+                Future-Proof Your Workforce
+              </h1>
+              <p appAnimateOnScroll [animateDelay]="170" class="mt-5 max-w-xl text-lg leading-8 text-text-muted">
+                Transform your organisation's capabilities with tailored training solutions aligned directly with your business objectives and KPIs.
+              </p>
+              <div appAnimateOnScroll [animateDelay]="230" class="mt-8 flex flex-col gap-4 sm:flex-row">
+                <a routerLink="/corporate-training/apply" class="btn-primary no-underline">Schedule a Consultation</a>
+                <a [href]="corporateBrochurePath" download="Scalefort-Corporate-Training-Brochure.pdf" class="btn-secondary no-underline">
+                  Download Corporate Brochure
+                </a>
+              </div>
+              <div appAnimateOnScroll [animateDelay]="300" class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                @for (highlight of heroHighlights; track highlight.title) {
+                  <article class="rounded-card border border-border-base bg-bg-subtle p-4">
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-accent-corporate">{{ highlight.title }}</p>
+                    <p class="mt-2 text-sm leading-6 text-text-muted">{{ highlight.body }}</p>
+                  </article>
+                }
+              </div>
+            </div>
+
+            <div appAnimateOnScroll [animateDelay]="180" class="relative">
+              <div class="relative overflow-hidden rounded-[2rem] border border-border-base bg-white p-3 shadow-[0_30px_80px_rgba(15,23,42,0.08)]">
+                <img
+                  [src]="heroImage"
+                  alt="Custom corporate training dashboard and workshop planning illustration"
+                  class="w-full rounded-[1.4rem] object-cover"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="grid grid-cols-2 gap-3 p-3 sm:grid-cols-4">
+                  @for (stat of proofStats; track stat.label) {
+                    <div class="rounded-2xl bg-bg-subtle px-3 py-4 text-center">
+                      <p class="text-xl font-extrabold tracking-tight text-text-primary">{{ stat.value }}{{ stat.suffix }}</p>
+                      <p class="mt-1 text-xs text-text-muted">{{ stat.label }}</p>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-8 sm:py-10 bg-bg-subtle border-y border-border-base relative z-[1]" aria-label="Corporate training proof points">
+        <div class="container-base">
+          <div appAnimateOnScroll class="text-center mb-8">
+            <p class="text-xs sm:text-sm font-semibold uppercase tracking-wide text-text-muted">Upskilling Outcomes</p>
+            <h2 class="text-h3 font-semibold text-text-primary mt-2">Training programs designed for measurable business impact</h2>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            @for (stat of proofStats; track stat.label) {
+              <app-corporate-proof-item [stat]="stat" />
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-bg-white py-4 border-b border-border-base sticky top-[72px] z-10">
+        <div class="container-base flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p class="text-sm text-text-body text-center sm:text-left">Need a custom curriculum mapped to your team KPIs?</p>
+          <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <a routerLink="/corporate-training/apply" class="btn-primary no-underline w-full sm:w-auto">Request Team Assessment</a>
+            <a routerLink="/contact" class="btn-secondary no-underline w-full sm:w-auto">Talk to Training Lead</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section bg-bg-subtle relative z-[1]">
+        <div class="container-base">
+          <h2 appAnimateOnScroll class="text-h2 font-bold text-text-primary mb-10 text-center">Training Programmes</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @for (program of programs; track program.title; let i = $index) {
+              <article appAnimateOnScroll [animateDelay]="100 + (i * 70)" class="card-base overflow-hidden">
+                <img
+                  [src]="program.image"
+                  [alt]="program.imageAlt"
+                  class="w-full h-44 object-cover rounded-xl mb-4"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <h3 class="text-h3 font-semibold text-text-primary mb-3">{{ program.title }}</h3>
+                <p class="text-text-body mb-4">{{ program.description }}</p>
+                <p class="text-sm text-text-muted">Duration: {{ program.duration }}</p>
+                <p class="text-sm text-text-muted">Group Size: {{ program.size }}</p>
+              </article>
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section bg-bg-white relative z-[1]">
+        <div class="container-base max-w-6xl">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <article class="card-base p-3">
+              <img
+                [src]="approachImage"
+                alt="Workshop planning and outcome tracking illustration for a corporate training engagement"
+                class="h-[20rem] sm:h-[24rem] w-full rounded-card object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </article>
+            <div>
+              <p class="text-sm font-semibold text-accent-corporate mb-2">Our Approach</p>
+              <h2 class="text-h2 font-bold text-text-primary mb-4">Aligning learning outcomes with business goals</h2>
+              <p class="text-text-muted mb-5">
+                We design training programs that directly contribute to your organisational KPIs and team capability goals.
+              </p>
+              <div class="space-y-3">
+                @for (point of approach; track point.title) {
+                  <article class="rounded-card border border-border-base bg-bg-subtle p-4">
+                    <h3 class="text-base font-semibold text-text-primary mb-1">{{ point.title }}</h3>
+                    <p class="text-sm text-text-muted">{{ point.body }}</p>
+                  </article>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section bg-bg-subtle relative z-[1]">
+        <div class="container-base max-w-6xl">
+          <div appAnimateOnScroll class="text-center mb-10">
+            <p class="overline mb-2">Why Scalefort</p>
+            <h2 class="text-h2 font-bold text-text-primary mb-3">A delivery-oriented training partner</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            @for (point of differentiators; track point.title; let i = $index) {
+              <article appAnimateOnScroll [animateDelay]="120 + (i * 70)" class="card-base">
+                <h3 class="text-base font-semibold text-text-primary mb-2">{{ point.title }}</h3>
+                <p class="text-sm text-text-muted">{{ point.body }}</p>
+              </article>
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section bg-bg-white relative z-[1]">
+        <div class="container-base max-w-5xl">
+          <div class="rounded-[2rem] border border-border-base bg-bg-subtle p-8 sm:p-10">
+            <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div class="max-w-2xl">
+                <p class="text-sm font-semibold text-accent-corporate">Training scoped for your real roadmap</p>
+                <h2 class="mt-3 text-h2 font-bold text-text-primary">Bring us your team goals. We’ll shape the right programme around them.</h2>
+                <p class="mt-4 text-text-muted">
+                  Start with a consultation, align on participants and outcomes, then choose a program that fits your business goals.
+                </p>
+              </div>
+              <div class="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                <a routerLink="/corporate-training/apply" class="btn-primary no-underline">Start Team Enquiry</a>
+                <a routerLink="/contact" class="btn-secondary no-underline">Speak to Scalefort</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  `,
 })
 export class CorporateTrainingComponent implements OnInit {
-  programs = [
+  private readonly schema = inject(SchemaService);
+  readonly corporateBrochurePath = 'assets/pdf/Scalefort Corporate Training Professional Brochure Design.pdf.pdf';
+  readonly heroImage = 'assets/images/corporate/hero-training-command-center.svg';
+  readonly approachImage = 'assets/images/corporate/approach-workshop-floor.svg';
+
+  readonly heroHighlights: ReadonlyArray<ApproachPoint> = [
     {
-      title: "Technical Upskilling",
-      category: "Engineering",
-      image:
-        "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3",
-      description:
-        "Modern software development practices and cloud technologies",
-      duration: "3 Weekends",
-      groupSize: "5-50 Participants",
-      trainingTopic: TopicType.TechnicalUpskilling
+      title: 'Skills Gap Analysis',
+      body: 'Map current capability levels and identify the highest-priority skill gaps to close first.',
     },
     {
-      title: "Leadership in Tech",
-      category: "Management",
-      image:
-        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3",
-      description:
-        "For tech leaders managing distributed teams and digital transformation",
-      duration: "8 hours",
-      groupSize: "5-20 Participants",
-      trainingTopic: TopicType.LeadershipInTech
+      title: 'Custom Curriculum',
+      body: 'Tailor training content to your stack, workflows, team maturity, and business objectives.',
     },
     {
-      title: "Agile Transformation",
-      category: "Methodology",
-      image:
-        "https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3",
-      description:
-        "Implement agile practices across engineering and business teams",
-      duration: "6 hours",
-      groupSize: "10-100 Participants",
-      trainingTopic: TopicType.AgileTransformation
-    },
-    {
-      title: "Cloud Migration",
-      category: "DevOps",
-      image:
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3",
-      description: "Enterprise cloud strategy and migration training",
-      duration: "6 hours",
-      groupSize: "5-30 Participants",
-      trainingTopic: TopicType.CloudMigration
-    },
-    {
-      title: "Data Literacy",
-      category: "Analytics",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3",
-      description: "Building data-driven decision making across departments",
-      duration: "6 hours",
-      groupSize: "10-100 Participants",
-      trainingTopic: TopicType.DataLiteracy
-    },
-    {
-      title: "Cybersecurity",
-      category: "Security",
-      image:
-        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3",
-      description: "Enterprise security best practices and threat management",
-      duration: "8 hours",
-      groupSize: "5-50 Participants",
-      trainingTopic: TopicType.Cybersecurity
+      title: 'ROI Tracking',
+      body: 'Use competency-based assessments and business-aligned outcomes to measure training impact.',
     },
   ];
 
-  constructor(private dialogService: DialogService) { }
+  readonly proofStats: ReadonlyArray<CorporateProofStat> = [
+    { value: 5, suffix: '+', label: 'Corporate Partners' },
+    { value: 100, suffix: '+', label: 'Professionals Trained' },
+    { value: 98, suffix: '%', label: 'Satisfaction Score' },
+    { value: 6, suffix: '+', label: 'Training Tracks' },
+  ];
 
-  ngOnInit() {
-    setTimeout(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("active");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+  readonly programs: ReadonlyArray<TrainingProgram> = [
+    {
+      title: 'Technical Upskilling',
+      description: 'Modern software development practices and cloud technologies for engineering teams.',
+      duration: '3 Weekends',
+      size: '5-50 Participants',
+      image: 'assets/images/corporate/program-technical-upskilling.svg',
+      imageAlt: 'Technical upskilling illustration with dashboards, progress charts, and workshop panels',
+    },
+    {
+      title: 'Leadership in Tech',
+      description: 'For tech leaders managing distributed teams and digital transformation initiatives across the organisation.',
+      duration: '8 Hours',
+      size: '5-20 Participants',
+      image: 'assets/images/corporate/program-agentic-programming.svg',
+      imageAlt: 'Leadership in tech illustration with planning boards and team coordination visuals',
+    },
+    {
+      title: 'Agile Transformation',
+      description: 'Implement agile practices across engineering and business teams. Covers Scrum, Kanban, and SAFe frameworks.',
+      duration: '6 Hours',
+      size: '10-100 Participants',
+      image: 'assets/images/corporate/program-agile-transformation.svg',
+      imageAlt: 'Agile transformation illustration with feedback loops and sprint planning visuals',
+    },
+    {
+      title: 'Cloud Migration',
+      description: 'Enterprise cloud strategy and migration training. Covers AWS, Azure, GCP, and best practices for cost-optimised cloud adoption.',
+      duration: '6 Hours',
+      size: '5-30 Participants',
+      image: 'assets/images/corporate/program-cloud-migration.svg',
+      imageAlt: 'Cloud migration illustration with server connections and cloud architecture view',
+    },
+    {
+      title: 'Data Literacy',
+      description: 'Building data-driven decision-making across departments. No coding required and focused on interpretation and business impact.',
+      duration: '6 Hours',
+      size: '10-100 Participants',
+      image: 'assets/images/corporate/program-data-literacy.svg',
+      imageAlt: 'Data literacy illustration with trend lines and analytics boards',
+    },
+    {
+      title: 'Cybersecurity Awareness',
+      description: 'Enterprise security best practices and threat management for technical and non-technical staff.',
+      duration: '8 Hours',
+      size: '5-50 Participants',
+      image: 'assets/images/corporate/program-cybersecurity-awareness.svg',
+      imageAlt: 'Cybersecurity awareness illustration with shield, lock, and secure system panels',
+    },
+  ];
 
-      document
-        .querySelectorAll(".animate-on-scroll")
-        .forEach((el) => observer.observe(el));
-    }, 0);
-  }
+  readonly approach: ReadonlyArray<ApproachPoint> = [
+    {
+      title: 'Skills Gap Analysis',
+      body: 'Baseline team capability and prioritise modules that address the highest business-impact gaps first.',
+    },
+    {
+      title: 'Custom Curriculum Design',
+      body: 'Build focused training content around your stack, workflows, and delivery constraints.',
+    },
+    {
+      title: 'Blended Delivery Model',
+      body: 'Mix workshops, e-learning, and hands-on projects for stronger retention and application.',
+    },
+    {
+      title: 'Outcome Tracking',
+      body: 'Track competency improvements with assessments and business-aligned outcomes.',
+    },
+  ];
 
-  openErollCoperateTraining(topic: string, trainingTopic: TopicType) {
-    const ref: DynamicDialogRef = this.dialogService.open(CourseEnrollmentComponent, {
-      header: `${topic} program`,
-      width: '35vw',
-      breakpoints: {
-        '960px': '65vw',
-        '640px': '90vw'
+  readonly differentiators: ReadonlyArray<ApproachPoint> = [
+    {
+      title: 'Practitioner-Led',
+      body: 'Facilitators are active industry operators with current delivery experience.',
+    },
+    {
+      title: 'Fully Custom',
+      body: 'Programs are adapted to your sector, team size, and capability goals.',
+    },
+    {
+      title: 'ROI Focused',
+      body: 'Learning plans map to measurable outcomes across engineering and operations.',
+    },
+    {
+      title: 'Flexible Delivery',
+      body: 'On-site, virtual, and hybrid options to fit your internal cadence.',
+    },
+  ];
+
+  ngOnInit(): void {
+    this.schema.inject(
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'Scalefort Corporate Training',
+        areaServed: 'Nigeria',
+        provider: { '@type': 'Organization', name: 'Scalefort' },
       },
-      modal: true,
-      data: {
-        departmentType: DepartmentType.CorporateTraining,
-        trainingTopic: trainingTopic
-      },
-      closable: true
-    });
+      'schema-corporate-training'
+    );
   }
 }
+
+

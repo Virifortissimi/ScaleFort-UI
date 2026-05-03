@@ -1,8 +1,15 @@
 export const environment = {
-    scalefortBaseUrl: 'https://scalefort-api-latest.onrender.com',
-    emailJs: {
-        publicKey: 'JK7pUS2hiD766s_uM',
-        serviceId: 'service_bw6i46w',
-        templateId: 'template_0deuget'
-    }
+  production: false,
+  apiBaseUrl: 'https://localhost:7152',
+  paystackPublicKey: '',
+  flwPublicKey: '',
+  whatsappNumber: '2348158406306',
+  ga4MeasurementId: 'G-JXHLLEKVJW',
+  youtubeHomeVideoId: 'dQw4w9WgXcQ',
+  youtubeTechSchoolVideoId: 'dQw4w9WgXcQ',
+  youtubePythonVideoId: 'dQw4w9WgXcQ',
+  youtubeFrontendVideoId: 'dQw4w9WgXcQ',
+  youtubeDotnetVideoId: 'dQw4w9WgXcQ',
+  youtubeCloudVideoId: 'dQw4w9WgXcQ',
+  youtubeDataAnalysisVideoId: 'dQw4w9WgXcQ',
 };

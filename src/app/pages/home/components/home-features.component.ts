@@ -1,98 +1,78 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { AnimateOnScrollDirective } from '../../../shared/directives/animate-on-scroll.directive';
+
+interface FeatureCard {
+  label: string;
+  title: string;
+  body: string;
+  cta: string;
+  href: string;
+  accentClass: string;
+}
 
 @Component({
   selector: 'app-home-features',
   standalone: true,
-  imports: [CommonModule],
+  imports: [RouterLink, AnimateOnScrollDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="py-24 bg-gradient-to-b from-white to-gray-50">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h4 class="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-            Why Choose ScaleFort?
-          </h4>
-          <h2 class="text-5xl font-bold text-center mb-12 text-blue-900">We are committed to customer satisfaction.</h2>
-          <p class="text-gray-600 text-lg">
-            Our integrated approach combines education, training, and technology solutions to create a comprehensive ecosystem for digital transformation.
+    <section appAnimateOnScroll class="section bg-bg-white relative z-[1]">
+      <div class="container-base">
+        <div appAnimateOnScroll [animateDelay]="80" class="section-header text-center max-w-3xl mx-auto mb-16">
+          <p class="overline mb-3">What We Do</p>
+          <h2 class="text-h2 font-bold text-text-primary mb-4">One Company. Three Ways to Scale.</h2>
+          <p class="type-body text-text-muted">
+            Whether you're starting a career, growing a business, or upskilling a team, Scalefort has you covered.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div *ngFor="let feature of features; let i = index"
-               class="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden"
-               [class.transform]="true"
-               [class.hover:-translate-y-2]="true"
-               [style.animation-delay]="i * 200 + 'ms'">
-            <!-- Animated Background -->
-            <div class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity duration-500"
-                 [ngStyle]="{'background-image': feature.gradient}">
-            </div>
-
-            <!-- Icon -->
-            <div class="relative">
-              <div class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                <span class="text-3xl">{{ feature.icon }}</span>
-              </div>
-            </div>
-
-            <!-- Content -->
-            <h3 class="text-xl font-bold mb-4 text-gray-900">{{ feature.title }}</h3>
-            <p class="text-gray-600 mb-6 leading-relaxed">{{ feature.description }}</p>
-
-            <!-- Feature List -->
-            <ul class="space-y-3">
-              <li *ngFor="let point of feature.points" 
-                  class="flex items-start space-x-3">
-                <svg class="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span class="text-gray-600">{{ point }}</span>
-              </li>
-            </ul>
-          </div>
+          @for (card of cards; track card.title; let i = $index) {
+            <article
+              appAnimateOnScroll
+              [animateDelay]="140 + (i * 100)"
+              class="card-base bg-bg-white p-10 flex flex-col group hover:shadow-2xl transition-all duration-500 h-full border-border-faint"
+            >
+              <p [class]="'text-[10px] font-bold uppercase tracking-[0.2em] mb-4 ' + card.accentClass">{{ card.label }}</p>
+              <h3 class="type-h3 text-text-primary mb-4">{{ card.title }}</h3>
+              <p class="type-body text-text-muted leading-relaxed mb-8 flex-1 text-sm">{{ card.body }}</p>
+              <a [routerLink]="card.href" class="text-xs font-bold uppercase tracking-widest text-text-primary no-underline group-hover:underline underline-offset-4 inline-flex items-center gap-2 group/link border-t border-border-faint pt-6 mt-auto">
+                {{ card.cta }}
+                <span class="transform group-hover/link:translate-x-1 transition-transform">-></span>
+              </a>
+            </article>
+          }
         </div>
       </div>
     </section>
-  `
+  `,
 })
 export class HomeFeaturesComponent {
-  features = [
+  readonly cards: ReadonlyArray<FeatureCard> = [
     {
-      icon: '🎓',
-      title: 'Tech Education Excellence',
-      description: 'World-class training programs designed to create industry-ready professionals.',
-      gradient: 'linear-gradient(45deg, #60A5FA, #818CF8)',
-      points: [
-        'Industry-driven curriculum',
-        'Hands-on project experience',
-        'Expert instructors',
-        'Career placement support'
-      ]
+      label: 'Tech School',
+      title: 'Tech School',
+      body: 'Industry-driven curriculum with hands-on learning, real internships, and recruitment support. 7 tracks. 12 weeks. 100% remote.',
+      cta: 'Explore Courses',
+      href: '/tech-school/courses',
+      accentClass: 'text-accent-school',
     },
     {
-      icon: '💼',
-      title: 'Corporate Transformation',
-      description: 'Comprehensive training solutions to upskill your workforce and drive innovation.',
-      gradient: 'linear-gradient(45deg, #818CF8, #A78BFA)',
-      points: [
-        'Customized training programs',
-        'Skill gap analysis',
-        'Progress tracking',
-        'Measurable outcomes'
-      ]
+      label: 'IT Services',
+      title: 'IT Services',
+      body: 'End-to-end software development, cloud integration, API engineering, and DevOps. 50+ projects delivered. 98% client satisfaction.',
+      cta: 'View Our Work',
+      href: '/it-services/portfolio',
+      accentClass: 'text-accent-it',
     },
     {
-      icon: '🚀',
-      title: 'Technology Solutions',
-      description: 'End-to-end digital solutions that power business growth and efficiency.',
-      gradient: 'linear-gradient(45deg, #A78BFA, #60A5FA)',
-      points: [
-        'Custom software development',
-        'Application support',
-        'QA testing',
-        'Strategic consulting'
-      ]
-    }
+      label: 'Corporate Training',
+      title: 'Corporate Training',
+      body: 'Customized upskilling programs for enterprise teams. From cloud migration to cybersecurity, tailored to your business goals.',
+      cta: 'Train My Team',
+      href: '/corporate-training',
+      accentClass: 'text-accent-corporate',
+    },
   ];
 }

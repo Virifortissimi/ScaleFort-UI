@@ -1,0 +1,15 @@
+export const environment = {
+  production: true,
+  apiBaseUrl: 'https://api.scalefort.org',
+  paystackPublicKey: 'pk_live_REPLACE_IN_CI',
+  flwPublicKey: 'FLWPUBK_REPLACE_IN_CI',
+  whatsappNumber: '2348158406306',
+  ga4MeasurementId: 'G-REPLACE',
+  youtubeHomeVideoId: 'dQw4w9WgXcQ',
+  youtubeTechSchoolVideoId: 'dQw4w9WgXcQ',
+  youtubePythonVideoId: 'dQw4w9WgXcQ',
+  youtubeFrontendVideoId: 'dQw4w9WgXcQ',
+  youtubeDotnetVideoId: 'dQw4w9WgXcQ',
+  youtubeCloudVideoId: 'dQw4w9WgXcQ',
+  youtubeDataAnalysisVideoId: 'dQw4w9WgXcQ',
+};

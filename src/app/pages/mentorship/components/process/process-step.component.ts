@@ -1,31 +1,25 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-process-step',
-  imports: [CommonModule],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="relative">
-      <!-- Step Number -->
-      <div 
-        class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold mb-4 
-               shadow-lg transform transition-transform hover:scale-110 hover:rotate-12"
+    <div class="card-base relative">
+      <div
+        class="w-12 h-12 bg-accent-school rounded-full flex items-center justify-center text-white text-xl font-bold mb-4 shadow-lg"
       >
         {{ stepNumber }}
       </div>
-      
-      <!-- Content -->
+
       <div class="space-y-2">
-        <h3 class="text-xl font-semibold">{{ title }}</h3>
-        <p class="text-gray-600">{{ description }}</p>
+        <h3 class="text-h3 text-text-primary">{{ title }}</h3>
+        <p class="text-text-body">{{ description }}</p>
       </div>
 
-      <!-- Connector Line -->
-      <div 
-        *ngIf="!isLast"
-        class="absolute top-6 left-12 w-full h-0.5 bg-gradient-to-r from-blue-600 to-transparent -z-10"
-      ></div>
+      @if (!isLast) {
+        <div class="absolute top-6 left-14 right-[-2.75rem] h-px bg-border-default/80 -z-10 hidden xl:block"></div>
+      }
     </div>
   `
 })
@@ -35,3 +29,4 @@ export class ProcessStepComponent {
   @Input() description!: string;
   @Input() isLast = false;
 }
+

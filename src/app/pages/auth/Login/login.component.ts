@@ -1,71 +1,169 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { AuthenticationService } from '../../../shared/services/authentication.service';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MessageService } from 'primeng/api';
-import { CommonModule } from '@angular/common';
-import { SpinnerIconComponent } from '../../../shared/components/spinner-icon.component';
-import { ILoginUser } from '../../../shared/models/authentication.model';
+import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { finalize } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule, SpinnerIconComponent],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
-  private readonly _authenticationService = inject(AuthenticationService);
-  private readonly formBuilder = inject(FormBuilder);
-  private readonly messageService = inject(MessageService);
-  private readonly authService = inject(AuthService);
+export class LoginComponent {
+  private readonly fb = inject(FormBuilder);
+  private readonly auth = inject(AuthService);
+  private readonly toast = inject(ToastService);
   private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
 
-  formGroup!: FormGroup;
-  loading = signal(false);
-  passwordVisible = signal(false);
-  
-  ngOnInit(): void {
-    this.initForm();
-  }
+  readonly loading = signal(false);
+  readonly resendLoading = signal(false);
+  readonly error = signal('');
+  readonly notice = signal('');
+  readonly canResendConfirmation = signal(false);
 
-  initForm() {
-    this.formGroup = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]]
-    });
-  }
-  
-  togglePasswordVisibility() {
-    this.passwordVisible.set(!this.passwordVisible());
-  }
+  readonly form = this.fb.nonNullable.group({
+    usernameOrEmail: this.fb.nonNullable.control('', {
+      validators: [Validators.required, Validators.minLength(3)],
+      updateOn: 'blur',
+    }),
+    password: this.fb.nonNullable.control('', {
+      validators: [Validators.required, Validators.minLength(8)],
+      updateOn: 'blur',
+    }),
+  });
 
-  onSubmit() {
-      this.loading.set(true);
-      const { value } = this.formGroup;
-      const payload: ILoginUser = {
-        username: value.username,
-        password: value.password
-      } 
-  
-      this._authenticationService
-        .login(payload)
-        .pipe(finalize(() => this.loading.set(false)))
-        .subscribe({
-          next: (res) => {
-            this.authService.login(res.token);
-          },
-          error: (error) => {
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Login error',
-              detail: error?.error?.error || 'Something went wrong',
-              life: 5000
-            });
-          },
-        });
+  constructor() {
+    const confirmationState = this.route.snapshot.queryParamMap.get('confirmation');
+    const email = this.route.snapshot.queryParamMap.get('email')?.trim();
+    const resetState = this.route.snapshot.queryParamMap.get('reset');
+
+    if (email) {
+      this.form.controls.usernameOrEmail.setValue(email, { emitEvent: false });
     }
 
+    if (confirmationState === 'pending') {
+      this.notice.set('Check your email to confirm your account before signing in.');
+      this.canResendConfirmation.set(true);
+    } else if (resetState === 'success') {
+      this.notice.set('Your password has been reset. You can sign in with your new password.');
+    }
+
+    effect(() => {
+      if (!this.auth.isAuthenticated()) {
+        return;
+      }
+
+      queueMicrotask(() => {
+        void this.navigateToReturnUrl();
+      });
+    });
+  }
+
+  isInvalid(field: 'usernameOrEmail' | 'password'): boolean {
+    const control = this.form.controls[field];
+    return control.invalid && control.touched;
+  }
+
+  submit(): void {
+    if (this.form.invalid || this.loading()) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.error.set('');
+    this.loading.set(true);
+
+    this.auth
+      .login({
+        usernameOrEmail: this.form.controls.usernameOrEmail.value,
+        password: this.form.controls.password.value,
+      })
+      .pipe(finalize(() => this.loading.set(false)))
+      .subscribe({
+        next: (response) => {
+          if (response.success && response.data?.requiresTwoFactor && response.data.twoFactorToken) {
+            void this.router.navigate(['/verify-2fa'], {
+              queryParams: {
+                token: response.data.twoFactorToken,
+                email: response.data.email ?? this.form.controls.usernameOrEmail.value,
+                cooldown: response.data.retryAfterSeconds ?? 0,
+              },
+            });
+            return;
+          }
+
+          if (!response.success || !response.data?.token) {
+            const message = response.message ?? 'Unable to sign in. Check your credentials and try again.';
+            this.error.set(message);
+            this.toast.error(message);
+            return;
+          }
+
+          this.canResendConfirmation.set(false);
+          this.toast.success('Signed in successfully.');
+          void this.navigateToReturnUrl();
+        },
+        error: (error: unknown) => {
+          const details = this.extractErrorDetails(error);
+          this.error.set(details.message);
+          this.canResendConfirmation.set(details.code === 'email_confirmation_required');
+          this.toast.error(details.message);
+        },
+      });
+  }
+
+  resendConfirmation(): void {
+    if (this.resendLoading()) {
+      return;
+    }
+
+    const usernameOrEmail = this.form.controls.usernameOrEmail.value.trim();
+    if (!usernameOrEmail) {
+      this.form.controls.usernameOrEmail.markAsTouched();
+      this.toast.error('Enter your email or username first so we know where to send the confirmation link.');
+      return;
+    }
+
+    this.resendLoading.set(true);
+    this.auth
+      .resendConfirmation({ usernameOrEmail })
+      .pipe(finalize(() => this.resendLoading.set(false)))
+      .subscribe({
+        next: (response) => {
+          const message =
+            response.message ?? 'If your account exists and still needs confirmation, a fresh confirmation email has been sent.';
+          this.notice.set(message);
+          this.toast.success(message);
+        },
+        error: () => {
+          this.toast.error('We could not resend the confirmation email right now. Please try again shortly.');
+        },
+      });
+  }
+
+  private extractErrorDetails(error: unknown): { message: string; code?: string } {
+    const fallback = 'Unable to sign in right now. Please try again shortly.';
+
+    if (!(error instanceof HttpErrorResponse)) {
+      return { message: fallback };
+    }
+
+    const message = error.error?.message ?? error.error?.Message;
+    const code = error.error?.data?.code ?? error.error?.Data?.code;
+
+    return {
+      message: typeof message === 'string' && message.trim() ? message : fallback,
+      code: typeof code === 'string' ? code : undefined,
+    };
+  }
+
+  private navigateToReturnUrl(): Promise<boolean> {
+    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+    return this.router.navigateByUrl(returnUrl && returnUrl.startsWith('/') ? returnUrl : '/affiliate');
+  }
 }

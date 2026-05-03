@@ -7,7 +7,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
     imports: [CommonModule],
     standalone: true,
     template: `
-    <section class="py-20 bg-blue-50">
+    <section class="section-compact bg-green-50">
       <div class="max-w-7xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Our Courses</h2>
         <div class="relative overflow-hidden">
@@ -22,7 +22,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
                 <p class="text-gray-600 mb-4">{{ course.description }}</p>
                 <button
                   (click)="applyNow()"
-                  class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition"
+                  class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-500 transition"
                 >
                   Apply Now
                 </button>
@@ -32,13 +32,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
           <!-- Navigation Buttons -->
           <button
-            class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600"
+            class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-green-500 text-white p-2 rounded-full hover:bg-green-500"
             (click)="prevSlide()"
           >
             &#8592;
           </button>
           <button
-            class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600"
+            class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-green-500 text-white p-2 rounded-full hover:bg-green-500"
             (click)="nextSlide()"
           >
             &#8594;
@@ -147,3 +147,4 @@ export class CoursesComponent implements OnInit, OnDestroy {
         window.location.href = 'https://paystack.com/buy/scalefort?discount=LEARN2SCALE2025'; // Replace with the correct route or external URL
     }
 }
+

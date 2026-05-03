@@ -40,6 +40,12 @@ import { CompanyLogoComponent } from './company-logo.component';
         transform: translateX(-50%);
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-scroll {
+        animation: none;
+      }
+    }
   `]
 })
 export class CompaniesCarouselComponent {

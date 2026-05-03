@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CompaniesCarouselComponent, CommonModule],
   template: `
-    <section class="py-20 bg-white">
+    <section class="section-compact bg-white">
       <div class="max-w-7xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">Where our Mentees and Graduates Work</h2>
         <app-companies-carousel [logos]="companyLogos" />

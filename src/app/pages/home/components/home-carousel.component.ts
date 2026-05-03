@@ -15,7 +15,7 @@ interface CarouselSlide {
   standalone: true,
   imports: [RouterLink, CommonModule],
   template: `
-    <section class="py-20">
+    <section class="section-compact">
       <div class="max-w-7xl mx-auto px-4">
         <div class="relative">
           <!-- Carousel Container -->
@@ -28,7 +28,7 @@ interface CarouselSlide {
                   <h2 class="text-4xl font-bold mb-6">{{ slide.title }}</h2>
                   <p class="text-xl mb-8">{{ slide.description }}</p>
                   <a [routerLink]="slide.buttonLink" 
-                     class="inline-block bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-blue-50 transition">
+                     class="inline-block bg-white text-accent-school px-8 py-3 rounded-md font-semibold hover:bg-green-50 transition">
                     {{ slide.buttonText }}
                   </a>
                 </div>
@@ -76,14 +76,14 @@ export class HomeCarouselComponent {
       description: "Join our community of tech leaders and innovators who are transforming the African tech landscape",
       buttonText: "Apply Now",
       buttonLink: "/get-started",
-      bgClass: "bg-gradient-to-r from-blue-600 to-blue-800"
+      bgClass: "bg-gradient-to-r from-green-600 to-green-800"
     },
     {
       title: "Comprehensive Technology Solutions for Your Business",
       description: "From application development to digital transformation, we've got you covered",
       buttonText: "Explore Our Services",
       buttonLink: "/services",
-      bgClass: "bg-gradient-to-r from-blue-700 to-indigo-800"
+      bgClass: "bg-gradient-to-r from-green-700 to-amber-700"
     }
   ];
 

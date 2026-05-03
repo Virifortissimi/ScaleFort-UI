@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { CourseEnrollmentComponent } from '../course-enrollment/course-enrollment.component';
-import { CourseInterest, DepartmentType } from '../../../shared/models/application-inquiry.model';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AnimateOnScrollDirective } from '../../../shared/directives/animate-on-scroll.directive';
 
 interface CourseSection {
   id: string;
@@ -9,350 +9,144 @@ interface CourseSection {
 }
 
 @Component({
-  selector: 'app-python',
+  selector: 'app-python-detail',
+  standalone: true,
+  imports: [CommonModule, AnimateOnScrollDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div>
-      <!-- Hero Section with Overlay Info Box -->
-      <section class="relative min-h-[500px] bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-center overflow-visible">
-        <!-- Background with overlay -->
-        <div class="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1550439062-609e1531270e" 
-            alt="Developer working"
-            class="w-full h-full object-cover"
-          >
-          <div class="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-blue-900/70 to-indigo-900/80"></div>
-        </div>
-        
-        <!-- Floating elements -->
-        <div class="absolute inset-0 overflow-hidden">
-          <div class="absolute w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-float animation-delay-0 top-20 left-20"></div>
-          <div class="absolute w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-float animation-delay-2000 bottom-20 right-20"></div>
-          <div class="absolute w-60 h-60 bg-indigo-500/10 rounded-full blur-3xl animate-float animation-delay-4000 top-1/2 left-1/3"></div>
-        </div>
+      <!-- Hero Section -->
+      <section appAnimateOnScroll class="section-hero bg-bg-white text-center relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-green-500/5 blur-[120px] rounded-full -mr-40 -mt-40"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-500/5 blur-[100px] rounded-full -ml-32 -mb-32"></div>
 
-        <!-- Content -->
-        <div class="relative z-10 max-w-7xl mx-auto px-4 pt-24 md:pt-32 pb-20">
-          <!-- Badge -->
-          <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-8 animate-fade-in">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            Professional Certification Program
-          </div>
-          
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-fade-in [animation-delay:200ms]">
-            Backend Development <br class="hidden md:block" />
-            with <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-blue-300"> Python</span>
-          </h1>
-          
-          <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-8 animate-fade-in [animation-delay:400ms]">
+        <div class="container-base max-w-5xl">
+          <p class="overline mb-4 inline-flex items-center rounded-pill border border-green-100 bg-green-50/50 px-4 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-green-600 shadow-sm">
+            Tech School Course
+          </p>
+          <h1 class="type-display text-text-primary mb-6 tracking-tight">Backend Development with Python</h1>
+          <p class="type-body-l text-text-muted max-w-2xl mx-auto leading-relaxed">
             Master Python backend development and build scalable web applications with industry best practices.
           </p>
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in [animation-delay:600ms]">
-            <a class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold hover:from-purple-700 hover:to-blue-700 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl" (click)="openErollCourse()">
-              Enroll Now
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
-            
-            <a href="/courses/python#outline" class="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-xl font-semibold hover:bg-white/20 transition-all transform hover:-translate-y-1">
-              View Curriculum
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Course Info Box -->
-        <div class="relative z-20 -mb-24 px-4 animate-fade-in [animation-delay:800ms]">
-          <div class="max-w-6xl mx-auto">
-            <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-10 border-t-4 border-purple-600 transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2">
-              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
-                <!-- Program Length -->
-                <div class="text-center group">
-                  <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-100 transition-colors">
-                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h3 class="text-sm text-gray-500 font-medium mb-1">Program Length</h3>
-                  <p class="text-lg font-semibold text-gray-900">24 Weeks</p>
-                </div>
-                
-                <!-- Start Date -->
-                <div class="text-center group">
-                  <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-100 transition-colors">
-                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <h3 class="text-sm text-gray-500 font-medium mb-1">Start Date</h3>
-                  <p class="text-lg font-semibold text-gray-900">January 17, 2026</p>
-                </div>
-                
-                <!-- Skill Level -->
-                <div class="text-center group">
-                  <div class="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-100 transition-colors">
-                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <h3 class="text-sm text-gray-500 font-medium mb-1">Skill Level</h3>
-                  <p class="text-lg font-semibold text-gray-900">Intermediate</p>
-                </div>
-                
-                <!-- Fee -->
-                <div class="text-center group">
-                  <div class="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-100 transition-colors">
-                    <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h3 class="text-sm text-gray-500 font-medium mb-1">Program Fee</h3>
-                  <p class="text-lg font-semibold text-gray-900">₦300,000</p>
-                  <p class="text-xs text-green-600 font-medium">Payment plans available</p>
-                </div>
-                
-                <!-- Certification -->
-                <div class="text-center group">
-                  <div class="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-red-100 transition-colors">
-                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                  <h3 class="text-sm text-gray-500 font-medium mb-1">Certification</h3>
-                  <p class="text-lg font-semibold text-gray-900">Yes upon completion</p>
-                </div>
-                
-                <!-- Platform -->
-                <div class="text-center group">
-                  <div class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-indigo-100 transition-colors">
-                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                  </div>
-                  <h3 class="text-sm text-gray-500 font-medium mb-1">School</h3>
-                  <p class="text-lg font-semibold text-gray-900">Scalefort School</p>
-                </div>
-              </div>
-              
-              <!-- Additional info -->
-              <div class="mt-8 pt-6 border-t border-gray-100 text-center">
-                <p class="text-sm text-gray-500">
-                  <span class="inline-flex items-center mx-2">
-                    <svg class="w-4 h-4 text-green-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Hands-on projects
-                  </span>
-                  <span class="inline-flex items-center mx-2">
-                    <svg class="w-4 h-4 text-green-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Career support
-                  </span>
-                  <span class="inline-flex items-center mx-2">
-                    <svg class="w-4 h-4 text-green-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Flexible scheduling
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
       <!-- Navigation Bar -->
-      <section class="relative z-10 mt-48">
-        <div class="max-w-7xl mx-auto px-4">
-          <div class="flex flex-col md:flex-row justify-between items-center py-4 space-y-6 md:space-y-0 bg-white/70 backdrop-blur-md shadow-md rounded-2xl px-6">
-            
-            <!-- Navigation Items -->
+      <section appAnimateOnScroll class="relative z-10">
+        <div class="container-base max-w-5xl">
+          <div class="card-base flex flex-col md:flex-row justify-between items-center py-3 px-5 gap-4">
             <nav class="w-full md:w-auto">
-              <ul class="flex flex-wrap gap-4 md:gap-6">
-                <li 
-                  *ngFor="let section of sections"
-                  class="group relative overflow-hidden rounded-lg"
-                >
-                  <a 
-                    [href]="'/courses/python#' + section.id"
-                    class="block px-4 py-2 rounded-lg text-sm font-medium text-gray-700 
-                           transition-colors duration-300 hover:text-white"
-                    [class.text-blue-600]="currentSection === section.id"
-                    (click)="scrollToSection(section.id, $event)"
-                  >
-                    <span class="relative z-10">{{ section.title }}</span>
-                    <span 
-                      class="absolute inset-0 bg-[url('https://source.unsplash.com/random/200x100?tech')] 
-                             bg-cover bg-center opacity-10 group-hover:opacity-60 transition-opacity duration-300">
-                    </span>
-                    <span 
-                      class="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-30 transition duration-300 rounded-lg">
-                    </span>
-                  </a>
-                </li>
+              <ul class="flex flex-wrap gap-1">
+                @for (section of sections; track section.id) {
+                  <li>
+                    <a
+                      [href]="'#' + section.id"
+                      class="block px-3 py-2 rounded-lg text-sm font-medium text-text-body
+                             transition-colors duration-300 hover:text-text-primary hover:bg-bg-subtle"
+                      [class.text-green-600]="currentSection === section.id"
+                      [class.bg-green-50]="currentSection === section.id"
+                      (click)="scrollToSection(section.id, $event)"
+                    >
+                      {{ section.title }}
+                    </a>
+                  </li>
+                }
               </ul>
             </nav>
-      
+
             <div class="w-full md:w-auto text-center">
-              <a 
-                class="inline-block bg-gradient-to-r from-purple-600 to-indigo-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:from-purple-700 hover:to-indigo-800 transform hover:scale-105 transition-all duration-300 cursor-pointer"
-                (click)="openErollCourse()"
+              <a
+                href="https://paystack.com/pay/scalefort-python"
+                target="_blank"
+                class="btn-primary btn-sm no-underline"
               >
                 Start Learning Now
               </a>
             </div>
-      
           </div>
         </div>
       </section>
 
+
       <!-- Content Sections -->
-      <section class="py-16 md:py-24 bg-gradient-to-br from-gray-50/50 to-white/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section appAnimateOnScroll class="section-compact">
+        <div class="max-w-6xl mx-auto px-4">
           <!-- Overview -->
           <div id="overview" class="mb-16 scroll-mt-32">
-            <!-- Header -->
-            <div class="text-center mb-12">
-              <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Course <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600">Overview</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                This comprehensive Python Backend Development course is designed to take you from basics to advanced concepts
-                in web development using Python. You'll learn how to build robust, scalable web applications using modern
-                frameworks and industry best practices.
-              </p>
-            </div>
+            <h2 class="text-3xl font-bold mb-6">Overview</h2>
+            <p class="text-text-body mb-6">
+              This comprehensive Python Backend Development course is designed to take you from basics to advanced concepts
+              in web development using Python. You'll learn how to build robust, scalable web applications using modern
+              frameworks and best practices.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              <div class="flex justify-center items-center bg-bg-subtle p-6 rounded-lg">
+                <img
+                  class="w-full h-64 md:h-80 rounded-lg shadow-lg object-cover"
+                  src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80"
+                  alt="Python backend code and terminal setup"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              <!-- <div class="relative group">
-                <div class="absolute -inset-2 bg-gradient-to-r from-blue-600 to-green-600 rounded-2xl blur opacity-25 group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
-                <div class="relative bg-white p-2 rounded-2xl shadow-lg">
-                  <div class="aspect-video bg-gray-900 rounded-xl overflow-hidden">
-                    <div class="w-full h-full bg-gradient-to-br from-blue-900 to-gray-900 flex items-center justify-center relative">
-                      <div class="text-center text-white p-8">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
-                          <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                          </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Course Introduction</h3>
-                        <p class="text-blue-200">Watch our overview video</p>
-                      </div>
-                      <iframe class="w-full h-full rounded-lg"
-                        src="https://www.youtube.com/embed/your_video_id" 
-                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                      </iframe>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-                  <div class="flex items-center mb-6">
-                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
-                      <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                      </svg>
-                    </div>
-                    <h3 class="text-2xl font-semibold text-gray-900">What You'll Learn</h3>
-                  </div>
-                  <ul class="space-y-4">
-                    <li class="flex items-start p-3 bg-green-50/50 rounded-lg group hover:bg-green-100 transition-colors">
-                      <svg class="w-5 h-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <!-- Text Content -->
+              <div class="space-y-6">
+                <div class="bg-bg-subtle p-6 rounded-lg">
+                  <h3 class="font-semibold mb-4">What You'll Learn</h3>
+                  <ul class="space-y-2 text-text-body">
+                    <li class="flex items-center">
+                      <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                       </svg>
-                      <div>
-                        <h4 class="font-medium text-gray-900">Python Programming Fundamentals</h4>
-                        <p class="text-sm text-gray-600 mt-1">Master core Python concepts and syntax</p>
-                      </div>
+                      Python Programming Fundamentals
                     </li>
-                    <li class="flex items-start p-3 bg-green-50/50 rounded-lg group hover:bg-green-100 transition-colors">
-                      <svg class="w-5 h-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <li class="flex items-center">
+                      <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                       </svg>
-                      <div>
-                        <h4 class="font-medium text-gray-900">Web Development with Django</h4>
-                        <p class="text-sm text-gray-600 mt-1">Build robust web applications with Django framework</p>
-                      </div>
+                      Web Development with Django
                     </li>
-                    <li class="flex items-start p-3 bg-green-50/50 rounded-lg group hover:bg-green-100 transition-colors">
-                      <svg class="w-5 h-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <li class="flex items-center">
+                      <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                       </svg>
-                      <div>
-                        <h4 class="font-medium text-gray-900">Database Design & Management</h4>
-                        <p class="text-sm text-gray-600 mt-1">Learn SQL and database optimization techniques</p>
-                      </div>
+                      Database Design & Management
                     </li>
-                    <li class="flex items-start p-3 bg-green-50/50 rounded-lg group hover:bg-green-100 transition-colors">
-                      <svg class="w-5 h-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <li class="flex items-center">
+                      <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                       </svg>
-                      <div>
-                        <h4 class="font-medium text-gray-900">API Development & Integration</h4>
-                        <p class="text-sm text-gray-600 mt-1">Create RESTful APIs and integrate third-party services</p>
-                      </div>
+                      API Development
                     </li>
                   </ul>
                 </div>
-              <!-- Text Content -->
-              <div class="space-y-8">
-                <!-- What You'll Learn -->
-
-                <!-- Course Highlights -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-                  <div class="flex items-center mb-6">
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                      <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                      </svg>
-                    </div>
-                    <h3 class="text-2xl font-semibold text-gray-900">Course Highlights</h3>
-                  </div>
-                  <ul class="space-y-4">
-                    <li class="flex items-start p-3 bg-blue-50/50 rounded-lg group hover:bg-blue-100 transition-colors">
-                      <svg class="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="bg-bg-subtle p-6 rounded-lg">
+                  <h3 class="font-semibold mb-4">Course Highlights</h3>
+                  <ul class="space-y-2 text-text-body">
+                    <li class="flex items-center">
+                      <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
-                      <div>
-                        <h4 class="font-medium text-gray-900">Live Online Classes</h4>
-                        <p class="text-sm text-gray-600 mt-1">Interactive sessions with expert instructors</p>
-                      </div>
+                      Live Online Classes
                     </li>
-                    <li class="flex items-start p-3 bg-blue-50/50 rounded-lg group hover:bg-blue-100 transition-colors">
-                      <svg class="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <li class="flex items-center">
+                      <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
-                      <div>
-                        <h4 class="font-medium text-gray-900">Hands-on Projects</h4>
-                        <p class="text-sm text-gray-600 mt-1">Build real-world applications and portfolio pieces</p>
-                      </div>
+                      Hands-on Projects
                     </li>
-                    <li class="flex items-start p-3 bg-blue-50/50 rounded-lg group hover:bg-blue-100 transition-colors">
-                      <svg class="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <li class="flex items-center">
+                      <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
-                      <div>
-                        <h4 class="font-medium text-gray-900">1-on-1 Mentorship</h4>
-                        <p class="text-sm text-gray-600 mt-1">Personalized guidance from industry experts</p>
-                      </div>
+                      1-on-1 Mentorship
                     </li>
-                    <li class="flex items-start p-3 bg-blue-50/50 rounded-lg group hover:bg-blue-100 transition-colors">
-                      <svg class="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <li class="flex items-center">
+                      <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
-                      <div>
-                        <h4 class="font-medium text-gray-900">Career Support</h4>
-                        <p class="text-sm text-gray-600 mt-1">Job placement assistance and interview preparation</p>
-                      </div>
+                      Career Support
                     </li>
                   </ul>
                 </div>
@@ -362,30 +156,31 @@ interface CourseSection {
         </div>
       </section>
 
-      <!-- Requirements -->
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="bg-white/70 backdrop-blur-md rounded-3xl shadow-2xl p-10">
-          <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Requirements & Expectations</h2>
 
-          <div class="grid md:grid-cols-2 gap-10 text-gray-700">
-            <!-- Educational Background -->
-            <div class="space-y-4">
-              <h3 class="text-xl font-semibold text-blue-600 flex items-center">
-                <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                  <path d="M12 14l6.16-3.422A12.083 12.083 0 0112 21.5a12.083 12.083 0 01-6.16-10.922L12 14z" />
-                </svg>
-                Educational Background
-              </h3>
-              <p>You don’t need to have a certificate to apply for this diploma program. We expect anyone to take the program regardless of their educational qualifications.</p>
-            </div>
+          <!-- Requirements -->
+          <div class="max-w-6xl mx-auto px-6">
+            <div class="bg-white/70 backdrop-blur-md rounded-3xl shadow-2xl p-10">
+              <h2 class="text-3xl font-bold text-text-primary mb-8 text-center">Requirements & Expectations</h2>
 
-            <!-- Language Proficiency -->
-            <div class="space-y-4">
-              <h3 class="text-xl font-semibold text-blue-600 flex items-center">
-                <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path d="M12 20h9" />
-                    <path d="M16.5 3.5a2.121 2.121 0 00-3 3L19 12l3-3-5.5-5.5z" />
+              <div class="grid md:grid-cols-2 gap-10 text-text-body">
+                <!-- Educational Background -->
+                <div class="space-y-4">
+                  <h3 class="text-xl font-semibold text-accent-school flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-accent-school" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                      <path d="M12 14l6.16-3.422A12.083 12.083 0 0112 21.5a12.083 12.083 0 01-6.16-10.922L12 14z" />
+                    </svg>
+                    Educational Background
+                  </h3>
+                  <p>You don’t need to have a certificate to apply for this diploma program. We expect anyone to take the program regardless of their educational qualifications.</p>
+                </div>
+
+                <!-- Language Proficiency -->
+                <div class="space-y-4">
+                  <h3 class="text-xl font-semibold text-accent-school flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-accent-school" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M12 20h9" />
+                      <path d="M16.5 3.5a2.121 2.121 0 00-3 3L19 12l3-3-5.5-5.5z" />
                       <path d="M7 9h2" />
                       <path d="M5 12h6" />
                     </svg>
@@ -396,8 +191,8 @@ interface CourseSection {
 
                 <!-- Entrance Exam -->
                 <div class="space-y-4">
-                  <h3 class="text-xl font-semibold text-blue-600 flex items-center">
-                    <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <h3 class="text-xl font-semibold text-accent-school flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-accent-school" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                       <path d="M12 6v6l4 2" />
                       <circle cx="12" cy="12" r="10" />
                     </svg>
@@ -409,8 +204,8 @@ interface CourseSection {
 
                 <!-- Tools & Commitment -->
                 <div class="space-y-4">
-                  <h3 class="text-xl font-semibold text-blue-600 flex items-center">
-                    <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <h3 class="text-xl font-semibold text-accent-school flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-accent-school" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                       <path d="M9 12h6M9 16h6M9 8h6" />
                       <path d="M4 6h16v14H4z" />
                     </svg>
@@ -441,17 +236,18 @@ interface CourseSection {
             </div>
         </div>
 
+
         <!-- Course Outline -->
-        <section id="outline" class="scroll-mt-32 py-20 bg-gradient-to-r from-white via-gray-50 to-white">
+        <section id="outline" class="scroll-mt-32 section bg-bg-subtle">
           <div class="max-w-6xl mx-auto px-6">
             <div class="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl p-10">
-              <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Course Outline</h2>
+              <h2 class="text-3xl font-bold text-center text-text-primary mb-10">Course Outline</h2>
 
-              <div class="grid md:grid-cols-2 gap-8 text-gray-700">
+              <div class="grid md:grid-cols-2 gap-8 text-text-body">
                 
                 <!-- Python Fundamentals -->
-                <div class="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
-                  <svg class="w-8 h-8 text-blue-500 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <div class="flex items-start space-x-4 p-6 bg-bg-subtle rounded-xl shadow-sm hover:shadow-md transition">
+                  <svg class="w-8 h-8 text-green-500 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M13 2.05v3.03a7.003 7.003 0 00-4.08 11.68l-2.11 2.11A9.955 9.955 0 012.05 13H5.03c1.18 2.97 4.07 5 7.47 5 4.52 0 8.2-3.7 8.2-8.25v-.23l2.35-2.35A9.963 9.963 0 0022 12c0 5.52-4.48 10-10 10S2 17.52 2 12c0-2.21.72-4.26 1.94-5.94L8 9.72V7.65L3.41 3.05 2 4.46l4.05 4.05h2.07l-1.5-1.51"/>
                   </svg>
                   <div>
@@ -461,7 +257,7 @@ interface CourseSection {
                 </div>
 
                 <!-- Web Frameworks -->
-                <div class="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
+                <div class="flex items-start space-x-4 p-6 bg-bg-subtle rounded-xl shadow-sm hover:shadow-md transition">
                   <svg class="w-8 h-8 text-green-500 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M12 3v5m0 0V3m0 5H7m5 0h5M5 21a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5z"/>
                   </svg>
@@ -472,8 +268,8 @@ interface CourseSection {
                 </div>
 
                 <!-- Database Integration -->
-                <div class="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
-                  <svg class="w-8 h-8 text-purple-500 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <div class="flex items-start space-x-4 p-6 bg-bg-subtle rounded-xl shadow-sm hover:shadow-md transition">
+                  <svg class="w-8 h-8 text-rose-500 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
                   </svg>
                   <div>
@@ -483,8 +279,8 @@ interface CourseSection {
                 </div>
 
                 <!-- REST APIs -->
-                <div class="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
-                  <svg class="w-8 h-8 text-indigo-500 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <div class="flex items-start space-x-4 p-6 bg-bg-subtle rounded-xl shadow-sm hover:shadow-md transition">
+                  <svg class="w-8 h-8 text-amber-500 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M4 13h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6a1 1 0 011-1zm10-8h6a1 1 0 011 1v6a1 1 0 01-1 1h-6a1 1 0 01-1-1V6a1 1 0 011-1zM4 4h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1zm14 2h2m0 0h2m-2 0v2m0-2V4"/>
                   </svg>
                   <div>
@@ -494,7 +290,7 @@ interface CourseSection {
                 </div>
 
                 <!-- Authentication -->
-                <div class="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
+                <div class="flex items-start space-x-4 p-6 bg-bg-subtle rounded-xl shadow-sm hover:shadow-md transition">
                   <svg class="w-8 h-8 text-pink-500 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                   </svg>
@@ -505,7 +301,7 @@ interface CourseSection {
                 </div>
 
                 <!-- Deployment -->
-                <div class="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
+                <div class="flex items-start space-x-4 p-6 bg-bg-subtle rounded-xl shadow-sm hover:shadow-md transition">
                   <svg class="w-8 h-8 text-yellow-500 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                   </svg>
@@ -516,7 +312,7 @@ interface CourseSection {
                 </div>
 
                 <!-- Testing -->
-                <div class="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
+                <div class="flex items-start space-x-4 p-6 bg-bg-subtle rounded-xl shadow-sm hover:shadow-md transition">
                   <svg class="w-8 h-8 text-red-500 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2v-7"/>
                     <path d="M13 2v7h7M16 14H8m8 4H8m2-8H8"/>
@@ -528,8 +324,8 @@ interface CourseSection {
                 </div>
 
                 <!-- Scalability -->
-                <div class="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition">
-                  <svg class="w-8 h-8 text-teal-500 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <div class="flex items-start space-x-4 p-6 bg-bg-subtle rounded-xl shadow-sm hover:shadow-md transition">
+                  <svg class="w-8 h-8 text-amber-500 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
                   </svg>
                   <div>
@@ -543,199 +339,253 @@ interface CourseSection {
           </div>
         </section>
 
-         <!-- Career Outcomes -->
-        <div id="careers" class="scroll-mt-32 py-24 bg-gradient-to-br from-gray-50/80 to-white/80">
+        <!-- Cost -->
+        <section appAnimateOnScroll class="scroll-mt-32 section bg-bg-subtle">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Header -->
             <div class="text-center mb-16">
-              <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Launch Your <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600">Tech Career</span>
-              </h2>
-              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Transform your skills into a rewarding career with our comprehensive training and dedicated support system.
-              </p>
+              <h2 class="text-4xl font-bold text-text-primary mb-4">Investment in Your Future</h2>
+              <p class="text-xl text-text-body max-w-2xl mx-auto">Flexible payment options designed for ambitious learners</p>
             </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <!-- Monthly Plan -->
+              <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div class="text-center">
+                  <h3 class="text-2xl font-bold text-text-primary mb-2">Pay Thrice</h3>
+                  <div class="flex justify-center items-baseline my-6">
+                    <span class="text-4xl font-extrabold">$80</span>
+                    <span class="ml-2 text-text-muted font-medium">x 3</span>
+                  </div>
+                  <p class="text-text-body mb-6">Ideal for flexible budgeting</p>
+                  <a href="#" class="w-full inline-block bg-bg-subtle border border-border-base text-text-primary px-6 py-3 rounded-lg font-semibold hover:bg-bg-white transition">
+                    Pay Thrice
+                  </a>
+                </div>
+              </div>
+
+              <!-- Featured Plan -->
+              <div class="relative card-base card-accent p-8">
+                <div class="absolute top-0 right-0 bg-amber-400 text-text-primary px-5 py-1 rounded-bl-xl text-sm font-bold">
+                  Most Popular
+                </div>
+                <div class="text-center text-text-primary">
+                  <h3 class="text-2xl font-bold mb-2">Upfront Payment</h3>
+                  <div class="flex justify-center items-baseline my-6">
+                    <span class="text-5xl font-extrabold">$200</span>
+                  </div>
+                  <p class="mb-6 opacity-90">Save $40 + No Final Payments</p>
+                  <a href="#" class="w-full inline-block bg-amber-400 text-text-primary px-6 py-3 rounded-lg font-semibold hover:bg-amber-500 transition">
+                    Save $40 Now
+                  </a>
+                </div>
+              </div>
+
+              <!-- Quarterly Plan -->
+              <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div class="text-center">
+                  <h3 class="text-2xl font-bold text-text-primary mb-2">Pay Twice</h3>
+                  <div class="flex justify-center items-baseline my-6">
+                    <span class="text-4xl font-extrabold">$110</span>
+                    <span class="ml-2 text-text-muted font-medium">x 2</span>
+                  </div>
+                  <p class="text-text-body mb-6">Save $20 with quarterly payments</p>
+                  <a href="#" class="w-full btn-primary">
+                    Pay Twice
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Value Proposition -->
+            <div class="mt-16 max-w-3xl mx-auto">
+              <div class="bg-white rounded-xl p-8 shadow-lg border border-border-base">
+                <h3 class="text-xl font-semibold text-center mb-6">Complete Learning Package Includes:</h3>
+                <div class="grid md:grid-cols-2 gap-6 text-text-body">
+                  <div class="flex items-start space-x-3">
+                    <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <div>
+                      <p class="font-medium">1-on-1 Mentorship</p>
+                      <p class="text-sm">Weekly sessions with industry experts</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <div>
+                      <p class="font-medium">Career Support</p>
+                      <p class="text-sm">Resume reviews & interview preparation</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <div>
+                      <p class="font-medium">Project Portfolio</p>
+                      <p class="text-sm">Real-world projects with code reviews</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <div>
+                      <p class="font-medium">Certification</p>
+                      <p class="text-sm">Industry-recognized completion certificate</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                  <p class="text-sm text-text-muted flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                    No Refund after Payment.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+         <!-- Career Outcomes -->
+        <div id="careers" class="mb-16 scroll-mt-32 section bg-bg-subtle">
+          <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-text-primary mb-12 text-center">Launch Your Tech Career</h2>
             
-            <!-- Cards Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
               <!-- Potential Roles Card -->
-              <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 transform hover:-translate-y-1">
-                <div class="flex items-center mb-8">
-                  <div class="bg-blue-100 p-3 rounded-xl mr-5 group-hover:bg-blue-200 transition-colors">
-                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-center mb-6">
+                  <div class="bg-green-50 p-3 rounded-lg mr-4">
+                    <svg class="w-8 h-8 text-accent-school" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
                     </svg>
                   </div>
-                  <h3 class="text-2xl font-semibold text-gray-900">Career Paths</h3>
+                  <h3 class="text-2xl font-semibold text-text-primary">Career Paths</h3>
                 </div>
-                <ul class="space-y-5">
-                  <li class="flex items-center p-3 bg-blue-50/50 rounded-lg group hover:bg-blue-100 transition-colors">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-4 flex-shrink-0"></div>
-                    <div>
-                      <h4 class="font-medium text-gray-900">Backend Developer</h4>
-                      <p class="text-sm text-gray-600">$80K - $120K average salary</p>
-                    </div>
+                <ul class="space-y-4 text-text-body">
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                    Backend Developer
                   </li>
-                  <li class="flex items-center p-3 bg-blue-50/50 rounded-lg group hover:bg-blue-100 transition-colors">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-4 flex-shrink-0"></div>
-                    <div>
-                      <h4 class="font-medium text-gray-900">Python Developer</h4>
-                      <p class="text-sm text-gray-600">$75K - $110K average salary</p>
-                    </div>
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                    Python Developer
                   </li>
-                  <li class="flex items-center p-3 bg-blue-50/50 rounded-lg group hover:bg-blue-100 transition-colors">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-4 flex-shrink-0"></div>
-                    <div>
-                      <h4 class="font-medium text-gray-900">Full Stack Engineer</h4>
-                      <p class="text-sm text-gray-600">$83K - $130K average salary</p>
-                    </div>
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                    Full Stack Engineer
                   </li>
-                  <li class="flex items-center p-3 bg-blue-50/50 rounded-lg group hover:bg-blue-100 transition-colors">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-4 flex-shrink-0"></div>
-                    <div>
-                      <h4 class="font-medium text-gray-900">API Specialist</h4>
-                      <p class="text-sm text-gray-600">$78K - $115K average salary</p>
-                    </div>
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                    API Specialist
                   </li>
                 </ul>
               </div>
 
               <!-- Career Support Card -->
-              <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 transform hover:-translate-y-1">
-                <div class="flex items-center mb-8">
-                  <div class="bg-green-100 p-3 rounded-xl mr-5 group-hover:bg-green-200 transition-colors">
+              <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div class="flex items-center mb-6">
+                  <div class="bg-green-100 p-3 rounded-lg mr-4">
                     <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
                     </svg>
                   </div>
-                  <h3 class="text-2xl font-semibold text-gray-900">Career Support</h3>
+                  <h3 class="text-2xl font-semibold text-text-primary">Career Support</h3>
                 </div>
-                <ul class="space-y-5">
-                  <li class="flex items-center p-3 bg-green-50/50 rounded-lg group hover:bg-green-100 transition-colors">
-                    <div class="w-2 h-2 bg-green-500 rounded-full mr-4 flex-shrink-0"></div>
-                    <div>
-                      <h4 class="font-medium text-gray-900">Professional Portfolio Reviews</h4>
-                      <p class="text-sm text-gray-600">Showcase your best work</p>
-                    </div>
+                <ul class="space-y-4 text-text-body">
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                    Professional Portfolio Reviews
                   </li>
-                  <li class="flex items-center p-3 bg-green-50/50 rounded-lg group hover:bg-green-100 transition-colors">
-                    <div class="w-2 h-2 bg-green-500 rounded-full mr-4 flex-shrink-0"></div>
-                    <div>
-                      <h4 class="font-medium text-gray-900">Technical Interview Prep</h4>
-                      <p class="text-sm text-gray-600">Mock interviews & coding challenges</p>
-                    </div>
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                    Technical Interview Prep
                   </li>
-                  <li class="flex items-center p-3 bg-green-50/50 rounded-lg group hover:bg-green-100 transition-colors">
-                    <div class="w-2 h-2 bg-green-500 rounded-full mr-4 flex-shrink-0"></div>
-                    <div>
-                      <h4 class="font-medium text-gray-900">LinkedIn Optimization</h4>
-                      <p class="text-sm text-gray-600">Get noticed by recruiters</p>
-                    </div>
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                    LinkedIn Optimization
                   </li>
-                  <li class="flex items-center p-3 bg-green-50/50 rounded-lg group hover:bg-green-100 transition-colors">
-                    <div class="w-2 h-2 bg-green-500 rounded-full mr-4 flex-shrink-0"></div>
-                    <div>
-                      <h4 class="font-medium text-gray-900">Job Search Strategy Sessions</h4>
-                      <p class="text-sm text-gray-600">Personalized job hunting plan</p>
-                    </div>
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                    Job Search Strategy Sessions
                   </li>
                 </ul>
               </div>
             </div>
 
             <!-- Stats Banner -->
-            <div class="bg-gradient-to-r from-blue-600 to-green-600 text-white p-8 md:p-12 rounded-2xl text-center shadow-lg">
-              <div class="max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                  <div>
-                    <div class="text-4xl md:text-5xl font-bold mb-2">85%</div>
-                    <p class="text-blue-100">Employment Rate</p>
-                  </div>
-                  <div>
-                    <div class="text-4xl md:text-5xl font-bold mb-2">$83K</div>
-                    <p class="text-blue-100">Average Starting Salary</p>
-                  </div>
-                  <div>
-                    <div class="text-4xl md:text-5xl font-bold mb-2">6mo</div>
-                    <p class="text-blue-100">Average Time to Hire</p>
-                  </div>
-                </div>
-                <p class="text-lg mt-6 text-blue-100 font-medium">
-                  85% of graduates land tech roles within 6 months of completion
-                </p>
-              </div>
-            </div>
-
-            <!-- Additional CTA -->
-            <div class="text-center mt-12">
-              <a (click)="openErollCourse()" class="inline-flex items-center px-8 py-4 bg-gray-900 text-white rounded-xl font-semibold hover:bg-gray-800 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
-                Start Your Career Journey
-                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
+            <div class="mt-12 card-base card-accent text-center">
+              <p class="text-xl font-semibold">92% of graduates land tech roles within 6 months of completion</p>
             </div>
           </div>
         </div>
 
         <!-- Scholarship -->
-        <!-- <div id="scholarship" class="scroll-mt-32 py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div id="scholarship" class="scroll-mt-32 section bg-bg-subtle">
           <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-12">
-              <h2 class="text-4xl font-bold text-gray-800 mb-4">Funding Your Future</h2>
-              <p class="text-lg text-gray-600 max-w-2xl mx-auto">We invest in exceptional talent through our merit-based scholarship program</p>
+              <h2 class="text-4xl font-bold text-text-primary mb-4">Funding Your Future</h2>
+              <p class="text-lg text-text-body max-w-2xl mx-auto">We invest in exceptional talent through our merit-based scholarship program</p>
             </div>
 
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
               <div class="grid lg:grid-cols-2 gap-10 p-10">
+                <!-- Left Content -->
                 <div class="space-y-6">
-                  <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full inline-block text-sm font-semibold">
+                  <div class="bg-green-50 text-green-800 px-4 py-2 rounded-full inline-block text-sm font-semibold">
                     🎓 Partial Funding Available
                   </div>
-                  <h3 class="text-3xl font-bold text-gray-800">ScaleFort Merit Scholarship</h3>
-                  <p class="text-lg text-gray-600">
+                  <h3 class="text-3xl font-bold text-text-primary">ScaleFort Merit Scholarship</h3>
+                  <p class="text-lg text-text-body">
                     Receive up to 50% tuition coverage while demonstrating exceptional technical aptitude and commitment to learning.
                   </p>
                   
+                  <!-- Stats -->
                   <div class="grid grid-cols-2 gap-4 mt-8">
-                    <div class="text-center p-4 bg-blue-50 rounded-xl">
-                      <div class="text-2xl font-bold text-blue-600">50%</div>
-                      <div class="text-sm text-gray-600">Max Coverage</div>
+                    <div class="text-center p-4 bg-green-50 rounded-xl">
+                      <div class="text-2xl font-bold text-accent-school">50%</div>
+                      <div class="text-sm text-text-body">Max Coverage</div>
                     </div>
-                    <div class="text-center p-4 bg-blue-50 rounded-xl">
-                      <div class="text-2xl font-bold text-blue-600">120+</div>
-                      <div class="text-sm text-gray-600">Awarded Annually</div>
+                    <div class="text-center p-4 bg-green-50 rounded-xl">
+                      <div class="text-2xl font-bold text-accent-school">120+</div>
+                      <div class="text-sm text-text-body">Awarded Annually</div>
                     </div>
                   </div>
                 </div>
 
-                
+                <!-- Right Content -->
                 <div class="space-y-6">
                   <div class="border-l-4 border-blue-500 pl-4">
-                    <h4 class="text-xl font-semibold text-gray-800 mb-4">Eligibility Requirements</h4>
+                    <h4 class="text-xl font-semibold text-text-primary mb-4">Eligibility Requirements</h4>
                     <ul class="space-y-4">
                       <li class="flex items-start">
                         <svg class="w-6 h-6 text-green-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-600">Proven academic excellence or professional achievement</span>
+                        <span class="text-text-body">Proven academic excellence or professional achievement</span>
                       </li>
                       <li class="flex items-start">
                         <svg class="w-6 h-6 text-green-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-600">Technical aptitude assessment</span>
+                        <span class="text-text-body">Technical aptitude assessment</span>
                       </li>
                       <li class="flex items-start">
                         <svg class="w-6 h-6 text-green-500 flex-shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
-                        <span class="text-gray-600">Clear career vision statement</span>
+                        <span class="text-text-body">Clear career vision statement</span>
                       </li>
                     </ul>
                   </div>
 
-                  <button class="w-full mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all flex items-center justify-center">
+                  <button class="w-full mt-8 btn-primary">
                     <span>Start Scholarship Application</span>
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -744,14 +594,15 @@ interface CourseSection {
                 </div>
               </div>
 
-              <div class="bg-blue-50 p-6 text-center border-t border-blue-100">
-                <p class="text-sm text-gray-600">
+              <!-- Footer Note -->
+              <div class="bg-green-50 p-6 text-center border-t border-blue-100">
+                <p class="text-sm text-text-body">
                   Applications reviewed quarterly • Next deadline: August 30, 2024
                 </p>
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
   `,
   styles: [`
     :host {
@@ -768,14 +619,14 @@ export class PythonComponent implements OnInit {
     { id: 'overview', title: 'Overview' },
     { id: 'requirements', title: 'Requirements' },
     { id: 'outline', title: 'Course Outline' },
-    // { id: 'cost', title: 'Cost' },
+    { id: 'cost', title: 'Cost' },
     { id: 'careers', title: 'Career Outcomes' },
-    // { id: 'scholarship', title: 'Scholarship' }
+    { id: 'scholarship', title: 'Scholarship' }
   ];
 
   currentSection = 'overview';
 
-  constructor(private dialogService: DialogService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     // Add scroll spy functionality
@@ -805,21 +656,10 @@ export class PythonComponent implements OnInit {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   }
-
-  openErollCourse() {
-    const ref: DynamicDialogRef = this.dialogService.open(CourseEnrollmentComponent, {
-      header: 'Enroll in Python Program',
-      width: '35vw',
-      breakpoints: {
-        '960px': '65vw',
-        '640px': '90vw'
-      },
-      modal: true,
-      data: {
-        departmentType: DepartmentType.TechSchool,
-        courseInterest: CourseInterest.PythonDevelopment
-      },
-      closable: true
-    });
-  }
 }
+
+
+
+
+
+

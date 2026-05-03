@@ -1,102 +1,125 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { MessageService } from 'primeng/api';
-import { ICreateUser } from '../../../shared/models/authentication.model';
-import { AuthenticationService } from '../../../shared/services/authentication.service';
-import { finalize, first } from 'rxjs';
-import { CommonModule } from '@angular/common';
-import { SpinnerIconComponent } from '../../../shared/components/spinner-icon.component';
+import { finalize } from 'rxjs';
+import { AuthService } from '../../../core/services/auth.service';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule, SpinnerIconComponent],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegisterComponent implements OnInit {
-
-  private readonly _authenticationService = inject(AuthenticationService);
-  private readonly formBuilder = inject(FormBuilder);
-  private readonly messageService = inject(MessageService);
+export class RegisterComponent {
+  private readonly fb = inject(FormBuilder);
+  private readonly auth = inject(AuthService);
+  private readonly toast = inject(ToastService);
   private readonly router = inject(Router);
 
-  formGroup!: FormGroup;
-  loading = signal(false);
-  passwordVisible = signal(false);
+  readonly loading = signal(false);
+  readonly error = signal('');
 
-  ngOnInit(): void {
-    this.initForm();
-  }
-
-  initForm() {
-    this.formGroup = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_]+$')]],
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [
+  readonly form = this.fb.nonNullable.group({
+    name: this.fb.nonNullable.control('', {
+      validators: [Validators.required, Validators.minLength(2), Validators.maxLength(100)],
+      updateOn: 'blur',
+    }),
+    email: this.fb.nonNullable.control('', {
+      validators: [Validators.required, Validators.email],
+      updateOn: 'blur',
+    }),
+    phone: this.fb.nonNullable.control('', {
+      validators: [Validators.required, Validators.pattern(/^(\+234|0)[789]\d{9}$/)],
+      updateOn: 'blur',
+    }),
+    password: this.fb.nonNullable.control('', {
+      validators: [
         Validators.required,
         Validators.minLength(8),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()])[A-Za-z\\d!@#$%^&*()]{8,}$')
-      ]],
-      confirmPassword: ['']
-    }, {
-      validators: this.passwordMatchValidator
-    });
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/),
+      ],
+      updateOn: 'blur',
+    }),
+    confirmPassword: this.fb.nonNullable.control('', {
+      validators: [Validators.required],
+      updateOn: 'blur',
+    }),
+  });
+
+  isInvalid(field: 'name' | 'email' | 'phone' | 'password' | 'confirmPassword'): boolean {
+    const control = this.form.controls[field];
+    return control.invalid && control.touched;
   }
 
-  passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
-    const password = control.get('password');
-    const confirmPassword = control.get('confirmPassword');
+  passwordsMismatch(): boolean {
+    return (
+      this.form.controls.confirmPassword.touched &&
+      this.form.controls.password.value !== this.form.controls.confirmPassword.value
+    );
+  }
 
-    if (password?.value !== confirmPassword?.value) {
-      confirmPassword?.setErrors({ passwordMismatch: true });
-      return { passwordMismatch: true };
-    } else {
-      confirmPassword?.setErrors(null);
-      return null;
+  submit(): void {
+    if (this.form.invalid || this.loading()) {
+      this.form.markAllAsTouched();
+      return;
     }
-  }
 
-  togglePasswordVisibility() {
-    this.passwordVisible.set(!this.passwordVisible());
-  }
+    if (this.form.controls.password.value !== this.form.controls.confirmPassword.value) {
+      this.form.controls.confirmPassword.markAsTouched();
+      this.error.set('Passwords do not match.');
+      this.toast.error('Passwords do not match.');
+      return;
+    }
 
-  onSubmit() {
+    this.error.set('');
     this.loading.set(true);
-    const { value } = this.formGroup;
-    const payload: ICreateUser = {
-      username: value.username.trim(),
-      firstName: value.firstName.trim(),
-      lastName: value.lastName.trim(),
-      email: value.email.trim(),
-      password: value.password,
-      confirmPassword: value.confirmPassword
-    } 
 
-    this._authenticationService
-      .register(payload)
+    this.auth
+      .register({
+        name: this.form.controls.name.value,
+        email: this.form.controls.email.value,
+        phone: this.form.controls.phone.value,
+        password: this.form.controls.password.value,
+        confirmPassword: this.form.controls.confirmPassword.value,
+      })
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
-        next: (res) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Your account has been created successfully',
-            life: 5000,
+        next: (response) => {
+          if (!response.success) {
+            const message = response.message ?? 'Unable to create account with these details. Please try again.';
+            this.error.set(message);
+            this.toast.error(message);
+            return;
+          }
+
+          const message = response.message ?? 'Account created successfully. Please confirm your email before signing in.';
+          this.toast.success(message);
+          void this.router.navigate(['/login'], {
+            queryParams: {
+              confirmation: 'pending',
+              email: this.form.controls.email.value,
+            },
           });
-          this.router.navigate(['/login']);
         },
-        error: (error) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Registration error',
-            detail: error.errors || 'Something went wrong',
-            life: 5000,
-          });
+        error: (error: unknown) => {
+          const message = this.extractErrorMessage(error, 'Unable to create account right now. Please try again shortly.');
+          this.error.set(message);
+          this.toast.error(message);
         },
       });
+  }
+
+  private extractErrorMessage(error: unknown, fallback: string): string {
+    if (error instanceof HttpErrorResponse) {
+      const message = error.error?.message ?? error.error?.Message;
+      if (typeof message === 'string' && message.trim()) {
+        return message;
+      }
+    }
+
+    return fallback;
   }
 }

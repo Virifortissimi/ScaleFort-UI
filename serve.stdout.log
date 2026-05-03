@@ -1,0 +1,48 @@
+
+> start
+> ng serve --host 127.0.0.1 --port 4200
+
+[33m>[39m Building...
+[32m√[39m Building...
+[1mInitial chunk files[22m                  [2m | [22m[1mNames[22m                    [2m | [22m [1mRaw size[22m
+[32mmain.js[39m                              [2m | [22m[2mmain[22m                     [2m | [22m[36m208.62 kB[39m[2m | [22m
+[32mstyles.css[39m                           [2m | [22m[2mstyles[22m                   [2m | [22m[36m100.25 kB[39m[2m | [22m
+[32mpolyfills.js[39m                         [2m | [22m[2mpolyfills[22m                [2m | [22m [36m90.20 kB[39m[2m | [22m
+[32mchunk-A62WDBGL.js[39m                    [2m | [22m[2m-[22m                        [2m | [22m [36m20.39 kB[39m[2m | [22m
+[32mchunk-4HAFXRRS.js[39m                    [2m | [22m[2m-[22m                        [2m | [22m [36m13.16 kB[39m[2m | [22m
+[32mchunk-YRN7JPLK.js[39m                    [2m | [22m[2m-[22m                        [2m | [22m  [36m5.37 kB[39m[2m | [22m
+[32mchunk-7XS7ZEIR.js[39m                    [2m | [22m[2m-[22m                        [2m | [22m  [36m4.31 kB[39m[2m | [22m
+[32mchunk-PL6FJZP4.js[39m                    [2m | [22m[2m-[22m                        [2m | [22m  [36m3.12 kB[39m[2m | [22m
+[32mchunk-DBEWHAVL.js[39m                    [2m | [22m[2m-[22m                        [2m | [22m  [36m2.63 kB[39m[2m | [22m
+[32mchunk-NT7O2DMS.js[39m                    [2m | [22m[2m-[22m                        [2m | [22m  [36m1.71 kB[39m[2m | [22m
+[32mchunk-B63Z5HBZ.js[39m                    [2m | [22m[2m-[22m                        [2m | [22m  [36m1.52 kB[39m[2m | [22m
+[32mchunk-Y5RQAIA6.js[39m                    [2m | [22m[2m-[22m                        [2m | [22m  [36m1.50 kB[39m[2m | [22m
+[32mchunk-FNU4MQJQ.js[39m                    [2m | [22m[2m-[22m                        [2m | [22m  [36m1.23 kB[39m[2m | [22m
+[32mchunk-VAHTJGTM.js[39m                    [2m | [22m[2m-[22m                        [2m | [22m  [36m1.18 kB[39m[2m | [22m
+[32mchunk-SLTN4B2V.js[39m                    [2m | [22m[2m-[22m                        [2m | [22m[36m586 bytes[39m[2m | [22m
+
+[1m [22m                                    [2m | [22m[1mInitial total[22m            [2m | [22m[1m455.76 kB[22m
+
+[1mLazy chunk files[22m                     [2m | [22m[1mNames[22m                    [2m | [22m [1mRaw size[22m
+[32mhome.component-NLMYODG3.js[39m           [2m | [22m[2mhome-component[22m           [2m | [22m [36m61.31 kB[39m[2m | [22m
+[32mget-started.component-S4GM3ULT.js[39m    [2m | [22m[2mget-started-component[22m    [2m | [22m [36m45.24 kB[39m[2m | [22m
+[32malumni.component-2UM5GX3U.js[39m         [2m | [22m[2malumni-component[22m         [2m | [22m [36m43.77 kB[39m[2m | [22m
+[32mpython.component-5CLXI7XH.js[39m         [2m | [22m[2mpython-component[22m         [2m | [22m [36m41.97 kB[39m[2m | [22m
+[32mcourses.component-RPOFOYZ7.js[39m        [2m | [22m[2mcourses-component[22m        [2m | [22m [36m38.80 kB[39m[2m | [22m
+[32mcourse-preview.component-BVHXQLXW.js[39m [2m | [22m[2mcourse-preview-component[22m [2m | [22m [36m34.89 kB[39m[2m | [22m
+[32mservices.component-RGBCAT75.js[39m       [2m | [22m[2mservices-component[22m       [2m | [22m [36m26.16 kB[39m[2m | [22m
+[32mcorporate.component-RIM3HTT6.js[39m      [2m | [22m[2mcorporate-component[22m      [2m | [22m [36m25.61 kB[39m[2m | [22m
+[32mvouchers.component-ZNWW3B2U.js[39m       [2m | [22m[2mvouchers-component[22m       [2m | [22m [36m22.18 kB[39m[2m | [22m
+[32mdataanalysis.component-O5NATFAH.js[39m   [2m | [22m[2mdataanalysis-component[22m   [2m | [22m [36m21.21 kB[39m[2m | [22m
+[32mpayout-requests.component-DNKQCWNJ.js[39m[2m | [22m[2mpayout-requests-component[22m[2m | [22m [36m21.00 kB[39m[2m | [22m
+[32mcloud.component-VSPJXSTO.js[39m          [2m | [22m[2mcloud-component[22m          [2m | [22m [36m20.58 kB[39m[2m | [22m
+[32mblog.component-VU5GQ7N5.js[39m           [2m | [22m[2mblog-component[22m           [2m | [22m [36m19.84 kB[39m[2m | [22m
+[32mfrontend.component-WREVWV32.js[39m       [2m | [22m[2mfrontend-component[22m       [2m | [22m [36m19.19 kB[39m[2m | [22m
+[32mgetintouch.component-GYTPW3V6.js[39m     [2m | [22m[2mgetintouch-component[22m     [2m | [22m [36m18.70 kB[39m[2m | [22m
+[2m...and 24 more lazy chunks files. Use "--verbose" to show all the files.[22m
+
+Application bundle generation complete. [60.366 seconds]
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m4200[22m/[39m

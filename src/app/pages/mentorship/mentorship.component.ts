@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MentorshipHeroComponent } from './components/mentorship-hero.component';
 import { MentorshipProgramsComponent } from './components/mentorship-programs.component';
 import { MentorshipProcessComponent } from './components/process/mentorship-process.component';
@@ -11,6 +11,7 @@ import { MentorshipProcessComponent } from './components/process/mentorship-proc
     MentorshipProgramsComponent,
     MentorshipProcessComponent
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div>
       <app-mentorship-hero />

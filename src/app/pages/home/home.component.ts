@@ -1,51 +1,62 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { HomeFeaturesComponent } from './components/home-features.component';
-import { HomeTestimonialsComponent } from './components/home-testimonials.component';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { HomeHeroComponent } from './components/home-hero.component';
-import { HomeCompaniesComponent } from './components/home-companies.component';
-import { HomeServicesComponent } from './components/home-services.component';
-import { HomeVoucherComponent } from './components/home-voucher.component';
+import { HomeFeaturesComponent } from './components/home-features.component';
+import { HomeStatsComponent } from './components/home-stats.component';
+import { HomeTestimonialsComponent } from './components/home-testimonials.component';
+import { HomeCtaComponent } from './components/home-cta.component';
+import { HomeVideoComponent } from './components/home-video.component';
+import { HomeProcessComponent } from './components/home-process.component';
 import { HomeBlogComponent } from './components/home-blog.component';
-import { HealthService } from '../../shared/services/health.service';
-import { HomeNewsletterComponent } from './components/home-newsletter..component';
-import { FormsModule } from '@angular/forms';
+import { ParticleFieldComponent } from '../../shared/components/particle-field.component';
+import { SchemaService } from '../../core/services/schema.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    HomeHeroComponent,
-    HomeServicesComponent,
-    HomeFeaturesComponent,
-    HomeTestimonialsComponent,
-    HomeCompaniesComponent,
-    HomeBlogComponent,
-    HomeVoucherComponent,
-    HomeNewsletterComponent,
-    FormsModule
-  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [HomeHeroComponent, HomeStatsComponent, HomeFeaturesComponent, HomeProcessComponent, HomeVideoComponent, HomeTestimonialsComponent, HomeBlogComponent, HomeCtaComponent, ParticleFieldComponent],
   template: `
-    <div>
-      <app-home-hero/>
+    <div class="relative overflow-hidden bg-bg-white">
+      <div class="hero-orbs" aria-hidden="true">
+        <div class="orb orb-green"></div>
+        <div class="orb orb-amber"></div>
+        <div class="orb orb-violet"></div>
+      </div>
+      <div class="dot-grid-hero" aria-hidden="true"></div>
+      <app-particle-field density="normal" variant="light" />
+
+      <app-home-hero />
+      <app-home-stats />
       <app-home-features />
-      <app-home-services />
-      <app-home-voucher />
-      <app-home-companies />
+      <app-home-process />
+      <app-home-video />
       <app-home-testimonials />
       <app-home-blog />
-      <app-home-newsletter />
+      <app-home-cta />
     </div>
-  `
+  `,
 })
 export class HomeComponent implements OnInit {
+  private readonly schema = inject(SchemaService);
 
-  private readonly _healthService = inject(HealthService);
-  
   ngOnInit(): void {
-    this.getApiHealth();
-  }
-
-  getApiHealth() {
-    this._healthService.getHealth().subscribe();
+    this.schema.inject(
+      {
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        name: 'Scalefort',
+        telephone: '+234-815-840-6306',
+        email: 'support@scalefort.org',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Road 4, Lekki Atlantic Gardens Estate, Ajah',
+          addressLocality: 'Lagos',
+          addressRegion: 'Lagos State',
+          addressCountry: 'NG',
+        },
+        geo: { '@type': 'GeoCoordinates', latitude: 6.4669, longitude: 3.5852 },
+      },
+      'schema-local'
+    );
   }
 }

@@ -6,16 +6,16 @@ import { NgClass } from '@angular/common';
   standalone: true,
   imports: [NgClass],
   template: `
-    <div id="faq-section" class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
+    <div class="card-base p-0">
       <button
         (click)="toggle()"
         [attr.aria-expanded]="isOpen"
         aria-controls="faq-content"
-        class="w-full px-6 py-5 text-left flex justify-between items-center gap-4 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-100"
+        class="w-full px-6 py-5 text-left flex justify-between items-center gap-4 hover:bg-bg-subtle focus:outline-none focus:ring-2 focus:ring-green-100 transition-colors"
       >
-        <h3 class="text-lg font-semibold text-gray-900">{{ question }}</h3>
+        <h3 class="text-lg font-semibold text-text-primary">{{ question }}</h3>
         <span class="flex-shrink-0 ml-4">
-          <svg class="w-6 h-6 text-blue-600 transform transition-transform duration-300" 
+          <svg class="w-6 h-6 text-accent-school transform transition-transform duration-300"
                [class.rotate-180]="isOpen" 
                fill="none" 
                stroke="currentColor" 
@@ -29,7 +29,7 @@ import { NgClass } from '@angular/common';
         [ngClass]="{'max-h-0': !isOpen, 'max-h-[500px]': isOpen}"
         class="overflow-hidden transition-all duration-300 ease-in-out"
       >
-        <div class="px-6 pb-5 pt-2 text-gray-600 leading-relaxed border-t border-gray-100">
+        <div class="px-6 pb-5 pt-2 text-text-body leading-relaxed border-t border-border-base">
           <p class="[&>:first-child]:mt-0 [&>:last-child]:mb-0">
             {{ answer }}
           </p>

@@ -1,107 +1,108 @@
-import { Component, HostListener } from '@angular/core';
-import { FooterBrandComponent } from './footer-brand.component';
-import { FooterLinksComponent } from './footer-links.component';
-import { FooterContactComponent } from './footer-contact.component';
-import { FooterNewsletterComponent } from './footer-newsletter.component';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { ApiService } from '../../core/services/api.service';
+import { ToastService } from '../../core/services/toast.service';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [
-    FooterBrandComponent,
-    FooterLinksComponent,
-    FooterContactComponent,
-    FooterNewsletterComponent
-  ],
+  imports: [RouterLink, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <footer class="bg-gradient-to-b from-gray-900 to-gray-950 text-white py-16 relative overflow-hidden">
-  <!-- Background decorative elements -->
-  <div class="absolute bottom-0 left-0 w-72 h-72 bg-blue-900/10 rounded-full -translate-x-1/3 translate-y-1/3"></div>
-  <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-900/5 rounded-full translate-x-1/3 -translate-y-1/3"></div>
-  
-  <div class="max-w-7xl mx-auto px-4 relative z-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-      <app-footer-brand />
-      <app-footer-links />
-      <app-footer-contact />
-      <app-footer-newsletter />
-    </div>
-    
-    <!-- Bottom Copyright -->
-    <div class="mt-16 pt-10 border-t border-gray-800/40">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="text-center md:text-left">
-          <p class="text-sm text-gray-400 mb-1">
-            &copy; 2025 ScaleFort. All rights reserved.
-          </p>
-          <p class="text-xs text-gray-500">
-            Empowering tech careers worldwide.
-          </p>
+    <footer class="section-dark bg-[var(--surface-dark)] text-white relative z-[1]">
+      <div class="container-base">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <section>
+            <img src="https://res.cloudinary.com/virifortissimi/image/upload/v1737720710/Goals/SCALE-small.png" alt="Scalefort" class="h-9 w-auto mb-4" />
+            <p class="text-white/75 leading-relaxed">Scale with Confidence. Scale with ScaleFort. Empowering Africa's tech ecosystem through world-class education, mentorship, and innovative solutions.</p>
+          </section>
+
+          <section>
+            <h2 class="text-xs font-semibold uppercase tracking-overline text-white/75 mb-4">Services</h2>
+            <ul class="space-y-3 text-white/75">
+              <li><a routerLink="/tech-school" class="hover:text-white no-underline">Tech School</a></li>
+              <li><a routerLink="/it-services" class="hover:text-white no-underline">IT Services</a></li>
+              <li><a routerLink="/corporate-training" class="hover:text-white no-underline">Corporate Training</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-xs font-semibold uppercase tracking-overline text-white/75 mb-4">Company</h2>
+            <ul class="space-y-3 text-white/75">
+              <li><a routerLink="/about" class="hover:text-white no-underline">About Us</a></li>
+              <li><a routerLink="/faq" class="hover:text-white no-underline">FAQs</a></li>
+              <li><a routerLink="/contact" class="hover:text-white no-underline">Get in Touch</a></li>
+              <li><a routerLink="/affiliate-policy" class="hover:text-white no-underline">Affiliate Policy</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-xs font-semibold uppercase tracking-overline text-white/75 mb-4">Newsletter</h2>
+            <p class="text-white/75 text-sm mb-3">Get updates on events, new cohorts, and resources.</p>
+            <form [formGroup]="newsletterForm" (ngSubmit)="submitNewsletter()" class="space-y-3 footer-newsletter-form">
+              <input type="email" formControlName="email" class="w-full px-3 py-2 rounded-[10px] border border-border-base text-text-primary placeholder:text-text-disabled" placeholder="you@example.com" />
+              <button type="submit" class="btn-primary w-full" [disabled]="newsletterForm.invalid || submitting()">{{ submitting() ? 'Submitting...' : 'Subscribe' }}</button>
+            </form>
+            @if (subscribed()) {
+              <p class="text-xs text-green-300 mt-2">Thanks for subscribing.</p>
+            }
+            <ul class="space-y-2 text-white/75 mt-6 text-sm">
+              <li>support&#64;scalefort.org</li>
+              <li>+234-815-840-6306</li>
+              <li>Road 4, Lekki Atlantic Gardens Estate, Ajah, Lagos, Nigeria</li>
+            </ul>
+          </section>
         </div>
-        
-        <div class="flex flex-wrap justify-center gap-6">
-          <a href="/privacy-policy" 
-             class="text-sm text-gray-400 hover:text-blue-400 transition-all duration-300 hover:underline underline-offset-4 flex items-center group">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-gray-500 group-hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-            Privacy Policy
-          </a>
-          <a href="/terms" 
-             class="text-sm text-gray-400 hover:text-blue-400 transition-all duration-300 hover:underline underline-offset-4 flex items-center group">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-gray-500 group-hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Terms of Service
-          </a>
-          <a href="/cookie-policy" 
-             class="text-sm text-gray-400 hover:text-blue-400 transition-all duration-300 hover:underline underline-offset-4 flex items-center group">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-gray-500 group-hover:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
-            Cookie Policy
-          </a>
-        </div>
-      </div>
-      
-      <!-- Additional badges/credentials -->
-      <div class="flex flex-wrap justify-center md:justify-start items-center gap-4 mt-6 pt-6 border-t border-gray-800/30">
-        <div class="flex items-center text-xs text-gray-500">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
-          Secure & NDPR/GDPR Compliant
-        </div>
-        <div class="flex items-center text-xs text-gray-500">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905a3.61 3.61 0 01-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-          </svg>
-          100+ Students Trained
+
+        <div class="mt-14 pt-8 border-t border-white/15 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+          <p class="text-sm text-white/60">&copy; {{ currentYear }} ScaleFort. All rights reserved. Empowering tech careers worldwide.</p>
+          <div class="flex gap-5 text-sm">
+            <a routerLink="/privacy-policy" class="text-white/75 hover:text-white no-underline">Privacy Policy</a>
+            <a routerLink="/terms-of-service" class="text-white/75 hover:text-white no-underline">Terms of Service</a>
+            <a routerLink="/cookie-policy" class="text-white/75 hover:text-white no-underline">Cookie Policy</a>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  
-  <!-- Back to top button -->
-  <button (click)="scrollToTop()" 
-          class="fixed bottom-6 right-6 w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 z-50 group">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform group-hover:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-    </svg>
-    <span class="sr-only">Back to top</span>
-  </button>
-</footer>
-  `
+    </footer>
+  `,
 })
 export class FooterComponent {
-  showScrollButton = false;
+  private readonly fb = inject(FormBuilder);
+  private readonly api = inject(ApiService);
+  private readonly toast = inject(ToastService);
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    this.showScrollButton = window.scrollY > 300;
-  }
+  readonly submitting = signal(false);
+  readonly subscribed = signal(false);
+  readonly currentYear = new Date().getFullYear();
 
-  scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  readonly newsletterForm = this.fb.nonNullable.group({
+    email: this.fb.nonNullable.control('', {
+      validators: [Validators.required, Validators.email],
+      updateOn: 'blur',
+    }),
+  });
+
+  submitNewsletter(): void {
+    if (this.newsletterForm.invalid || this.submitting()) {
+      this.newsletterForm.markAllAsTouched();
+      return;
+    }
+
+    this.submitting.set(true);
+    this.api.submitNewsletter({ email: this.newsletterForm.controls.email.value }).subscribe({
+      next: () => {
+        this.submitting.set(false);
+        this.subscribed.set(true);
+        this.newsletterForm.reset({ email: '' });
+        this.toast.success('Subscribed successfully.');
+      },
+      error: () => {
+        this.submitting.set(false);
+        this.toast.error('Unable to subscribe right now.');
+      },
+    });
   }
 }
+
+
