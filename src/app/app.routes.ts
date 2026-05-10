@@ -124,7 +124,6 @@ export const routes: Routes = [
   },
   {
     path: 'tech-school/apply',
-    canActivate: [affiliateAuthGuard],
     loadComponent: () => import('./pages/get-started/get-started.component').then((m) => m.GetStartedComponent),
   },
   {
