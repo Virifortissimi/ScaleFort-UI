@@ -100,7 +100,7 @@ interface RequirementGroup {
               <p class="text-text-body mb-4">{{ track.body }}</p>
               <p class="text-sm text-text-muted">{{ track.tags.join(' | ') }}</p>
               <div class="mt-4 flex flex-col sm:flex-row gap-3">
-                <a [routerLink]="['/tech-school/preview', previewSlug(track.title)]" class="btn-secondary btn-sm no-underline">View Free Lesson</a>
+                <!-- <a [routerLink]="['/tech-school/preview', previewSlug(track.title)]" class="btn-secondary btn-sm no-underline">View Free Lesson</a> -->
                 <a [routerLink]="['/tech-school/apply']" [queryParams]="{ track: track.title }" class="btn-primary btn-sm no-underline">Apply Now</a>
               </div>
             </article>
