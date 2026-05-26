@@ -328,11 +328,11 @@ export class CoursesComponent implements OnInit {
       title: 'Full Payment',
       via: 'via Paystack',
       price: 'NGN 300,000',
-      period: '/programme',
+      period: '/program',
       description: 'Pay once, focus entirely on learning. Save NGN 50,000 vs instalment.',
       primaryCta: { label: 'Enrol Now', link: '/tech-school/apply', queryParams: { plan: 'full' } },
       includesLabel: 'Everything included:',
-      features: ['All 7 course tracks', 'Live weekly sessions', 'Internship placement', 'Recruitment support', 'Alumni network access'],
+      features: ['Live weekly sessions', 'Internship placement', 'Recruitment support', 'Alumni network access'],
     },
     {
       badge: 'Flexible',
