@@ -108,6 +108,13 @@ export const routes: Routes = [
     path: 'contact',
     loadComponent: () => import('./pages/getintouch/getintouch.component').then((m) => m.GetInTouchComponent),
   },
+  {
+    path: 'future-creators-tech-camp',
+    loadComponent: () =>
+      import('./pages/future-creators-tech-camp/future-creators-tech-camp.component').then(
+        (m) => m.FutureCreatorsTechCampComponent
+      ),
+  },
 
   {
     path: 'tech-school',

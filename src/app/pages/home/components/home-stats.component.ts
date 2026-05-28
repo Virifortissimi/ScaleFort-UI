@@ -21,11 +21,11 @@ interface Stat {
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="text-center py-6 card-base">
-      <span class="block text-[clamp(2rem,5vw,3rem)] font-extrabold text-text-primary tracking-tighter leading-none mb-1">
+    <div class="text-center py-4 px-4 card-base">
+      <span class="block text-[clamp(1.75rem,3vw,2.35rem)] font-extrabold text-text-primary tracking-tighter leading-none mb-1">
         {{ count() }}{{ stat.suffix }}
       </span>
-      <span class="text-sm text-text-muted">{{ stat.label }}</span>
+      <span class="text-xs text-text-muted">{{ stat.label }}</span>
     </div>
   `,
 })
@@ -80,26 +80,26 @@ export class HomeStatItemComponent implements OnInit, OnDestroy {
   imports: [HomeStatItemComponent, AnimateOnScrollDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="section bg-bg-white relative z-[1]" aria-label="Scalefort proof and outcomes">
+    <section class="section-compact bg-bg-white relative z-[1]" aria-label="Scalefort proof and outcomes">
       <div class="dot-grid-section" aria-hidden="true"></div>
       <div class="container-base relative z-10">
-        <div appAnimateOnScroll class="text-center mb-12">
-          <p class="overline mb-4">Proof That Compounds</p>
+        <div appAnimateOnScroll class="text-center mb-8">
+          <p class="overline mb-2">Proof That Compounds</p>
           <h2 class="type-h3 text-text-primary">Reliable outcomes across training and delivery</h2>
         </div>
 
-        <div class="grid grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
           @for (stat of stats; track stat.label) {
             <app-home-stat-item [stat]="stat" class="group hover:-translate-y-1 transition-transform" />
           }
         </div>
 
-        <div class="flex flex-wrap justify-center gap-4">
+        <div class="flex flex-wrap justify-center gap-3">
           @for (chip of trustChips; track chip; let i = $index) {
             <div 
               appAnimateOnScroll 
               [animateDelay]="80 + (i * 60)" 
-              class="rounded-pill border border-border-base bg-bg-subtle/50 px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-text-tertiary shadow-sm"
+              class="rounded-pill border border-border-base bg-bg-subtle/50 px-4 py-2 text-[9px] font-bold uppercase tracking-widest text-text-tertiary shadow-sm"
             >
               {{ chip }}
             </div>

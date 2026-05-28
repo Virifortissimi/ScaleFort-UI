@@ -53,6 +53,12 @@ const SEO_MAP: Record<string, SeoConfig> = {
     title: 'Contact Scalefort | Lagos, Nigeria',
     description: 'Speak with the Scalefort team about Tech School, IT Services, or Corporate Training.',
   },
+  '/future-creators-tech-camp': {
+    title: 'Future Creators Tech Camp | Scalefort',
+    description:
+      'Scalefort Future Creators Tech Camp starts August 3, 2026. A 3-week virtual Zoom technology camp for children ages 7-15. Fee: NGN 99,999.',
+    ogImage: '/assets/images/camps/future-creators-tech-camp.jpeg',
+  },
 };
 
 @Injectable({ providedIn: 'root' })

@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://localhost:7152',
+  apiBaseUrl: 'http://127.0.0.1:5277',
   paystackPublicKey: '',
   flwPublicKey: '',
   whatsappNumber: '2348158406306',

@@ -8,12 +8,16 @@ import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, signal } 
     <div class="flex flex-wrap items-center justify-center gap-3 text-sm text-text-muted">
       <span class="flex items-center gap-1.5">
         <span class="w-2 h-2 bg-success rounded-full animate-pulse"></span>
-        Next cohort starts in
+        {{ label }}
       </span>
       <span class="font-semibold text-text-primary tabular-nums">
         {{ days() }}d {{ hours() }}h {{ minutes() }}m
       </span>
-      @if (spotsRemaining > 0) {
+      @if (scarcityLabel) {
+        <span class="bg-bg-white text-text-body border border-border-base rounded-pill px-3 py-1 text-xs font-semibold">
+          {{ scarcityLabel }}
+        </span>
+      } @else if (spotsRemaining > 0) {
         <span class="bg-bg-white text-text-body border border-border-base rounded-pill px-3 py-1 text-xs font-semibold">
           {{ spotsRemaining }} spot{{ spotsRemaining === 1 ? '' : 's' }} left
         </span>
@@ -23,7 +27,9 @@ import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, signal } 
 })
 export class CohortCountdownComponent implements OnInit, OnDestroy {
   @Input({ required: true }) nextCohortDate!: string;
+  @Input() label = 'Next cohort starts in';
   @Input() spotsRemaining = 0;
+  @Input() scarcityLabel = '';
 
   readonly days = signal(0);
   readonly hours = signal(0);

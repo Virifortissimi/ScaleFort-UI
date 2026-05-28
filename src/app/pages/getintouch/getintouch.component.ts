@@ -155,6 +155,7 @@ export class GetInTouchComponent implements OnInit {
 
   ngOnInit(): void {
     const currentUrl = this.router.url;
+
     if (currentUrl.startsWith('/it-services/quote')) {
       this.mode.set('quote');
       this.form.controls.enquiryType.setValue('IT Services');

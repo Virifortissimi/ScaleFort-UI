@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { HomeHeroComponent } from './components/home-hero.component';
 import { HomeFeaturesComponent } from './components/home-features.component';
-import { HomeStatsComponent } from './components/home-stats.component';
+import { HomeTechCampComponent } from './components/home-tech-camp.component';
 import { HomeTestimonialsComponent } from './components/home-testimonials.component';
 import { HomeCtaComponent } from './components/home-cta.component';
 import { HomeVideoComponent } from './components/home-video.component';
@@ -14,7 +14,7 @@ import { SchemaService } from '../../core/services/schema.service';
   selector: 'app-home',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [HomeHeroComponent, HomeStatsComponent, HomeFeaturesComponent, HomeProcessComponent, HomeVideoComponent, HomeTestimonialsComponent, HomeBlogComponent, HomeCtaComponent, ParticleFieldComponent],
+  imports: [HomeHeroComponent, HomeTechCampComponent, HomeFeaturesComponent, HomeProcessComponent, HomeVideoComponent, HomeTestimonialsComponent, HomeBlogComponent, HomeCtaComponent, ParticleFieldComponent],
   template: `
     <div class="relative overflow-hidden bg-bg-white">
       <div class="hero-orbs" aria-hidden="true">
@@ -26,7 +26,7 @@ import { SchemaService } from '../../core/services/schema.service';
       <app-particle-field density="normal" variant="light" />
 
       <app-home-hero />
-      <app-home-stats />
+      <app-home-tech-camp />
       <app-home-features />
       <app-home-process />
       <app-home-video />

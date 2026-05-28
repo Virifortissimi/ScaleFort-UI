@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, HostListener, OnDestroy, computed, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { ApiService, EnrolmentPayload, PricingDetails } from '../../core/services/api.service';
@@ -255,35 +255,86 @@ const PLAN_SUMMARIES: Record<PaymentPlan, PaymentPlanSummary> = {
           </div>
         </form>
 
-        @if (paymentModalOpen() && paymentIframeUrl()) {
-          <div class="fixed inset-0 z-[2100] bg-black/50 backdrop-blur-[2px] flex items-center justify-center p-4">
-            <div class="bg-white rounded-card w-full max-w-3xl h-[80vh] shadow-xl overflow-hidden">
-              <div class="flex items-center justify-between px-4 py-3 border-b border-border-base">
-                <h3 class="text-base font-semibold text-text-primary m-0">Pay with Paystack</h3>
-                <div class="flex items-center gap-2">
-                  <button
-                    type="button"
-                    class="btn-primary !px-3 !py-2 text-xs"
-                    [disabled]="paymentVerificationStatus() === 'verifying'"
-                    (click)="verifyPaymentAndContinue()"
-                  >
-                    {{ paymentVerificationStatus() === 'verifying' ? 'Verifying...' : 'I have completed payment' }}
-                  </button>
-                  <button type="button" (click)="closePaymentModal()" class="text-text-muted hover:text-text-primary" aria-label="Close payment modal">&times;</button>
-                </div>
-              </div>
-              <div class="px-4 py-2 border-b border-border-base bg-bg-subtle text-xs text-text-muted">
-                Complete checkout in Paystack, then click "I have completed payment" to verify and continue.
-              </div>
-              <iframe class="w-full h-[calc(80vh-97px)]" [src]="paymentIframeUrl()" title="Paystack Checkout"></iframe>
-            </div>
-          </div>
-        }
       </div>
     </section>
+
+    @if (paymentModalOpen() && paymentIframeUrl()) {
+      <div class="payment-overlay" role="dialog" aria-modal="true" aria-labelledby="tech-school-payment-title">
+        <div class="payment-dialog" [style.top.px]="paymentDialogTop()" [style.left.px]="paymentDialogLeft()">
+          <div class="payment-header">
+            <h3 id="tech-school-payment-title" class="text-base font-semibold text-text-primary m-0">Pay with Paystack</h3>
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                class="btn-primary !px-3 !py-2 text-xs"
+                [disabled]="paymentVerificationStatus() === 'verifying'"
+                (click)="verifyPaymentAndContinue()"
+              >
+                {{ paymentVerificationStatus() === 'verifying' ? 'Verifying...' : 'I have completed payment' }}
+              </button>
+              <button type="button" (click)="closePaymentModal()" class="text-text-muted hover:text-text-primary text-2xl leading-none px-2" aria-label="Close payment modal">&times;</button>
+            </div>
+          </div>
+          <div class="px-4 py-2 border-b border-border-base bg-bg-subtle text-xs text-text-muted">
+            Complete checkout in Paystack, then click "I have completed payment" to verify and continue.
+          </div>
+          <iframe class="w-full h-[calc(82svh-97px)]" [src]="paymentIframeUrl()" title="Paystack Checkout"></iframe>
+        </div>
+      </div>
+    }
   `,
+  styles: [`
+    :host {
+      display: block;
+    }
+
+    .payment-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 5000;
+      padding: 1rem;
+      background: rgba(15, 23, 42, 0.58);
+    }
+
+    .payment-dialog {
+      position: absolute;
+      z-index: 5001;
+      transform: translate(-50%, -50%);
+      width: min(100%, 48rem);
+      height: min(82svh, 44rem);
+      overflow: hidden;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 28px 90px rgba(15, 23, 42, 0.28);
+    }
+
+    .payment-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-default);
+    }
+
+    @media (max-width: 640px) {
+      .payment-overlay {
+        padding: 0;
+      }
+
+      .payment-dialog {
+        width: calc(100% - 1rem);
+        height: min(88svh, 44rem);
+      }
+
+      .payment-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  `],
 })
-export class GetStartedComponent {
+export class GetStartedComponent implements OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly api = inject(ApiService);
   private readonly analytics = inject(AnalyticsService);
@@ -311,6 +362,8 @@ export class GetStartedComponent {
   readonly paymentVerificationStatus = signal<'idle' | 'verifying'>('idle');
   readonly currentApplicationId = signal<string | null>(null);
   readonly currentPaymentReference = signal<string | null>(null);
+  readonly paymentDialogTop = signal(0);
+  readonly paymentDialogLeft = signal(0);
 
   readonly form = this.fb.nonNullable.group({
     name: this.fb.nonNullable.control('', { validators: [Validators.required, Validators.minLength(2), Validators.maxLength(100)], updateOn: 'blur' }),
@@ -331,6 +384,22 @@ export class GetStartedComponent {
     this.form.valueChanges.pipe(debounceTime(300), takeUntilDestroyed(this.destroyRef)).subscribe(() => {
       this.persistDraft();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.unlockPageScroll();
+  }
+
+  @HostListener('window:resize')
+  @HostListener('window:scroll')
+  updatePaymentDialogPosition(): void {
+    if (!this.paymentModalOpen()) {
+      return;
+    }
+
+    const hostTop = this.getHostDocumentTop();
+    this.paymentDialogTop.set(window.scrollY + window.innerHeight / 2 - hostTop);
+    this.paymentDialogLeft.set(window.innerWidth / 2);
   }
 
   isInvalid(field: keyof typeof this.form.controls): boolean {
@@ -484,6 +553,7 @@ export class GetStartedComponent {
     this.paymentModalOpen.set(false);
     this.paymentIframeUrl.set(null);
     this.paymentVerificationStatus.set('idle');
+    this.unlockPageScroll();
   }
 
   private pollPaymentStatus(applicationId: string, remainingAttempts: number): void {
@@ -565,6 +635,8 @@ export class GetStartedComponent {
             this.currentPaymentReference.set(payment.reference);
             this.paymentIframeUrl.set(trustedPaymentUrl);
             this.paymentModalOpen.set(true);
+            this.lockPageScroll();
+            this.updatePaymentDialogPosition();
             this.status.set('idle');
             this.analytics.trackLead('Tech School', payload.track, amount);
             this.toast.info('Complete payment in the modal to secure your spot.');
@@ -732,6 +804,25 @@ export class GetStartedComponent {
     } catch {
       return null;
     }
+  }
+
+  private lockPageScroll(): void {
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('payment-modal-active');
+  }
+
+  private unlockPageScroll(): void {
+    document.body.style.overflow = '';
+    document.body.classList.remove('payment-modal-active');
+  }
+
+  private getHostDocumentTop(): number {
+    const host = document.querySelector('app-get-started');
+    if (!host) {
+      return 0;
+    }
+
+    return host.getBoundingClientRect().top + window.scrollY;
   }
 }
 

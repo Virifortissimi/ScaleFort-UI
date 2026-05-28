@@ -114,6 +114,12 @@
     transition: background-color 300ms var(--ease-drift), color 300ms var(--ease-drift);
   }
 
+  body.payment-modal-active app-footer,
+  body.payment-modal-active app-conversion-rail {
+    pointer-events: none;
+    opacity: 0;
+  }
+
   h1,
   h2,
   h3,

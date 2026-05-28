@@ -16,6 +16,15 @@ export interface EnrolmentPayload {
   referral?: string;
 }
 
+export interface FutureCreatorsTechCampPayload {
+  parentName: string;
+  email: string;
+  phone: string;
+  childName: string;
+  ageGroup: '7-10' | '11-15';
+  message?: string;
+}
+
 export interface ContactPayload {
   name: string;
   email: string;
@@ -206,6 +215,7 @@ type ApiEnvelope = {
 
 export interface EnrolmentSubmissionData {
   applicationId: string;
+  amount?: number;
 }
 
 export interface PaystackInitPayload {
@@ -253,6 +263,10 @@ export class ApiService {
 
   submitEnrolment(payload: EnrolmentPayload): Observable<ApiResponse<EnrolmentSubmissionData>> {
     return this.http.post<ApiResponse<EnrolmentSubmissionData>>(`${this.base}/api/forms/enrolment`, payload);
+  }
+
+  submitFutureCreatorsTechCamp(payload: FutureCreatorsTechCampPayload): Observable<ApiResponse<EnrolmentSubmissionData>> {
+    return this.http.post<ApiResponse<EnrolmentSubmissionData>>(`${this.base}/api/forms/future-creators-tech-camp`, payload);
   }
 
   submitContactForm(payload: ContactPayload): Observable<ApiResponse> {
