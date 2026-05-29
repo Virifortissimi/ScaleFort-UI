@@ -293,12 +293,20 @@ const PLAN_SUMMARIES: Record<PaymentPlan, PaymentPlanSummary> = {
       inset: 0;
       z-index: 5000;
       padding: 1rem;
+      background: transparent;
+    }
+
+    .payment-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
       background: rgba(15, 23, 42, 0.58);
     }
 
     .payment-dialog {
       position: absolute;
-      z-index: 5001;
+      z-index: 1;
       transform: translate(-50%, -50%);
       width: min(100%, 48rem);
       height: min(82svh, 44rem);

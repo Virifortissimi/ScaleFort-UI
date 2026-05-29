@@ -28,15 +28,24 @@ interface CampDetail {
   imports: [ReactiveFormsModule, NgClass, AnimateOnScrollDirective, CohortCountdownComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="section-hero bg-bg-white relative overflow-hidden">
-      <div class="absolute inset-x-0 top-0 h-72 bg-[linear-gradient(180deg,rgba(239,253,245,0.95),rgba(255,255,255,0))]" aria-hidden="true"></div>
-      <div class="container-base grid grid-cols-1 lg:grid-cols-[0.96fr_1.04fr] gap-10 lg:gap-14 items-center">
-        <div appAnimateOnScroll class="text-center lg:text-left">
-          <p class="overline mb-4 inline-flex items-center rounded-pill border border-green-100 bg-green-50 px-5 py-2 text-xs font-bold text-green-700 shadow-sm">
+    <section class="camp-hero section-hero relative overflow-hidden">
+      <!-- Premium ambient background decoration -->
+      <div class="camp-hero-glow" aria-hidden="true">
+        <div class="ambient-blob blob-green"></div>
+        <div class="ambient-blob blob-amber"></div>
+        <div class="ambient-blob blob-purple"></div>
+      </div>
+
+      <div class="container-base grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+        <!-- Hero Left Column Content -->
+        <div appAnimateOnScroll class="text-center lg:text-left relative z-[2]">
+          <p class="camp-eyebrow overline animate-fade-in">
             Maiden Edition Starts August 3, 2026
           </p>
-          <h1 class="type-display text-text-primary mb-6 tracking-tight">Future Creators Tech Camp</h1>
-          <p class="type-body-l text-text-muted max-w-2xl mx-auto lg:mx-0 mb-8">
+          <h1 class="camp-title type-display-xl mb-6">
+            Future Creators <span class="accent-title">Tech Camp</span>
+          </h1>
+          <p class="camp-copy type-body-l">
             A fun, practical 3-week virtual holiday program that introduces children to technology, creativity, and problem-solving on Zoom.
           </p>
 
@@ -49,27 +58,30 @@ interface CampDetail {
           </div>
 
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <button type="button" (click)="scrollToSection('register')" class="btn-primary">Register Now</button>
-            <button type="button" (click)="scrollToSection('themes')" class="btn-secondary">View Camp Themes</button>
+            <button type="button" (click)="scrollToSection('register')" class="btn-primary-camp">Register Now</button>
+            <button type="button" (click)="scrollToSection('themes')" class="btn-secondary-camp">View Camp Themes</button>
           </div>
 
-          <dl class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+          <!-- Glassmorphic Details Grid -->
+          <dl class="camp-details-grid mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5 text-left">
             @for (detail of details; track detail.label) {
-              <div class="rounded-card border border-border-base bg-bg-subtle p-4">
-                <dt class="text-xs font-semibold uppercase tracking-[0.12em] text-accent-school mb-1">{{ detail.label }}</dt>
-                <dd class="text-base font-bold text-text-primary">{{ detail.value }}</dd>
-                <dd class="text-sm text-text-muted mt-1">{{ detail.note }}</dd>
+              <div class="detail-card glass-card">
+                <dt class="detail-label">{{ detail.label }}</dt>
+                <dd class="detail-value">{{ detail.value }}</dd>
+                <dd class="detail-note">{{ detail.note }}</dd>
               </div>
             }
           </dl>
         </div>
 
-        <figure appAnimateOnScroll [animateDelay]="120" class="relative">
-          <div class="overflow-hidden rounded-[1.75rem] border border-border-base bg-bg-white p-2 shadow-[0_32px_90px_rgba(15,23,42,0.14)]">
+        <!-- Hero Right Column Flyer Image -->
+        <figure appAnimateOnScroll [animateDelay]="120" class="relative z-[2]">
+          <div class="camp-flyer-frame">
+            <div class="frame-shimmer" aria-hidden="true"></div>
             <img
               src="assets/images/camps/future-creators-tech-camp.jpeg"
               alt="Scalefort Future Creators Tech Camp flyer showing children learning with a laptop"
-              class="w-full rounded-[1.25rem] object-cover"
+              class="camp-flyer-img"
               decoding="async"
               fetchpriority="high"
             />
@@ -79,49 +91,61 @@ interface CampDetail {
       </div>
     </section>
 
-    <section class="section-compact bg-bg-white">
+    <!-- Interactive Benefits Section -->
+    <section class="section-compact relative z-[2] bg-transparent">
       <div class="container-base">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           @for (benefit of benefits; track benefit.title; let i = $index) {
-            <article appAnimateOnScroll [animateDelay]="i * 80" class="card-base p-6">
-              <div class="w-11 h-11 rounded-xl bg-green-50 border border-green-100 text-green-700 flex items-center justify-center mb-4">
-                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <article appAnimateOnScroll [animateDelay]="i * 80" class="benefit-card glass-card">
+              <div class="benefit-icon-wrapper">
+                <svg class="h-5 w-5 icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="benefit.path" />
                 </svg>
               </div>
-              <h2 class="text-lg font-bold text-text-primary mb-2">{{ benefit.title }}</h2>
-              <p class="text-sm leading-6 text-text-muted">{{ benefit.body }}</p>
+              <h2 class="benefit-title">{{ benefit.title }}</h2>
+              <p class="benefit-body">{{ benefit.body }}</p>
             </article>
           }
         </div>
       </div>
     </section>
 
-    <section id="themes" class="section bg-bg-subtle">
+    <!-- Weekly Themes Section -->
+    <section id="themes" class="section section-themes relative overflow-hidden">
       <div class="container-base">
-        <div class="text-center max-w-3xl mx-auto mb-10">
-          <p class="overline mb-2">3 Weeks. 3 Exciting Themes.</p>
-          <h2 class="type-h1 text-text-primary">What Children Will Learn</h2>
-          <p class="type-body text-text-muted mt-3">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <p class="overline overline-amber mb-2">3 Weeks. 3 Exciting Themes.</p>
+          <h2 class="type-h1 section-themes-title">What Children Will Learn</h2>
+          <p class="type-body themes-section-copy mt-3">
             Each week gives young learners a practical theme, a clear set of skills, and creative projects they can show proudly.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           @for (theme of themes; track theme.week; let i = $index) {
-            <article appAnimateOnScroll [animateDelay]="i * 100" class="card-base p-6 bg-bg-white">
-              <p [class]="'inline-flex rounded-pill px-4 py-1 text-xs font-bold uppercase tracking-[0.12em] mb-4 ' + theme.accentClass">
+            <article appAnimateOnScroll [animateDelay]="i * 100" [ngClass]="'theme-card glass-card theme-card--' + i">
+              <!-- Week Tag Badge -->
+              <p [class]="'theme-badge ' + theme.accentClass">
                 {{ theme.week }}
               </p>
-              <h3 class="text-h3 font-bold text-text-primary mb-4">{{ theme.title }}</h3>
-              <ul class="space-y-2 text-sm text-text-muted list-disc pl-5 mb-6">
+              <h3 class="theme-card-title">{{ theme.title }}</h3>
+              
+              <!-- Redesigned Checkmark List -->
+              <ul class="theme-items-list">
                 @for (item of theme.items; track item) {
-                  <li>{{ item }}</li>
+                  <li>
+                    <svg class="item-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>{{ item }}</span>
+                  </li>
                 }
               </ul>
-              <div class="rounded-card border border-border-base bg-bg-subtle p-4">
-                <p class="text-xs font-semibold uppercase tracking-[0.12em] text-text-primary mb-2">Fun Projects</p>
-                <p class="text-sm text-text-muted">{{ theme.projects.join(' | ') }}</p>
+              
+              <!-- Projects Box -->
+              <div class="projects-box glass-card">
+                <p class="projects-title">Fun Projects</p>
+                <p class="projects-list">{{ theme.projects.join(' • ') }}</p>
               </div>
             </article>
           }
@@ -129,119 +153,140 @@ interface CampDetail {
       </div>
     </section>
 
-    <section class="section bg-bg-white">
+    <!-- Registration Section -->
+    <section class="section section-register relative overflow-hidden">
       <div id="register" class="container-base max-w-6xl">
-        <div class="grid grid-cols-1 lg:grid-cols-[0.78fr_1.22fr] gap-8 items-start">
-          <aside class="rounded-[28px] border border-green-100 bg-[linear-gradient(135deg,rgba(239,253,245,0.96),rgba(255,255,255,0.98))] p-6 md:p-8 shadow-[0_28px_80px_rgba(10,42,23,0.08)]">
-            <p class="overline mb-2">Limited Slots Available</p>
-            <h2 class="type-h1 text-text-primary mb-4">Register for NGN 99,999</h2>
-            <p class="type-body text-text-muted mb-6">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr] gap-10 items-start">
+          
+          <!-- Redesigned Pricing Ticket -->
+          <aside class="registration-ticket glass-card">
+            <div class="ticket-header">
+              <p class="ticket-overline">Limited Slots Available</p>
+              <h2 class="ticket-title">Secure a Spot</h2>
+            </div>
+            
+            <div class="ticket-price-wrapper">
+              <span class="currency-tag">NGN</span>
+              <span class="price-value">{{ formatAmount(campPrice) }}</span>
+            </div>
+            
+            <p class="ticket-description">
               Complete the form and continue to Paystack checkout. Zoom access details will be shared after payment confirmation.
             </p>
-            <div class="mb-6 rounded-card border border-border-base bg-bg-white p-4">
+            
+            <div class="mb-6">
               <app-cohort-countdown
                 nextCohortDate="2026-08-03T09:00:00+01:00"
                 label="Camp starts in"
                 scarcityLabel="Limited slots available"
               />
             </div>
-            <dl class="space-y-4 m-0">
+            
+            <div class="ticket-divider"></div>
+            
+            <dl class="ticket-details-list">
               <div>
-                <dt class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Format</dt>
-                <dd class="text-base font-semibold text-text-primary m-0">Virtual on Zoom</dd>
+                <dt>Format</dt>
+                <dd>Virtual on Zoom</dd>
               </div>
               <div>
-                <dt class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Price</dt>
-                <dd class="text-base font-semibold text-text-primary m-0">NGN {{ formatAmount(campPrice) }}</dd>
+                <dt>Price</dt>
+                <dd>NGN {{ formatAmount(campPrice) }}</dd>
               </div>
               <div>
-                <dt class="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">Starts</dt>
-                <dd class="text-base font-semibold text-text-primary m-0">August 3, 2026</dd>
+                <dt>Starts</dt>
+                <dd>August 3, 2026</dd>
               </div>
             </dl>
           </aside>
 
-          <form [formGroup]="form" (ngSubmit)="submit()" class="form-elevated grid grid-cols-1 md:grid-cols-2 gap-6" novalidate>
+          <!-- Dynamic Form Card -->
+          <form [formGroup]="form" (ngSubmit)="submit()" class="form-card glass-card grid grid-cols-1 md:grid-cols-2 gap-6" novalidate>
             <div class="md:col-span-2">
-              <label for="parentName" class="text-sm font-medium text-text-body">Parent or Guardian Name</label>
-              <input id="parentName" type="text" formControlName="parentName" class="mt-2 w-full px-4 py-3 rounded-[10px] border border-border-base bg-bg-white" />
+              <label for="parentName" class="form-label">Parent or Guardian Name</label>
+              <input id="parentName" type="text" formControlName="parentName" class="form-input" placeholder="e.g. John Doe" />
               @if (isInvalid('parentName')) {
-                <p class="text-xs text-error mt-1" role="alert">Please enter the parent or guardian name.</p>
+                <p class="form-error-msg" role="alert">Please enter the parent or guardian name.</p>
               }
             </div>
 
             <div>
-              <label for="email" class="text-sm font-medium text-text-body">Email</label>
-              <input id="email" type="email" formControlName="email" class="mt-2 w-full px-4 py-3 rounded-[10px] border border-border-base bg-bg-white" />
+              <label for="email" class="form-label">Email Address</label>
+              <input id="email" type="email" formControlName="email" class="form-input" placeholder="e.g. parent@example.com" />
               @if (isInvalid('email')) {
-                <p class="text-xs text-error mt-1" role="alert">Please enter a valid email address.</p>
+                <p class="form-error-msg" role="alert">Please enter a valid email address.</p>
               }
             </div>
 
             <div>
-              <label for="phone" class="text-sm font-medium text-text-body">Phone</label>
-              <input id="phone" type="tel" formControlName="phone" class="mt-2 w-full px-4 py-3 rounded-[10px] border border-border-base bg-bg-white" />
+              <label for="phone" class="form-label">Phone Number</label>
+              <input id="phone" type="tel" formControlName="phone" class="form-input" placeholder="e.g. 08012345678" />
               @if (isInvalid('phone')) {
-                <p class="text-xs text-error mt-1" role="alert">Enter a valid Nigerian phone number.</p>
+                <p class="form-error-msg" role="alert">Enter a valid Nigerian phone number.</p>
               }
             </div>
 
             <div>
-              <label for="childName" class="text-sm font-medium text-text-body">Child's Name</label>
-              <input id="childName" type="text" formControlName="childName" class="mt-2 w-full px-4 py-3 rounded-[10px] border border-border-base bg-bg-white" />
+              <label for="childName" class="form-label">Child's Name</label>
+              <input id="childName" type="text" formControlName="childName" class="form-input" placeholder="e.g. Alex Doe" />
               @if (isInvalid('childName')) {
-                <p class="text-xs text-error mt-1" role="alert">Please enter the child's name.</p>
+                <p class="form-error-msg" role="alert">Please enter the child's name.</p>
               }
             </div>
 
             <div>
-              <label for="ageGroup" class="text-sm font-medium text-text-body">Age Group</label>
-              <select id="ageGroup" formControlName="ageGroup" class="mt-2 w-full px-4 py-3 rounded-[10px] border border-border-base bg-bg-white">
+              <label for="ageGroup" class="form-label">Age Group</label>
+              <select id="ageGroup" formControlName="ageGroup" class="form-input select-input">
                 <option value="">Select age group</option>
                 <option value="7-10">7-10 years</option>
                 <option value="11-15">11-15 years</option>
               </select>
               @if (isInvalid('ageGroup')) {
-                <p class="text-xs text-error mt-1" role="alert">Please choose an age group.</p>
+                <p class="form-error-msg" role="alert">Please choose an age group.</p>
               }
             </div>
 
             <div class="md:col-span-2">
-              <label for="message" class="text-sm font-medium text-text-body">Notes (optional)</label>
-              <textarea id="message" rows="4" formControlName="message" class="mt-2 w-full px-4 py-3 rounded-[10px] border border-border-base bg-bg-white"></textarea>
+              <label for="message" class="form-label">Notes / Dietary / Accessibility Requirements (Optional)</label>
+              <textarea id="message" rows="4" formControlName="message" class="form-input" placeholder="Any specific requirements or comments..."></textarea>
             </div>
 
             @if (status() === 'error') {
-              <p class="md:col-span-2 text-sm text-error" role="alert">We couldn't submit the camp registration right now. Please try again.</p>
+              <p class="md:col-span-2 form-submit-error" role="alert">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                We couldn't submit the camp registration right now. Please try again.
+              </p>
             }
 
-            <div class="md:col-span-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <p class="text-sm text-text-muted m-0">Pay securely with Paystack: NGN {{ formatAmount(campPrice) }}.</p>
-              <button type="submit" [disabled]="form.invalid || loading()" [attr.aria-busy]="loading()" class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed">
+            <div class="md:col-span-2 ticket-footer-block">
+              <p class="ticket-footer-text">Pay securely with Paystack: NGN {{ formatAmount(campPrice) }}.</p>
+              <button type="submit" [disabled]="form.invalid || loading()" [attr.aria-busy]="loading()" class="btn-submit-camp">
                 {{ loading() ? 'Preparing Payment...' : 'Submit & Pay' }}
               </button>
             </div>
           </form>
         </div>
-
       </div>
     </section>
 
+    <!-- Paystack Checkout Overlay -->
     @if (paymentModalOpen() && paymentIframeUrl()) {
-      <div class="camp-payment-overlay" role="dialog" aria-modal="true" aria-labelledby="camp-payment-title">
-        <div class="camp-payment-dialog" [style.top.px]="paymentDialogTop()" [style.left.px]="paymentDialogLeft()">
+      <div class="camp-payment-overlay animate-fade-in" role="dialog" aria-modal="true" aria-labelledby="camp-payment-title">
+        <div class="camp-payment-dialog glass-card animate-slide-up" [style.top.px]="paymentDialogTop()" [style.left.px]="paymentDialogLeft()">
           <div class="camp-payment-header">
-            <h3 id="camp-payment-title" class="text-base font-semibold text-text-primary m-0">Pay with Paystack</h3>
-            <div class="flex items-center gap-2">
+            <h3 id="camp-payment-title" class="text-base font-bold text-text-primary m-0">Pay with Paystack</h3>
+            <div class="flex items-center gap-3">
               <button
                 type="button"
-                class="btn-primary !px-3 !py-2 text-xs"
+                class="btn-primary-camp !px-4 !py-2 text-xs"
                 [disabled]="paymentVerificationStatus() === 'verifying'"
                 (click)="verifyPaymentAndContinue()"
               >
                 {{ paymentVerificationStatus() === 'verifying' ? 'Verifying...' : 'I have completed payment' }}
               </button>
-              <button type="button" (click)="closePaymentModal()" class="text-text-muted hover:text-text-primary text-2xl leading-none px-2" aria-label="Close payment modal">&times;</button>
+              <button type="button" (click)="closePaymentModal()" class="close-modal-btn" aria-label="Close payment modal">&times;</button>
             </div>
           </div>
           <div class="px-4 py-2 border-b border-border-base bg-bg-subtle text-xs text-text-muted">
@@ -255,26 +300,621 @@ interface CampDetail {
   styles: [`
     :host {
       display: block;
+      background-color: var(--surface-base);
     }
 
-    .camp-payment-overlay {
+    /* Premium Ambient Background */
+    .camp-hero {
+      min-height: 90svh;
+      padding-block-start: 140px;
+      padding-block-end: 80px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      position: relative;
+    }
+
+    .camp-hero-glow {
       position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .ambient-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(130px);
+      opacity: 0.5;
+    }
+
+    .blob-green {
+      top: -10%;
+      left: 5%;
+      width: 40vw;
+      height: 40vw;
+      background: rgba(22, 198, 90, 0.08);
+    }
+
+    .blob-amber {
+      top: 15%;
+      right: 5%;
+      width: 35vw;
+      height: 35vw;
+      background: rgba(245, 158, 11, 0.06);
+    }
+
+    .blob-purple {
+      bottom: -10%;
+      left: 20%;
+      width: 45vw;
+      height: 45vw;
+      background: rgba(107, 116, 232, 0.05);
+    }
+
+    /* Custom Glassmorphism styles */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 1.5rem;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 4px 30px rgba(15, 23, 42, 0.015);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.88);
+      border-color: rgba(203, 213, 225, 0.9);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+    }
+
+    /* Hero Text Styles */
+    .camp-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin-bottom: 1.4rem;
+      padding: 0.55rem 1.25rem;
+      border: 1px solid var(--border-default);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--green-600);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+      font-weight: 700;
+    }
+
+    .camp-title {
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      line-height: 1.05;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.035em;
+    }
+
+    .camp-title .accent-title {
+      color: var(--green-600);
+      background: linear-gradient(135deg, var(--green-600) 0%, var(--green-500) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+      margin-top: 0.08em;
+    }
+
+    .camp-copy {
+      color: #475569; /* slate-600 */
+      margin-bottom: 2.2rem;
+      max-width: 38rem;
+    }
+
+    /* Custom Camp Buttons */
+    .btn-primary-camp, .btn-secondary-camp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 2.5rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-primary-camp {
+      color: #ffffff;
+      background: linear-gradient(90deg, var(--green-600) 0%, var(--green-500) 100%);
+      box-shadow: 0 10px 25px rgba(22, 198, 90, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-primary-camp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(22, 198, 90, 0.35);
+      background: linear-gradient(90deg, var(--green-500) 0%, var(--green-400) 100%);
+    }
+
+    .btn-primary-camp:active {
+      transform: scale(0.97);
+    }
+
+    .btn-secondary-camp {
+      color: #334155; /* slate-700 */
+      background: rgba(255, 255, 255, 0.8);
+      border: 1.5px solid var(--border-default);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    }
+
+    .btn-secondary-camp:hover {
+      transform: translateY(-2px);
+      background: #ffffff;
+      border-color: var(--border-strong);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Details Grid */
+    .camp-details-grid {
+      margin-top: 2.8rem;
+    }
+
+    .detail-card {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .detail-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--green-600);
+      margin-bottom: 0.35rem;
+    }
+
+    .detail-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+    }
+
+    .detail-note {
+      font-size: 0.85rem;
+      color: #64748b; /* slate-500 */
+      margin: 0.25rem 0 0 0;
+      line-height: 1.4;
+    }
+
+    /* Flyer frame with double border & hover effect */
+    .camp-flyer-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2rem;
+      background: #ffffff;
+      padding: 0.65rem;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 35px 85px rgba(15, 23, 42, 0.12);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .camp-flyer-frame:hover {
+      transform: translateY(-6px) scale(1.01) rotate(0.5deg);
+      box-shadow: 0 45px 100px rgba(15, 23, 42, 0.18);
+    }
+
+    .frame-shimmer {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 50%);
+      pointer-events: none;
+    }
+
+    .camp-flyer-img {
+      width: 100%;
+      border-radius: 1.5rem;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    /* Benefit Cards */
+    .benefit-card {
+      padding: 1.8rem;
+    }
+
+    .benefit-icon-wrapper {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 1rem;
+      background: rgba(22, 198, 90, 0.08);
+      border: 1px solid rgba(22, 198, 90, 0.15);
+      color: var(--green-600);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      transition: all 0.3s ease;
+    }
+
+    .benefit-card:hover .benefit-icon-wrapper {
+      transform: scale(1.1) rotate(5deg);
+      background: var(--green-500);
+      color: #ffffff;
+    }
+
+    .benefit-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 0.6rem 0;
+    }
+
+    .benefit-body {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #64748b;
+      margin: 0;
+    }
+
+    /* Themes Section */
+    .section-themes {
+      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+
+    .section-themes-title {
+      color: #0f172a;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+    }
+
+    .themes-section-copy {
+      color: #64748b;
+    }
+
+    .theme-card {
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.7);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .theme-card--0 { border-top: 4px solid var(--green-500); }
+    .theme-card--1 { border-top: 4px solid var(--amber-500); }
+    .theme-card--2 { border-top: 4px solid var(--rose-500); }
+
+    .theme-badge {
+      display: inline-flex;
+      border-radius: 9999px;
+      padding: 0.35rem 1.15rem;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.2rem;
+      align-self: flex-start;
+    }
+
+    .theme-card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0 0 1.25rem 0;
+      line-height: 1.2;
+    }
+
+    .theme-items-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2.2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      flex-grow: 1;
+    }
+
+    .theme-items-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.92rem;
+      line-height: 1.4;
+      color: #475569; /* slate-600 */
+    }
+
+    .item-check-icon {
+      width: 1.05rem;
+      height: 1.05rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .theme-card--0 .item-check-icon { color: var(--green-500); }
+    .theme-card--1 .item-check-icon { color: var(--amber-500); }
+    .theme-card--2 .item-check-icon { color: var(--rose-500); }
+
+    /* Fun Projects inside Themes */
+    .projects-box {
+      padding: 1.1rem 1.35rem;
+      border-radius: 1rem;
+      background: rgba(248, 250, 252, 0.8);
+      border-color: rgba(226, 232, 240, 0.6);
+    }
+
+    .theme-card:hover .projects-box {
+      background: #ffffff;
+      border-color: var(--border-default);
+    }
+
+    .projects-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #0f172a;
+      margin: 0 0 0.45rem 0;
+    }
+
+    .projects-list {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #64748b;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* Registration Ticket Box */
+    .section-register {
+      background: #ffffff;
+    }
+
+    .registration-ticket {
+      padding: 2.2rem;
+      background: linear-gradient(135deg, rgba(239, 253, 245, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+      border: 1px solid rgba(22, 198, 90, 0.16);
+      box-shadow: 0 25px 65px rgba(22, 198, 90, 0.05);
+    }
+
+    .ticket-header {
+      margin-bottom: 1.8rem;
+    }
+
+    .ticket-overline {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--green-600);
+      margin: 0 0 0.45rem 0;
+    }
+
+    .ticket-title {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #0f172a;
+      margin: 0;
+    }
+
+    .ticket-price-wrapper {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .currency-tag {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--green-600);
+    }
+
+    .price-value {
+      font-size: 3.2rem;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .ticket-description {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #475569;
+      margin: 0 0 1.8rem 0;
+    }
+
+    .ticket-divider {
+      height: 1px;
+      background: rgba(22, 198, 90, 0.15);
+      margin-block: 1.8rem;
+    }
+
+    .ticket-details-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .ticket-details-list > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ticket-details-list dt {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #64748b;
+    }
+
+    .ticket-details-list dd {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+    }
+
+    /* Styled Form Card */
+    .form-card {
+      padding: 2.2rem;
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 25px 65px rgba(15, 23, 42, 0.04);
+    }
+
+    .form-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #334155; /* slate-700 */
+      display: block;
+      margin-bottom: 0.55rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.85rem 1.15rem;
+      border-radius: 0.75rem;
+      border: 1.5px solid var(--border-default);
+      background: #ffffff;
+      color: #0f172a;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .form-input::placeholder {
+      color: #94a3b8;
+    }
+
+    .form-input:hover {
+      border-color: var(--border-strong);
+    }
+
+    .form-input:focus-visible {
+      border-color: var(--green-500);
+      box-shadow: 0 0 0 4px rgba(22, 198, 90, 0.14);
+      background: #ffffff;
+      outline: none;
+    }
+
+    .select-input {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+      background-position: right 0.8rem center;
+      background-repeat: no-repeat;
+      background-size: 1.25rem;
+      padding-right: 2.5rem;
+    }
+
+    .form-error-msg {
+      color: var(--color-error);
+      font-size: 0.75rem;
+      margin: 0.35rem 0 0 0;
+      font-weight: 600;
+      animation: errorPop 0.2s ease forwards;
+    }
+
+    .form-submit-error {
+      color: var(--color-error);
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      border-radius: 0.75rem;
+      padding: 0.85rem 1.15rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0;
+    }
+
+    .ticket-footer-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-faint);
+    }
+
+    @media (min-width: 640px) {
+      .ticket-footer-block {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .ticket-footer-text {
+      font-size: 0.88rem;
+      color: #64748b;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .btn-submit-camp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 2.2rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: linear-gradient(90deg, var(--green-600) 0%, var(--green-500) 100%);
+      box-shadow: 0 10px 25px rgba(22, 198, 90, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit-camp:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(22, 198, 90, 0.35);
+      background: linear-gradient(90deg, var(--green-500) 0%, var(--green-400) 100%);
+    }
+
+    .btn-submit-camp:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* Modal styles */
+    .camp-payment-overlay {
+      position: fixed;
       inset: 0;
       z-index: 5000;
       padding: 1rem;
-      background: rgba(15, 23, 42, 0.58);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .camp-payment-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(8px);
     }
 
     .camp-payment-dialog {
-      position: absolute;
-      z-index: 5001;
-      transform: translate(-50%, -50%);
+      position: relative;
+      z-index: 1;
       width: min(100%, 48rem);
-      height: min(82svh, 44rem);
+      height: min(84svh, 45rem);
       overflow: hidden;
-      border-radius: 8px;
       background: #ffffff;
-      box-shadow: 0 28px 90px rgba(15, 23, 42, 0.28);
+      border: 1px solid var(--border-default);
+      box-shadow: 0 35px 100px rgba(0, 0, 0, 0.32);
     }
 
     .camp-payment-header {
@@ -282,23 +922,258 @@ interface CampDetail {
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem;
-      padding: 0.75rem 1rem;
+      padding: 0.9rem 1.25rem;
       border-bottom: 1px solid var(--border-default);
     }
 
+    .close-modal-btn {
+      background: transparent;
+      border: none;
+      color: #64748b;
+      font-size: 1.8rem;
+      line-height: 1;
+      padding: 0 0.4rem;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .close-modal-btn:hover {
+      color: #0f172a;
+    }
+
+    /* Anim Animations */
+    .animate-fade-in {
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .animate-slide-up {
+      animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes errorPop {
+      from { transform: translateY(-4px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Dark Mode Styling Integration */
+    :host-context(.dark) .camp-hero {
+      background: linear-gradient(180deg, #09090b 0%, #121214 100%);
+    }
+
+    :host-context(.dark) .camp-hero-glow {
+      opacity: 0.45;
+    }
+
+    :host-context(.dark) .glass-card {
+      background: rgba(22, 22, 26, 0.75);
+      border-color: rgba(61, 73, 104, 0.35);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    :host-context(.dark) .glass-card:hover {
+      background: rgba(30, 30, 36, 0.88);
+      border-color: rgba(90, 103, 136, 0.45);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    :host-context(.dark) .camp-eyebrow {
+      border-color: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      color: #7df3b2;
+      box-shadow: none;
+    }
+
+    :host-context(.dark) .camp-title {
+      color: #f8fafc;
+    }
+
+    :host-context(.dark) .camp-title .accent-title {
+      background: linear-gradient(135deg, #7df3b2 0%, #5ee49a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    :host-context(.dark) .camp-copy {
+      color: #94a3b8;
+    }
+
+    :host-context(.dark) .btn-secondary-camp {
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    :host-context(.dark) .btn-secondary-camp:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    :host-context(.dark) .detail-value {
+      color: #f1f5f9;
+    }
+
+    :host-context(.dark) .detail-note {
+      color: #94a3b8;
+    }
+
+    :host-context(.dark) .camp-flyer-frame {
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(22, 22, 26, 0.8);
+      box-shadow: 0 35px 85px rgba(0, 0, 0, 0.45);
+    }
+
+    :host-context(.dark) .benefit-title {
+      color: #f1f5f9;
+    }
+
+    :host-context(.dark) .benefit-body {
+      color: #94a3b8;
+    }
+
+    :host-context(.dark) .section-themes {
+      background: linear-gradient(180deg, #121214 0%, #09090b 100%);
+    }
+
+    :host-context(.dark) .section-themes-title {
+      color: #f8fafc;
+    }
+
+    :host-context(.dark) .theme-card-title {
+      color: #f1f5f9;
+    }
+
+    :host-context(.dark) .theme-items-list li {
+      color: #94a3b8;
+    }
+
+    :host-context(.dark) .projects-box {
+      background: rgba(9, 9, 11, 0.6);
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    :host-context(.dark) .theme-card:hover .projects-box {
+      background: rgba(22, 22, 26, 0.8);
+    }
+
+    :host-context(.dark) .projects-title {
+      color: #cbd5e1;
+    }
+
+    :host-context(.dark) .projects-list {
+      color: #94a3b8;
+    }
+
+    :host-context(.dark) .section-register {
+      background: var(--surface-base);
+    }
+
+    :host-context(.dark) .registration-ticket {
+      background: linear-gradient(135deg, rgba(22, 198, 90, 0.06) 0%, rgba(22, 22, 26, 0.95) 100%);
+      border-color: rgba(22, 198, 90, 0.25);
+    }
+
+    :host-context(.dark) .ticket-title {
+      color: #f8fafc;
+    }
+
+    :host-context(.dark) .price-value {
+      color: #f1f5f9;
+    }
+
+    :host-context(.dark) .ticket-description {
+      color: #94a3b8;
+    }
+
+    :host-context(.dark) .ticket-details-list dd {
+      color: #f1f5f9;
+    }
+
+    :host-context(.dark) .form-card {
+      background: rgba(22, 22, 26, 0.85);
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    :host-context(.dark) .form-label {
+      color: #cbd5e1;
+    }
+
+    :host-context(.dark) .form-input {
+      background: rgba(9, 9, 11, 0.7);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #f1f5f9;
+    }
+
+    :host-context(.dark) .form-input:focus-visible {
+      border-color: var(--green-500);
+      box-shadow: 0 0 0 4px rgba(22, 198, 90, 0.2);
+    }
+
+    :host-context(.dark) .ticket-footer-text {
+      color: #94a3b8;
+    }
+
+    :host-context(.dark) .camp-payment-dialog {
+      background: rgba(22, 22, 26, 0.95);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    :host-context(.dark) .close-modal-btn:hover {
+      color: #f8fafc;
+    }
+
+    /* Responsive grid layouts */
+    @media (max-width: 1024px) {
+      .camp-hero {
+        padding-block-start: 120px;
+        padding-block-end: 60px;
+      }
+      .camp-title {
+        font-size: 3.2rem;
+      }
+      .camp-flyer-frame {
+        max-width: 32rem;
+        margin-inline: auto;
+      }
+    }
+
     @media (max-width: 640px) {
-      .camp-payment-overlay {
-        padding: 0;
+      .camp-hero {
+        padding-block-start: 108px;
+        padding-block-end: 48px;
       }
-
-      .camp-payment-dialog {
-        width: calc(100% - 1rem);
-        height: min(88svh, 44rem);
+      .camp-title {
+        font-size: 2.5rem;
       }
-
-      .camp-payment-header {
-        align-items: flex-start;
-        flex-direction: column;
+      .camp-flyer-frame {
+        max-width: 100%;
+      }
+      .detail-card {
+        padding: 1rem 1.2rem;
+      }
+      .benefit-card {
+        padding: 1.4rem;
+      }
+      .theme-card {
+        padding: 1.5rem;
+      }
+      .registration-ticket, .form-card {
+        padding: 1.5rem;
+      }
+      .price-value {
+        font-size: 2.5rem;
+      }
+      .ticket-title {
+        font-size: 1.6rem;
       }
     }
   `],
@@ -383,6 +1258,8 @@ export class FutureCreatorsTechCampComponent implements OnInit, OnDestroy {
       accentClass: 'bg-rose-50 text-rose-700 border border-rose-100',
     },
   ];
+
+
 
   ngOnInit(): void {
     this.schema.inject(

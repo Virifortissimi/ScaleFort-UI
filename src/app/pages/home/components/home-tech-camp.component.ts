@@ -13,7 +13,7 @@ import { CohortCountdownComponent } from '../../../shared/components/cohort-coun
       <div class="container-base">
         <article
           appAnimateOnScroll
-          class="grid grid-cols-1 lg:grid-cols-[1fr_0.7fr] gap-8 items-center rounded-[28px] border border-green-100 bg-[linear-gradient(135deg,rgba(239,253,245,0.96),rgba(255,255,255,0.98))] p-5 sm:p-7 lg:p-9 shadow-[0_24px_70px_rgba(10,42,23,0.08)]"
+          class="tech-camp-card grid grid-cols-1 lg:grid-cols-[1fr_0.7fr] gap-8 items-center rounded-[28px] border border-green-100 bg-[linear-gradient(135deg,rgba(239,253,245,0.96),rgba(255,255,255,0.98))] p-5 sm:p-7 lg:p-9 shadow-[0_24px_70px_rgba(10,42,23,0.08)]"
         >
           <div>
             <p class="overline mb-3">Maiden Edition Starts August 3, 2026</p>
@@ -52,7 +52,7 @@ import { CohortCountdownComponent } from '../../../shared/components/cohort-coun
             <img
               src="assets/images/camps/future-creators-tech-camp.jpeg"
               alt="Scalefort Future Creators Tech Camp flyer"
-              class="w-full max-h-[28rem] object-cover object-top rounded-[1.35rem] border border-border-base bg-bg-white shadow-[0_20px_55px_rgba(15,23,42,0.12)]"
+              class="tech-camp-media w-full max-h-[28rem] object-cover object-top rounded-[1.35rem] border border-border-base bg-bg-white shadow-[0_20px_55px_rgba(15,23,42,0.12)]"
               loading="lazy"
               decoding="async"
             />
@@ -61,5 +61,43 @@ import { CohortCountdownComponent } from '../../../shared/components/cohort-coun
       </div>
     </section>
   `,
+  styles: [`
+    :host-context(.dark) .tech-camp-card {
+      border-color: rgba(94, 228, 154, 0.22);
+      background:
+        radial-gradient(circle at 16% 0%, rgba(22, 198, 90, 0.18), transparent 34%),
+        linear-gradient(135deg, rgba(12, 24, 18, 0.98), rgba(18, 22, 33, 0.98));
+      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    :host-context(.dark) .tech-camp-card .overline {
+      color: #7df3b2;
+    }
+
+    :host-context(.dark) .tech-camp-card .tag-green,
+    :host-context(.dark) .tech-camp-card .tag-amber,
+    :host-context(.dark) .tech-camp-card .tag-rose {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    :host-context(.dark) .tech-camp-card .tag-green {
+      color: #91f7bc;
+    }
+
+    :host-context(.dark) .tech-camp-card .tag-amber {
+      color: #fcd34d;
+    }
+
+    :host-context(.dark) .tech-camp-card .tag-rose {
+      color: #fda4af;
+    }
+
+    :host-context(.dark) .tech-camp-media {
+      border-color: rgba(255, 255, 255, 0.16);
+      background: #ffffff;
+      box-shadow: 0 22px 64px rgba(0, 0, 0, 0.5);
+    }
+  `],
 })
 export class HomeTechCampComponent {}
